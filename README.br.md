@@ -1,5 +1,5 @@
-<h1 align="center">🚀 Astro Stack</h1>
-🧡 Uma stack pessoal para desenvolvimento com Astro como principal recurso para o time! Ela conterá outras tecnologias também.<br>
+<h1 align="center">🔖 Book Blog</h1>
+📖 A blog about reviewing books<br>
 <br>
 
 *Leia em outras línguas: [English](README.md) ou [Português](README.br.md).*
@@ -10,7 +10,7 @@
 - [Pacotes E Tecnologias](#pacotes-e-tecnologias)
 
 <h3>Propósito</h3>
-Essa stack foi criada para fazer o processo de preparar um projeto com pouco esforço. Clonar essa stack feita de forma exclusiva para o seu projeto fará tudo mais fácil e eficiente.
+Esse será um blog que usará o Notion como intermediador para a produção de novos posts.
 
 <h3>Pacotes E Tecnologias</h3>
 <div style="display: block"> 
