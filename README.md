@@ -1,5 +1,6 @@
 <h1 align="center">🔖 Book Blog</h1>
-📖 A blog for someone we know too well... <br>
+📖 A blog about reviewing books<br>
+
 <br>
 
 *Read in other languages: [English](README.md) or [Português](README.br.md).*
