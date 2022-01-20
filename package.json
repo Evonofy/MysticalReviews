@@ -1,0 +1,30 @@
+{
+  "name": "astro-stack",
+  "version": "0.0.1",
+  "private": false,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "commit": "cz"
+  },
+  "devDependencies": {
+    "astro": "^0.22.11",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "3.3.0",
+    "dart-sass": "^1.25.0",
+    "postcss": "^8.4.5",
+    "postcss-scss": "^4.0.3",
+    "stylelint": "^14.2.0",
+    "stylelint-config-standard-scss": "^3.0.0",
+    "stylelint-order": "^5.0.0",
+    "stylelint-scss": "^4.1.0",
+    "yarn": "^1.22.17"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
