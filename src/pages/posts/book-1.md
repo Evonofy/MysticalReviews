@@ -1,7 +1,6 @@
 ---
 layout: ../../layouts/post.astro
 title: EDUARDO
-tag: movie
 date: 2021-05-17
 image: https://i.ytimg.com/vi/AO70iM2DF20/maxresdefault.jpg
 author: talita
