@@ -8,6 +8,9 @@
 	font-size: 1rem;
 	--user-font-scale: 1rem - 16px;
 	font-size: clamp(0.875rem, 0.4626rem + 1.0309vw + var(--user-font-scale), 1.125rem);
+
+	--gray-100: #f9fafb;
+	--gray-900: #111827; 
 }
 
 body {
@@ -16,13 +19,13 @@ body {
 	min-height: 100vh;
 	display: grid;
 	justify-content: center;
-	background: #f9fafb;
-	color: #111827;
+	background: var(--gray-100);
+	color: var(--gray-900);
 }
 
 @media (prefers-color-scheme: dark) {
 	body {
-		background: #111827;
-		color: #fff;
+		background: var(--gray-900);
+		color: var(--gray-100);
 	}
 }

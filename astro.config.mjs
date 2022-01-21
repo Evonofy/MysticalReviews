@@ -7,5 +7,5 @@ export default /** @type {import('astro').AstroUserConfig} */ ({
     port: 3000,
   },
   buildOptions: {},
-	renderers: ['@astrojs/renderer-preact'],
+  renderers: ["@astrojs/renderer-react", "@astrojs/renderer-preact"],
 });
