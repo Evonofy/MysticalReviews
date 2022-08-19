@@ -1,4 +1,4 @@
-<h1 align="center">🔖 Book Blog</h1>
+<h1 id="MysticalReviews" align="center">⌨️ <a href="#">MysticalReviews</a></h1>
 📖 A blog about reviewing books<br>
 
 <br>
@@ -11,7 +11,7 @@
 - [Technologies And Packages](#technologies-and-packages)
 
 <h3>Purpose</h3>
-This a blog that will use Notion as an intermediate to the making of new posts.
+This a literature blog that will use Notion as an intermediate to the making of new posts.
 
 <h3>Technologies And Packages</h3>
 <div style="display: block"> 
@@ -38,3 +38,5 @@ This a blog that will use Notion as an intermediate to the making of new posts.
    </li>
    
 </ul>
+
+[⬆ Back To Top](#MysticalReviews)<br>
