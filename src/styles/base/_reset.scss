@@ -1,7 +1,9 @@
 // @forward './reset';
 
 /* Default for all pages */
-
+body {
+  background-color: hsl(240, 10%, 85%);
+}
 /* Box sizing rules */
 *,
 *::before,

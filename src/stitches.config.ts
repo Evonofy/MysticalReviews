@@ -98,10 +98,21 @@ export const { styled } = createStitches({
   },
 
   utils: {
-    flexPack: () => ({
+    flexCenter: (value: string) => ({
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
+      flexDirection: value,
+    }),
+
+    flexCenterY: () => ({
+      display: "flex",
+      alignItems: "center",
+    }),
+
+    flexCenterX: () => ({
+      display: "flex",
+      justifyContent: "center",
     }),
 
     limitWidth: (pixels: string) => ({
