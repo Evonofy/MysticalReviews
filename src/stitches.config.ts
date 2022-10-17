@@ -1,4 +1,7 @@
-import { createStitches } from "@stitches/react";
+import { createStitches, globalCss } from "@stitches/react";
+import { setTags } from "./styles/HTMLTags";
+
+export const globalStyles = globalCss({ ...setTags });
 
 export const { styled } = createStitches({
   theme: {

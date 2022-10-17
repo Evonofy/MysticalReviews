@@ -1,9 +1,8 @@
 import { styled } from "../stitches.config";
 
 export const Button = styled("button", {
-  backgroundColor: "$daojpdfajkdsajopdcsadf",
-  $$myColor: "hsl(0, 100%, 40%)",
-  color: "$$myColor",
+  backgroundColor: "$secondaryBase",
+  color: "$gray100",
   fontWeight: "bold",
   borderRadius: "9999px",
   fontSize: "13px",
