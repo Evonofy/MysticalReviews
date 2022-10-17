@@ -20,6 +20,7 @@
     "react-icons": "^4.6.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.21"
+    "@types/react": "^18.0.21",
+    "sass": "^1.55.0"
   }
 }
