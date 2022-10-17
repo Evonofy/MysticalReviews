@@ -1,6 +1,6 @@
 import { styled } from "../stitches.config";
 
-export const Button = styled("a", {
+export const Button = styled("button", {
   backgroundColor: "$daojpdfajkdsajopdcsadf",
   $$myColor: "hsl(0, 100%, 40%)",
   color: "$$myColor",
