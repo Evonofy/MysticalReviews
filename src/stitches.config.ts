@@ -28,7 +28,7 @@ export const { styled } = createStitches({
     },
     fonts: {
       default: "Montserrat, sans-serif",
-      display: "Kaushan Script', cursive",
+      display: "Kaushan Script, cursive",
     },
     lineHeights: {
       default: "100%",
@@ -95,5 +95,18 @@ export const { styled } = createStitches({
       high: "40",
       highest: "50",
     },
+  },
+
+  utils: {
+    flexPack: () => ({
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    }),
+
+    limitWidth: (pixels: string) => ({
+      maxWidth: pixels,
+      margin: "auto",
+    }),
   },
 });

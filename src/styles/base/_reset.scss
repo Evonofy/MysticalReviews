@@ -1,10 +1,13 @@
 // @forward './reset';
 
+/* Default for all pages */
+
 /* Box sizing rules */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+  /* Additional rules */
   margin: 0;
   padding: 0;
 }
