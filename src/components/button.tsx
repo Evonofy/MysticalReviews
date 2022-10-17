@@ -1,36 +1,16 @@
-import { styled } from '../styles/stitches.config'
+import { styled } from "../stitches.config";
 
-export const Button = styled('', {
-  borderRadius: '$sizes$50',
+export const Button = styled("a", {
+  backgroundColor: "$daojpdfajkdsajopdcsadf",
+  $$myColor: "hsl(0, 100%, 40%)",
+  color: "$$myColor",
+  fontWeight: "bold",
+  borderRadius: "9999px",
+  fontSize: "13px",
+  padding: "10px 15px",
+  cursor: "pointer",
 
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  gap: '$sizes$100',
-
-  padding: '$sizes$100 $sizes$200',
-
-  fontWeight: 'bold',
-  cursor: 'pointer',
-
-  variants: {
-    variant: {
-      default: {
-        background: '$grayDarkest',
-        border: '1px solid $grayNormal',
-      },
-      outlined: {
-        background: '$grayDarkest',
-        border: '2px solid $grayLightest',
-
-        '&:hover, &:focus': {
-          borderColor: 'blueviolet',
-        },
-      },
-      link: {
-        padding: 0,
-        textDecoration: 'underline',
-      },
-    },
+  "&:hover": {
+    filter: "opacity(50%)",
   },
-})
+});

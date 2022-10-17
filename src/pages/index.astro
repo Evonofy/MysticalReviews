@@ -1,9 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+
+import { Button } from "../components/button"
 ---
 
 <Layout title="Welcome to Astro.">
+	<Button client:idle>Hello Stitches</Button>
 	<main>
 		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
 		<p class="instructions">
