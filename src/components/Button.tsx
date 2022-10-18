@@ -22,19 +22,18 @@ export const Button = styled("button", {
         fontSize: "$md",
 
         borderRadius: "$brSm",
-        padding: "$spacer-1 $spacer-8"
+        padding: "$spacer-1 $spacer-8",
       },
       desktop: {
         fontSize: "$xl",
 
         borderRadius: "$brSm",
-        padding: "$spacer-1 $spacer-8"
-      }
-    }
+        padding: "$spacer-1 $spacer-8",
+      },
+    },
   },
 
   "&:hover": {
     filter: "opacity(50%)",
   },
 });
-

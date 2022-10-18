@@ -106,7 +106,9 @@ export function Footer() {
         </PostsSection>
 
         <Paragraph css={{ textAlign: "center" }}>
-          © 2022 <a href="#">Thiago Thalisson </a>E{" "}
+          © 2022{" "}
+          <a href="https://github.com/ThiagoThalisson">Thiago Thalisson</a> E{" "}
+          {""}
           <a href="https://github.com/VitorGouveia">Vitor Gouveia</a>
         </Paragraph>
 
