@@ -194,9 +194,9 @@ export function Footer() {
                     </NavigationLinksContainer>
 
                     <InformationalLinks>
-                        <Paragraph>Cookies</Paragraph>
-                        <Paragraph>Termos De Serviço</Paragraph>
-                        <Paragraph>Política De Privacidade</Paragraph>
+                        <Paragraph>COOKIES</Paragraph>
+                        <Paragraph>TERMOS DE SERVIÇO</Paragraph>
+                        <Paragraph>POLÍTICA DE PRIVACIDADE</Paragraph>
                     </InformationalLinks>
                 </UsefulLinks>
             </LimitWidth>
