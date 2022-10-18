@@ -1,9 +1,14 @@
 // @forward './reset';
 
-/* Default for all pages */
+/* Additionals resets */
 body {
   background-color: hsl(240, 10%, 85%);
 }
+
+a {
+  text-decoration: none;
+}
+
 /* Box sizing rules */
 *,
 *::before,

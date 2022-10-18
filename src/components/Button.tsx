@@ -13,7 +13,7 @@ export const Button = styled("button", {
 
   cursor: "pointer",
 
-  flexCenter: true,
+  flexCenter: "row",
   gap: "$spacer-1",
 
   variants: {
