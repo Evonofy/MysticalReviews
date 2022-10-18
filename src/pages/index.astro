@@ -1,27 +1,25 @@
 ---
-import '../styles/main.scss'
-import { BsFillRecordCircleFill } from 'react-icons/bs';
+import "../styles/main.scss";
+import { BsFillRecordCircleFill } from "react-icons/bs/index.js";
 
-import { Button } from "../components/Button"
-import { Footer } from '../components/Footer'
+import { Button } from "../components/Button";
+import { Footer } from "../components/Footer";
 ---
+
 <body>
-	<section>
-		<Button client:load><BsFillRecordCircleFill />Button</Button>
-		<Button size="tablet" client:load><BsFillRecordCircleFill />Button</Button>
-		<Button size="desktop" client:load><BsFillRecordCircleFill />Button</Button>
-
-	</section>
-	<Footer client:load/>
+  <section>
+    <Button client:load><BsFillRecordCircleFill />Button</Button>
+    <Button size="tablet" client:load><BsFillRecordCircleFill />Button</Button>
+    <Button size="desktop" client:load><BsFillRecordCircleFill />Button</Button>
+  </section>
+  <Footer client:load />
+  <style>
+    section {
+      display: flex;
+      flex-direction: column;
+      width: max-content;
+      gap: 0.5rem;
+      padding: 1rem;
+    }
+  </style>
 </body>
-
-
-<style>
-	section {
-		display: flex;
-		flex-direction: column;
-		width: max-content;
-		gap: .5rem;
-		padding: 1rem;
-	}
-</style>
