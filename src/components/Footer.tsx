@@ -1,6 +1,9 @@
 // Stitches Config
 import { styled } from "../stitches.config";
 
+// HTML Tags
+import { Tags } from "../components/Tags";
+
 // Icons
 import { SiNotion } from "react-icons/si/index.js";
 import {
@@ -88,7 +91,7 @@ export function Footer() {
     <FooterRoot>
       <LimitWidth>
         <PostsSection>
-          <Paragraph>POSTS MAIS RECENTES</Paragraph>
+          <Tags.Paragraph size="desktop">POSTS MAIS RECENTES</Tags.Paragraph>
           <div
             style={{
               width: "100%",
@@ -105,15 +108,15 @@ export function Footer() {
           </div>
         </PostsSection>
 
-        <Paragraph css={{ textAlign: "center" }}>
+        <Tags.Paragraph size="desktop" css={{ textAlign: "center" }}>
           © 2022{" "}
           <a href="https://github.com/ThiagoThalisson">Thiago Thalisson</a> E{" "}
           {""}
           <a href="https://github.com/VitorGouveia">Vitor Gouveia</a>
-        </Paragraph>
+        </Tags.Paragraph>
 
         <ProjectSection>
-          <Paragraph>SOBRE O PROJETO</Paragraph>
+          <Tags.Paragraph size="desktop">SOBRE O PROJETO</Tags.Paragraph>
           <FooterIconContainer>
             <a href="">
               <FooterIcon>
@@ -251,9 +254,9 @@ export function Footer() {
           </NavigationLinksContainer>
 
           <InformationalLinks>
-            <Paragraph>COOKIES</Paragraph>
-            <Paragraph>TERMOS DE SERVIÇO</Paragraph>
-            <Paragraph>POLÍTICA DE PRIVACIDADE</Paragraph>
+            <Tags.Paragraph>COOKIES</Tags.Paragraph>
+            <Tags.Paragraph>TERMOS DE SERVIÇO</Tags.Paragraph>
+            <Tags.Paragraph>POLÍTICA DE PRIVACIDADE</Tags.Paragraph>
           </InformationalLinks>
         </UsefulLinks>
       </LimitWidth>
