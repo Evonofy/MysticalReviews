@@ -3,8 +3,9 @@ import { styled } from "../stitches.config";
 
 // Icons
 import { ImHome3 } from "react-icons/im/index.js";
-import { BsSearch } from "react-icons/bs/index.js";
+import { BsSearch, BsFillGearFill } from "react-icons/bs/index.js";
 import { FiInfo } from "react-icons/fi/index.js";
+import { AiFillStar } from "react-icons/ai/index.js";
 
 const NavRoot = styled("nav", {
   width: "100%",
@@ -26,8 +27,8 @@ export function Navbar() {
       <ImHome3></ImHome3>
       <BsSearch></BsSearch>
       <FiInfo></FiInfo>
-      <ImHome3></ImHome3>
-      <ImHome3></ImHome3>
+      <AiFillStar></AiFillStar>
+      <BsFillGearFill></BsFillGearFill>
     </NavRoot>
   );
 }
