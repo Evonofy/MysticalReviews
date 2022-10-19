@@ -4,11 +4,12 @@ import { styled } from "../stitches.config";
 
 import { Heading } from "@/components/heading";
 import { Button } from "@/components/button";
+import { Div } from "./utils/div";
 const Pill = lazy(() => import("@/components/pill"));
 
 const CardRoot = styled("div", {
   // mobile
-  width: "300px",
+  width: "280px",
 
   background: "$gray100",
   borderRadius: "$brMd",
@@ -18,8 +19,12 @@ const CardRoot = styled("div", {
   flexDirection: "column",
   alignItems: "center",
 
+  position: "relative",
+
   "@tablet": {
     // tablet
+    width: "100%",
+    // maxWidth: "$tablet",
   },
 
   "@desktop": {},
@@ -29,28 +34,64 @@ const CardRoot = styled("div", {
       default: {},
 
       "side-scroll": {
-        width: "300px",
+        "@mobile": {
+          width: "300px",
+        },
       },
     },
   },
 });
 
-const Image = styled("img", {
+const ImageContainer = styled("div", {
   width: "100%",
   height: "180px",
-  background: "red",
+
+  "@tablet": {
+    height: "450px",
+  },
 
   borderTopLeftRadius: "inherit",
   borderTopRightRadius: "inherit",
+
+  img: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+  },
+
+  "@desktop": {
+    height: "550px",
+
+    position: "relative",
+
+    "&:after": {
+      content: "",
+
+      width: "100%",
+      height: "100%",
+
+      position: "absolute",
+      inset: "0",
+      margin: "auto",
+
+      background: "rgba(0, 0, 0, 0.5)",
+    },
+  },
 });
 
 const CardContent = styled("section", {
+  width: "100%",
+
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-start",
 
   gap: "$spacer-3",
   padding: "$spacer-3 $spacer-3 $spacer-5",
+
+  "@desktop": {
+    flexDirection: "column-reverse",
+  },
 });
 
 const PillList = styled("ul", {
@@ -67,11 +108,15 @@ const DateSection = styled("footer", {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  alignSelf: "center",
   justifyContent: "center",
 
   gap: "$spacer-1",
 
   hr: {
+    width: "67px",
+    height: "5px",
+
     borderRadius: "$brXm",
     background: "$accentBase",
   },
@@ -85,9 +130,13 @@ type CardProps = {
   coverImageDescription: string;
   description: string;
 
-  variant: "default" | "side-scroll";
+  variant?: "default" | "side-scroll";
 
   createdAt: string;
+};
+
+const capitalize = (string: string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
 export const Card = ({
@@ -97,35 +146,141 @@ export const Card = ({
   coverUrl,
   coverImageDescription,
   createdAt,
-  variant,
+  variant = "default",
 }: CardProps) => {
-  const formattedDate = new Intl.DateTimeFormat("pt-BR").format(
-    new Date(Number(createdAt))
-  );
+  const mobileDescription = description.substring(0, 148);
+  const sideScrollDescription = description.substring(0, 74);
+  const tabletDescription = description.substring(0, 296);
+  const desktopDescription = description.substring(0, 344);
+
+  const date = new Date(Number(createdAt));
+  const month = new Intl.DateTimeFormat("pt-BR", {
+    month: "long",
+  });
+
+  const formattedDate = `${capitalize(
+    month.format(date)
+  )} (${date.getMonth()}) ${date.getDate()}, ${date.getFullYear()}`;
 
   return (
     <CardRoot variant={variant}>
-      <Image src={coverUrl} alt={coverImageDescription} />
+      <ImageContainer>
+        <img src={coverUrl} alt={coverImageDescription} />
+      </ImageContainer>
 
       <CardContent>
         <PillList>
           <Suspense fallback={<h1>Loading...</h1>}>
-            {genres.map((genre) => (
-              <Pill key={genre}>{genre}</Pill>
+            {genres.map((genre, index) => (
+              <Pill key={genre} index={index} href={`/${genre}`}>
+                {genre}
+              </Pill>
             ))}
           </Suspense>
         </PillList>
 
-        <Heading.h2 font="display" css={{ color: "$gray900" }}>
-          {title}
-        </Heading.h2>
+        <Div
+          css={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "$spacer-1",
+            alignItems: "flex-start",
+          }}
+        >
+          <Heading.h2
+            font="display"
+            css={{
+              width: "max-content",
+              height: "max-content",
 
-        <Heading.p font="reading" css={{ color: "$gray500" }}>
-          {description}
-        </Heading.p>
+              color: "$gray900",
 
-        <DateSection>
-          <Heading.p>{formattedDate}</Heading.p>
+              "@desktop": {
+                position: "absolute",
+                inset: "0",
+                margin: "auto",
+                transform: "translateY(-200%)",
+                color: "$gray100",
+              },
+            }}
+          >
+            {title}
+          </Heading.h2>
+
+          {variant === "side-scroll" ? (
+            <Heading.p
+              font="reading"
+              weight="regular"
+              css={{
+                color: "$gray500",
+                fontSize: "$md",
+                "@tablet": { display: "none" },
+              }}
+            >
+              {sideScrollDescription}
+            </Heading.p>
+          ) : (
+            <Heading.p
+              font="reading"
+              weight="regular"
+              css={{
+                color: "$gray500",
+                "@tablet": { display: "none" },
+              }}
+            >
+              {mobileDescription}
+            </Heading.p>
+          )}
+
+          <Heading.p
+            font="reading"
+            weight="regular"
+            css={{
+              color: "$gray500",
+              fontSize: "$md",
+              display: "none",
+              "@tablet": { display: "block" },
+              "@desktop": { display: "none" },
+            }}
+          >
+            {tabletDescription}
+          </Heading.p>
+
+          <Heading.p
+            font="reading"
+            weight="regular"
+            css={{
+              color: "$gray500",
+              fontSize: "$lg",
+              display: "none",
+              "@desktop": { display: "block" },
+            }}
+          >
+            {desktopDescription}
+          </Heading.p>
+        </Div>
+
+        <DateSection
+          css={{
+            "@desktop": {
+              display: "none",
+            },
+          }}
+        >
+          <Heading.p
+            font="reading"
+            weight="medium"
+            css={{
+              color: "$gray600",
+
+              "@tablet": {
+                fontSize: "$md",
+              },
+            }}
+          >
+            {formattedDate}
+          </Heading.p>
+
           <hr />
         </DateSection>
 
@@ -135,10 +290,24 @@ export const Card = ({
 
             "@tablet": {
               display: "flex",
+              alignSelf: "center",
+            },
+
+            "@desktop": {
+              position: "absolute",
+              inset: "0",
+              margin: "auto",
+              transform: "translateY(-100%)",
+              zIndex: "$high",
+
+              width: "max-content",
+              height: "max-content",
             },
           }}
         >
-          Leia Mais
+          <Heading.p css={{ color: "$gray100" }} weight="medium" font="reading">
+            Leia Mais
+          </Heading.p>
         </Button>
       </CardContent>
     </CardRoot>

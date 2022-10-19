@@ -5,6 +5,7 @@ export const globalStyles = globalCss({ ...setTags });
 
 export const { styled, config } = createStitches({
   media: {
+    mobile: "(max-width: 43rem)",
     tablet: "(min-width: 43rem)",
     desktop: "(min-width: 68.75rem)",
   },
@@ -46,6 +47,10 @@ export const { styled, config } = createStitches({
       regular: "regular",
       medium: "medium",
       bold: "bold",
+    },
+    borderWidths: {
+      thin: "1px",
+      hev: "4px",
     },
     fontSizes: {
       xxs: "0.625rem",

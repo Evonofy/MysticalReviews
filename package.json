@@ -18,11 +18,13 @@
     "astro": "^1.5.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-icons": "^4.6.0"
+    "react-icons": "^4.6.0",
+    "seedrandom": "^3.0.5"
   },
   "devDependencies": {
     "@types/node": "^18.11.0",
     "@types/react-icons": "^3.0.0",
+    "@types/seedrandom": "^3.0.2",
     "sass": "^1.55.0"
   }
 }
