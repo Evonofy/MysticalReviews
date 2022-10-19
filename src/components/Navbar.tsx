@@ -21,14 +21,22 @@ const NavRoot = styled("nav", {
   backgroundColor: "$gray100",
 });
 
+const NavMobile = styled("nav", {
+  backgroundColor: "$gray100",
+});
+
+const NavTablet = styled("nav", {});
+
 export function Navbar() {
   return (
     <NavRoot>
-      <ImHome3></ImHome3>
-      <BsSearch></BsSearch>
-      <FiInfo></FiInfo>
-      <AiFillStar></AiFillStar>
-      <BsFillGearFill></BsFillGearFill>
+      <NavMobile>
+        <ImHome3></ImHome3>
+        <BsSearch></BsSearch>
+        <FiInfo></FiInfo>
+        <AiFillStar></AiFillStar>
+        <BsFillGearFill></BsFillGearFill>
+      </NavMobile>
     </NavRoot>
   );
 }
