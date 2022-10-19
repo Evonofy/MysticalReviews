@@ -1,6 +1,10 @@
 import { createStitches, globalCss } from "@stitches/react";
 
 export const { styled } = createStitches({
+  media: {
+    tablet: "(max-width: 43rem)",
+    desktop: "(max-width: 63.688rem)",
+  },
   theme: {
     colors: {
       accentLight: "hsl(185, 100%, 70%)",
@@ -23,12 +27,10 @@ export const { styled } = createStitches({
       white: "hsla(0, 0%, 100%, 1)",
       black: "hsla(0, 0%, 0%, 1)",
     },
-
     fonts: {
       default: "Montserrat, sans-serif",
       display: "Kaushan Script, cursive",
     },
-
     lineHeights: {
       default: "100%",
       shorter: "125%",
@@ -36,7 +38,6 @@ export const { styled } = createStitches({
       base: "160%",
       tall: "180%",
     },
-
     fontSizes: {
       xxs: "0.625rem",
       xs: "0.75rem",
@@ -51,7 +52,6 @@ export const { styled } = createStitches({
       "7xl": "4rem",
       "8xl": "4.5rem",
     },
-
     space: {
       "spacer-1": "0.25rem",
       "spacer-2": "0.5rem",
@@ -66,13 +66,6 @@ export const { styled } = createStitches({
       "spacer-12": "3rem",
       "spacer-14": "4rem",
     },
-
-    media: {
-      tablet: "(min-width: 43rem)",
-      desktop: "(min-width: 1024px)",
-      bp3: "(min-width: 1024px)",
-    },
-
     radii: {
       brXm: "2.5px",
       brSm: "5px",
@@ -83,7 +76,6 @@ export const { styled } = createStitches({
       bwThc: "100px",
       bwHev: "100px",
     },
-
     transitions: {
       default: "0",
       faster: "0.1s",
@@ -92,7 +84,6 @@ export const { styled } = createStitches({
       slow: "0.4s",
       slower: "0.5s",
     },
-
     zIndices: {
       default: "1",
       lowest: "10",

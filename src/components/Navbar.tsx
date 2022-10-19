@@ -23,6 +23,16 @@ const NavRoot = styled("nav", {
 });
 
 const NavMobile = styled("nav", {
+  width: "100%",
+  position: "fixed",
+  bottom: "0",
+  left: "0",
+
+  display: "flex",
+  justifyContent: "space-between",
+
+  paddingInline: "$spacer-5",
+  paddingBlock: "$spacer-2",
   backgroundColor: "$gray100",
 });
 
@@ -35,7 +45,12 @@ export function Navbar() {
   return (
     <NavRoot>
       <NavMobile>
-        <ImHome3></ImHome3>
+        <ImHome3
+          style={{
+            width: "1.563rem",
+            height: "1.563rem",
+          }}
+        ></ImHome3>
         <BsSearch></BsSearch>
         <FiInfo></FiInfo>
         <AiFillStar></AiFillStar>
