@@ -1,7 +1,7 @@
 {
   "name": "@example/basics",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "main": "",
   "scripts": {
@@ -12,17 +12,20 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^1.2.0",
+    "@astrojs/react": "^1.2.1",
     "@stitches/react": "^1.2.8",
-    "@types/node": "^18.11.0",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
     "astro": "^1.5.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.6.0"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-icons": "^4.6.0",
+    "seedrandom": "^3.0.5"
   },
   "devDependencies": {
-    "@types/react": "^18.0.21",
+    "@types/node": "^18.11.0",
     "@types/react-icons": "^3.0.0",
+    "@types/seedrandom": "^3.0.2",
     "sass": "^1.55.0"
   }
 }

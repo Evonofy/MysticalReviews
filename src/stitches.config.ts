@@ -1,6 +1,11 @@
-import { createStitches, globalCss } from "@stitches/react";
+import { createStitches } from "@stitches/react";
 
-export const { styled } = createStitches({
+export const { styled, config } = createStitches({
+  media: {
+    mobile: "(max-width: 768px)",
+    tablet: "(min-width: 768px)",
+    desktop: "(min-width: 1024px)",
+  },
   theme: {
     colors: {
       accentLight: "hsl(185, 100%, 70%)",
@@ -36,7 +41,16 @@ export const { styled } = createStitches({
       base: "160%",
       tall: "180%",
     },
-
+    fontWeights: {
+      light: "light",
+      regular: "regular",
+      medium: "medium",
+      bold: "bold",
+    },
+    borderWidths: {
+      thin: "1px",
+      hev: "4px",
+    },
     fontSizes: {
       xxs: "0.625rem",
       xs: "0.75rem",
@@ -71,7 +85,9 @@ export const { styled } = createStitches({
       tablet: "43rem",
       desktop: "68.75 rem",
     },
-
+    shadows: {
+      default: "0px 4px 14px rgba(0, 0, 0, 0.1)",
+    },
     radii: {
       brXm: "2.5px",
       brSm: "5px",
@@ -103,7 +119,9 @@ export const { styled } = createStitches({
   },
 
   utils: {
-    flexCenter: (value: string) => ({
+    flexCenter: (
+      value: "column" | "column-reverse" | "row" | "row-reverse"
+    ) => ({
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
