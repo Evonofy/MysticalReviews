@@ -2,9 +2,9 @@ import { createStitches, globalCss } from "@stitches/react";
 
 export const { styled, config } = createStitches({
   media: {
-    mobile: "(max-width: 43rem)",
-    tablet: "(min-width: 43rem)",
-    desktop: "(min-width: 68.75rem)",
+    mobile: "(max-width: 768px)",
+    tablet: "(min-width: 768px)",
+    desktop: "(min-width: 1024px)",
   },
   theme: {
     colors: {
