@@ -9,7 +9,7 @@ const Pill = lazy(() => import("@/components/pill"));
 
 const CardRoot = styled("div", {
   // mobile
-  width: "280px",
+  width: "100%",
 
   background: "$gray100",
   borderRadius: "$brMd",
@@ -23,7 +23,6 @@ const CardRoot = styled("div", {
 
   "@tablet": {
     // tablet
-    width: "100%",
     // maxWidth: "$tablet",
   },
 
@@ -46,10 +45,6 @@ const ImageContainer = styled("div", {
   width: "100%",
   height: "180px",
 
-  "@tablet": {
-    height: "450px",
-  },
-
   borderTopLeftRadius: "inherit",
   borderTopRightRadius: "inherit",
 
@@ -57,6 +52,10 @@ const ImageContainer = styled("div", {
     width: "100%",
     height: "100%",
     objectFit: "cover",
+  },
+
+  "@tablet": {
+    height: "450px",
   },
 
   "@desktop": {

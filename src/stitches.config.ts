@@ -1,4 +1,4 @@
-import { createStitches, globalCss } from "@stitches/react";
+import { createStitches } from "@stitches/react";
 
 export const { styled, config } = createStitches({
   media: {
