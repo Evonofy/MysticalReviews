@@ -1,3 +1,4 @@
+// Stitches Config
 import { styled } from "../stitches.config";
 
 const Heading1 = styled("h1", {
@@ -95,7 +96,7 @@ const Small = styled("small", {
   },
 });
 
-export const Heading = {
+export const Tags = {
   Heading1,
   Heading2,
   Heading3,

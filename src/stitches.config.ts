@@ -1,7 +1,4 @@
 import { createStitches, globalCss } from "@stitches/react";
-import { setTags } from "./styles/HTMLTags";
-
-export const globalStyles = globalCss({ ...setTags });
 
 export const { styled, config } = createStitches({
   media: {
@@ -31,10 +28,12 @@ export const { styled, config } = createStitches({
       white: "hsla(0, 0%, 100%, 1)",
       black: "hsla(0, 0%, 0%, 1)",
     },
+
     fonts: {
       default: "Montserrat, sans-serif",
       display: "Kaushan Script, cursive",
     },
+
     lineHeights: {
       default: "100%",
       shorter: "125%",
@@ -66,6 +65,7 @@ export const { styled, config } = createStitches({
       "7xl": "4rem",
       "8xl": "4.5rem",
     },
+
     space: {
       "spacer-1": "0.25rem",
       "spacer-2": "0.5rem",
@@ -80,6 +80,7 @@ export const { styled, config } = createStitches({
       "spacer-12": "3rem",
       "spacer-14": "4rem",
     },
+
     sizes: {
       tablet: "43rem",
       desktop: "68.75 rem",
@@ -97,6 +98,7 @@ export const { styled, config } = createStitches({
       bwThc: "100px",
       bwHev: "100px",
     },
+
     transitions: {
       default: "0",
       faster: "0.1s",
@@ -105,6 +107,7 @@ export const { styled, config } = createStitches({
       slow: "0.4s",
       slower: "0.5s",
     },
+
     zIndices: {
       default: "1",
       lowest: "10",
