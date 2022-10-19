@@ -6,6 +6,7 @@ import { ImHome3 } from "react-icons/im/index.js";
 import { BsSearch, BsFillGearFill } from "react-icons/bs/index.js";
 import { FiInfo } from "react-icons/fi/index.js";
 import { AiFillStar } from "react-icons/ai/index.js";
+import { GiHamburgerMenu } from "react-icons/gi/index.js";
 
 const NavRoot = styled("nav", {
   width: "100%",
@@ -25,7 +26,10 @@ const NavMobile = styled("nav", {
   backgroundColor: "$gray100",
 });
 
-const NavTablet = styled("nav", {});
+const NavTablet = styled("nav", {
+  paddingBlock: "$spacer-2",
+  paddingInline: "$spacer-10",
+});
 
 export function Navbar() {
   return (
@@ -37,6 +41,7 @@ export function Navbar() {
         <AiFillStar></AiFillStar>
         <BsFillGearFill></BsFillGearFill>
       </NavMobile>
+      <NavTablet></NavTablet>
     </NavRoot>
   );
 }

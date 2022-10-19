@@ -10,12 +10,12 @@ import { Footer } from "../components/Footer";
 <body>
   <section>
     <Button client:load><BsFillRecordCircleFill />Button</Button>
-    <Button size="tablet" client:load><BsFillRecordCircleFill />Button</Button>
-    <Button size="desktop" client:load><BsFillRecordCircleFill />Button</Button>
+    <!-- <Button client:load><BsFillRecordCircleFill />Button</Button> -->
+    <!-- <Button size="desktop" client:load><BsFillRecordCircleFill />Button</Button> -->
   </section>
 
   <Navbar client:load />
-  <Footer client:load />
+  <Footer client:only="react" />
 
   <style>
     section {

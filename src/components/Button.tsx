@@ -16,21 +16,17 @@ export const Button = styled("button", {
   flexCenter: "row",
   gap: "$spacer-1",
 
-  variants: {
-    size: {
-      tablet: {
-        fontSize: "$md",
+  "@tablet": {
+    fontSize: "$md",
 
-        borderRadius: "$brSm",
-        padding: "$spacer-1 $spacer-8",
-      },
-      desktop: {
-        fontSize: "$xl",
+    borderRadius: "$brSm",
+    padding: "$spacer-1 $spacer-8",
+  },
+  "@desktop": {
+    fontSize: "$xl",
 
-        borderRadius: "$brSm",
-        padding: "$spacer-1 $spacer-8",
-      },
-    },
+    borderRadius: "$brSm",
+    padding: "$spacer-1 $spacer-8",
   },
 
   "&:hover": {

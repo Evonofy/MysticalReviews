@@ -67,9 +67,10 @@ export const { styled } = createStitches({
       "spacer-14": "4rem",
     },
 
-    sizes: {
-      tablet: "43rem",
-      desktop: "68.75 rem",
+    media: {
+      tablet: "(min-width: 43rem)",
+      desktop: "(min-width: 1024px)",
+      bp3: "(min-width: 1024px)",
     },
 
     radii: {

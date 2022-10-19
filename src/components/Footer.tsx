@@ -16,10 +16,15 @@ import { IoIosInformationCircleOutline } from "react-icons/io/index.js";
 import { AiFillStar } from "react-icons/ai/index.js";
 
 const FooterRoot = styled("footer", {
+  display: "flex",
   width: "100%",
 
   backgroundColor: "$gray100",
   paddingBlock: "$spacer-10",
+
+  "@desktop": {
+    display: "none",
+  },
 });
 
 const LimitWidth = styled("div", {
