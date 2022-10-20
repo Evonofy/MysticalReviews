@@ -60,7 +60,7 @@ export const { styled, config } = createStitches({
       xl: "1.25rem",
       "2xl": "1.5rem",
       "4xl": "2rem",
-      "5xl": "2.25rem",
+      "5xl": "2.5rem",
       "6xl": "3rem",
       "7xl": "4rem",
       "8xl": "4.5rem",

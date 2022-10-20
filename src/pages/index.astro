@@ -5,13 +5,15 @@ import { BsFillRecordCircleFill } from "react-icons/bs/index.js";
 
 import { Button } from "../components/button";
 import { Card } from "../components/card";
+import { Newsletter } from "../components/newsletter";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 ---
 
 <body>
   <section style={{width: "100%"}}>
-      <Card
+    <Newsletter client:load />
+    <!-- <Card
         title="ben"
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed consectetur mauris. Nunc pretium lorem eu fermentum vulputate. In in vulputate tortor. Etiam elit elit, vulputate vel leo sit amet, rutrum condimentum libero. Ut sit amet lorem gravida, ornare ipsum quis, luctus mauris. Phasellus tempus urna arcu, ut scelerisque nunc iaculis ut. "
         coverUrl="https://i.pinimg.com/736x/61/a5/a1/61a5a1eec1183ed481e9212a9ff506b0.jpg"
@@ -20,7 +22,7 @@ import { Footer } from "../components/Footer";
         variant="default"
         createdAt={String(new Date().getTime())}
         client:load
-      />
+      /> -->
 
     <!-- <Button client:load>
       <BsFillRecordCircleFill /> Button
