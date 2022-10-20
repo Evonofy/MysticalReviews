@@ -4,6 +4,8 @@ import { styled } from "@/stitches.config";
 import { Heading } from "./heading";
 
 const TitleRoot = styled(Heading.h1, {
+  fontWeight: "$regular",
+
   "&:after": {
     content: "",
     display: "block",
