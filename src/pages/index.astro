@@ -1,5 +1,7 @@
 ---
 import "../styles/main.scss";
+import { globalStyles } from "../stitches.config";
+globalStyles();
 import { BsFillRecordCircleFill } from "react-icons/bs/index.js";
 
 import { Button } from "../components/Button";
@@ -7,23 +9,24 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 ---
 
-<body>
-  <section>
-    <Button client:load><BsFillRecordCircleFill />Button</Button>
-    <!-- <Button client:load><BsFillRecordCircleFill />Button</Button> -->
-    <!-- <Button size="desktop" client:load><BsFillRecordCircleFill />Button</Button> -->
-  </section>
-
+<header>
   <Navbar client:load />
-  <Footer client:only="react" />
+</header>
 
-  <style>
-    section {
-      display: flex;
-      flex-direction: column;
-      width: max-content;
-      gap: 0.5rem;
-      padding: 1rem;
-    }
-  </style>
-</body>
+<section>
+  <Button client:load><BsFillRecordCircleFill />Button</Button>
+  <!-- <Button client:load><BsFillRecordCircleFill />Button</Button> -->
+  <!-- <Button size="desktop" client:load><BsFillRecordCircleFill />Button</Button> -->
+</section>
+
+<Footer client:only="react" />
+
+<style>
+  section {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+</style>
