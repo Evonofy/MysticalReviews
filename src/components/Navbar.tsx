@@ -1,13 +1,16 @@
 // Stitches Config
-import { styled, globalStyles } from "../stitches.config";
+import { styled } from "../stitches.config";
 
 // HTML Tags
 import { Tags } from "../components/Tags";
 
+// Components
+import { SearchBar } from "./SearchBar";
+
 // Icons
 import { ImHome3 } from "react-icons/im/index.js";
 import { BsSearch, BsFillGearFill } from "react-icons/bs/index.js";
-import { FiInfo } from "react-icons/fi/index.js";
+import { FiInfo, FiSettings } from "react-icons/fi/index.js";
 import { AiFillStar } from "react-icons/ai/index.js";
 import { GiHamburgerMenu } from "react-icons/gi/index.js";
 
@@ -30,16 +33,26 @@ const NavMobile = styled("nav", {
 });
 
 const NavTablet = styled("nav", {
-  paddingBlock: "$spacer-2",
-  paddingInline: "$spacer-10",
   display: "none",
 
+  backgroundColor: "$gray100",
+  paddingBlock: "$spacer-2",
+  paddingInline: "$spacer-10",
+
   "@tablet": {
-    display: "flex",
+    flexCenter: "row",
+    justifyContent: "space-between",
   },
   "@desktop": {
     display: "none",
   },
+});
+
+const SearchAndSettings = styled("div", {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "$spacer-5",
 });
 
 export function Navbar() {
@@ -99,11 +112,32 @@ export function Navbar() {
       <NavTablet>
         <GiHamburgerMenu
           style={{
+            color: "black",
+
             width: "1.563rem",
             height: "1.563rem",
-            color: "black",
+
+            cursor: "pointer",
           }}
         ></GiHamburgerMenu>
+
+        <SearchAndSettings>
+          <SearchBar></SearchBar>
+          <FiSettings
+            style={{
+              color: "white",
+
+              width: "2.25rem",
+              height: "2.25rem",
+
+              backgroundColor: "hsl(185, 100%, 35%)",
+              borderRadius: "2px",
+              padding: "0.25rem",
+
+              cursor: "pointer",
+            }}
+          ></FiSettings>
+        </SearchAndSettings>
       </NavTablet>
     </>
   );
