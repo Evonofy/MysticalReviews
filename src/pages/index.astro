@@ -3,16 +3,21 @@ import "../styles/main.scss";
 
 import { BsFillRecordCircleFill } from "react-icons/bs/index.js";
 
-import { Button } from "../components/button";
-import { Card } from "../components/card";
-import { Newsletter } from "../components/newsletter";
+import { Resenhas } from "../components/resenhas";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 ---
 
+<meta charset="UTF-8" />
+
 <body>
+  
   <section style={{width: "100%"}}>
-    <Newsletter client:load />
+    <Resenhas
+      variant="filter"
+      genres={["Romance De Época", "Romance Histórico", "Sobrenatural", "New Adult"]}
+      client:only="react"
+    />
     <!-- <Card
         title="ben"
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed consectetur mauris. Nunc pretium lorem eu fermentum vulputate. In in vulputate tortor. Etiam elit elit, vulputate vel leo sit amet, rutrum condimentum libero. Ut sit amet lorem gravida, ornare ipsum quis, luctus mauris. Phasellus tempus urna arcu, ut scelerisque nunc iaculis ut. "
@@ -32,8 +37,8 @@ import { Footer } from "../components/Footer";
     <Button size="desktop" client:load><BsFillRecordCircleFill />Button</Button> -->
   </section>
 
-  <Navbar client:load />
-  <Footer client:load />
+  <!-- <Navbar client:load />
+  <Footer client:load /> -->
 
   <style>
     section {
