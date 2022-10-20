@@ -51,6 +51,7 @@ export function Navbar() {
             style={{
               width: "1.563rem",
               height: "1.563rem",
+              color: "black",
             }}
           ></ImHome3>
         </Tags.Link>
@@ -59,6 +60,7 @@ export function Navbar() {
             style={{
               width: "1.563rem",
               height: "1.563rem",
+              color: "black",
             }}
           ></BsSearch>
         </Tags.Link>
@@ -68,6 +70,7 @@ export function Navbar() {
             style={{
               width: "1.563rem",
               height: "1.563rem",
+              color: "black",
             }}
           ></FiInfo>
         </Tags.Link>
@@ -77,6 +80,7 @@ export function Navbar() {
             style={{
               width: "1.563rem",
               height: "1.563rem",
+              color: "black",
             }}
           ></AiFillStar>
         </Tags.Link>
@@ -86,6 +90,7 @@ export function Navbar() {
             style={{
               width: "1.563rem",
               height: "1.563rem",
+              color: "black",
             }}
           ></BsFillGearFill>
         </Tags.Link>
@@ -96,6 +101,7 @@ export function Navbar() {
           style={{
             width: "1.563rem",
             height: "1.563rem",
+            color: "black",
           }}
         ></GiHamburgerMenu>
       </NavTablet>

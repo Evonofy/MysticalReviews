@@ -103,7 +103,7 @@ const Link = styled("a", {
     transitionTimingFunction: "ease-in-out",
 
     svg: {
-      color: "$secondaryBase",
+      color: "$secondaryBase !important",
       transition: "all 0.3s",
       transitionTimingFunction: "ease-in-out",
     },
