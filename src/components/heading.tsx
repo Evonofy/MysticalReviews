@@ -26,22 +26,48 @@ const setupVariants = (
   },
 });
 
+const h1 = styled("h1", {
+  ...setupVariants(),
+  fontSize: "$4xl",
+  lineHeight: "$short",
+
+  "@tablet": {
+    fontSize: "$5xl",
+  },
+
+  "@desktop": {
+    fontSize: "$6xl",
+  },
+});
+
 const h2 = styled("h2", {
+  ...setupVariants(),
   fontSize: "$2xl",
 
-  "@tablet": {},
-  "@desktop": {},
+  "@tablet": {
+    fontSize: "$4xl",
+  },
 
-  ...setupVariants(),
+  "@desktop": {
+    fontSize: "$5xl",
+  },
 });
 
 const p = styled("p", {
+  ...setupVariants(),
   fontSize: "$xs",
 
-  ...setupVariants(),
+  "@tablet": {
+    fontSize: "$md",
+  },
+
+  "@desktop": {
+    fontSize: "$xl",
+  },
 });
 
 export const Heading = {
+  h1,
   h2,
   p,
 };
