@@ -14,7 +14,8 @@ const Input = styled("input", {
 
   backgroundColor: "$gray100",
   paddingBlock: "$spacer-1",
-  paddingInline: "$spacer-3",
+  paddingLeft: "$spacer-3",
+  paddingRight: "$spacer-10",
 
   border: "2px solid $accentBase",
   borderRadius: "2.5px",

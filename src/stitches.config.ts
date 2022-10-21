@@ -2,7 +2,7 @@ import { createStitches } from "@stitches/react";
 
 export const { styled, globalCss } = createStitches({
   media: {
-    tablet: "(min-width: 43rem)",
+    tablet: "(min-width: 48rem)",
     desktop: "(min-width: 63.688rem)",
   },
   theme: {
@@ -65,6 +65,10 @@ export const { styled, globalCss } = createStitches({
       "spacer-11": "2.625",
       "spacer-12": "3rem",
       "spacer-14": "4rem",
+    },
+    sizes: {
+      tablet: "48rem",
+      desktop: "63.688rem",
     },
     radii: {
       brXm: "2.5px",

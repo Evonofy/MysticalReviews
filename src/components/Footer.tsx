@@ -21,6 +21,7 @@ const FooterRoot = styled("footer", {
 
   backgroundColor: "$gray100",
   paddingBlock: "$spacer-10",
+  paddingInline: "$spacer-8",
 
   "@desktop": {
     display: "flex",
