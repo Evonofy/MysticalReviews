@@ -1,23 +1,21 @@
 ---
 import "../styles/main.scss";
 
-import { BsFillRecordCircleFill } from "react-icons/bs/index.js";
-
-import { Resenhas } from "../components/resenhas";
-import { Navbar } from "../components/Navbar";
-import { Footer } from "../components/Footer";
+import { PopupButton, PopupModal } from "../components/popup";
 ---
 
 <meta charset="UTF-8" />
 
 <body>
+  <PopupButton
+    client:only="react"
+  >
+    <div slot="content">Filtrar Por</div>
+
+    <PopupModal slot="modal">Hello world</PopupModal>
+  </PopupButton>
   
   <section style={{width: "100%"}}>
-    <Resenhas
-      variant="filter"
-      genres={["Romance De Época", "Romance Histórico", "Sobrenatural", "New Adult"]}
-      client:only="react"
-    />
     <!-- <Card
         title="ben"
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed consectetur mauris. Nunc pretium lorem eu fermentum vulputate. In in vulputate tortor. Etiam elit elit, vulputate vel leo sit amet, rutrum condimentum libero. Ut sit amet lorem gravida, ornare ipsum quis, luctus mauris. Phasellus tempus urna arcu, ut scelerisque nunc iaculis ut. "
