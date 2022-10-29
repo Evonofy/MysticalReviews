@@ -14,11 +14,12 @@ const PillRoot = styled("a", {
   justifyContent: "center",
   padding: "$spacer-1 $spacer-4",
   borderRadius: "$brLg",
+  flexShrink: "0",
 
   // focus ring
   "&:focus-visible": {
-    outline: "2px solid transparent",
-    outlineOffset: "-2px", // 2 works better than 1 from the design
+    outline: "3px solid transparent",
+    outlineOffset: "-3px", // 2 works better than 1 from the design
   },
 
   "&:hover": {
@@ -26,24 +27,14 @@ const PillRoot = styled("a", {
   },
 });
 
-const colorMap: Array<{ backgroundColor: string; color: string }> = [
-  {
-    color: "#05543D",
-    backgroundColor: "#CBF9E1",
-  },
-  {
-    color: "#904827",
-    backgroundColor: "#FCF4DB",
-  },
-  {
-    color: "#272790",
-    backgroundColor: "#D9D9FC",
-  },
-  {
-    color: "#902727",
-    backgroundColor: "#FCDBDB",
-  },
-];
+const hueMap = [0, 30, 60, 90, 180, 210, 240, 270, 330];
+
+const colorMap: Array<{ backgroundColor: string; color: string }> = hueMap.map(
+  (hue) => ({
+    color: `hsl(${hue}, 60%, 30%)`,
+    backgroundColor: `hsl(${hue}, 80%, 90%)`,
+  })
+);
 
 export const Pill: FunctionComponent<PillProps> = ({
   children,

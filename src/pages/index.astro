@@ -3,6 +3,7 @@ import "../styles/main.scss";
 
 import { FilterPostsPopup } from "../components/popup/filter-posts";
 import { SortPostsPopup } from "../components/popup/sort-posts";
+import { Card } from "../components/card";
 ---
 
 <meta charset="UTF-8" />
@@ -10,8 +11,8 @@ import { SortPostsPopup } from "../components/popup/sort-posts";
 <body>
   <FilterPostsPopup client:only="react" />
   <SortPostsPopup client:only="react" />
-  
-  <section style={{width: "100%"}}>
+
+  <section style={{ width: "100%" }}>
     <!-- <Card
         title="ben"
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed consectetur mauris. Nunc pretium lorem eu fermentum vulputate. In in vulputate tortor. Etiam elit elit, vulputate vel leo sit amet, rutrum condimentum libero. Ut sit amet lorem gravida, ornare ipsum quis, luctus mauris. Phasellus tempus urna arcu, ut scelerisque nunc iaculis ut. "

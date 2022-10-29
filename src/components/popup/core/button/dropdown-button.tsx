@@ -25,6 +25,12 @@ const genres = [
   "New Adult",
   "Fantasia",
   "Chick List",
+  "Carta",
+  "Conto",
+  "Drama",
+  "Crônica",
+  "Ensaio",
+  "Poesia",
 ];
 
 export const DropdownButton: FunctionComponent<{
@@ -32,7 +38,7 @@ export const DropdownButton: FunctionComponent<{
   checked: boolean;
   onChecked: () => void;
 }> = ({ label }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   return (
     <>
@@ -54,18 +60,47 @@ export const DropdownButton: FunctionComponent<{
         />
       </ButtonRoot>
 
-      {open ? (
-        <Div css={{ display: "flex", flexWrap: "wrap", gap: "$spacer-1" }}>
-          <Suspense fallback={"carregando..."}>
-            {genres.length / 2}
-            {genres.map((genre, index) => (
-              <Pill key={genre} index={index} href={`/${slugify(genre)}`}>
+      <Div
+        css={{
+          width: "100%",
+          display: open ? "flex" : "none",
+          flexDirection: "column",
+          overflow: "auto",
+          gap: "$spacer-1",
+        }}
+      >
+        <Suspense fallback={"carregando..."}>
+          <Div
+            css={{
+              width: "100%",
+
+              display: "flex",
+              alignItems: "center",
+              gap: "$spacer-1",
+            }}
+          >
+            {genres
+              .slice(0, Math.floor(genres.length / 2))
+              .map((genre, index) => (
+                <Pill key={genre} index={index} href={`/${slugify(genre)}`}>
+                  {genre}
+                </Pill>
+              ))}
+          </Div>
+
+          <Div css={{ display: "flex", gap: "$spacer-1" }}>
+            {genres.slice(Math.floor(genres.length / 2)).map((genre, index) => (
+              <Pill
+                key={genre}
+                index={(index + 2) * -1.24}
+                href={`/${slugify(genre)}`}
+              >
                 {genre}
               </Pill>
             ))}
-          </Suspense>
-        </Div>
-      ) : null}
+          </Div>
+        </Suspense>
+      </Div>
     </>
   );
 };

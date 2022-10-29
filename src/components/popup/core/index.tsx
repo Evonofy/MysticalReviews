@@ -31,7 +31,7 @@ const PopupModal = styled("div", {
   borderTopRightRadius: "$brSm",
 
   width: "100%",
-  height: "222px",
+  // height: "222px",
 
   position: "absolute",
   zIndex: "$high",
