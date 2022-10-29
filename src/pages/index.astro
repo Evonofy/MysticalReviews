@@ -1,19 +1,13 @@
 ---
 import "../styles/main.scss";
 
-import { PopupButton, PopupModal } from "../components/popup";
+import { FilterPostsPopup } from "../components/popup/filter-posts";
 ---
 
 <meta charset="UTF-8" />
 
 <body>
-  <PopupButton
-    client:only="react"
-  >
-    <div slot="content">Filtrar Por</div>
-
-    <PopupModal slot="modal">Hello world</PopupModal>
-  </PopupButton>
+  <FilterPostsPopup client:only="react" />
   
   <section style={{width: "100%"}}>
     <!-- <Card

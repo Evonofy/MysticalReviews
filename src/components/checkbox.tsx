@@ -1,16 +1,30 @@
-import { FunctionComponent, ReactNode } from "react";
+import { FunctionComponent } from "react";
 import { styled } from "@/stitches.config";
+import { AiFillCheckSquare, AiOutlineBorder } from "react-icons/ai/index.js";
 
 const CheckboxRoot = styled("label", {
-  "--checkbox-size": "15px",
   width: "var(--checkbox-size)",
   height: "var(--checkbox-size)",
+  "--checkbox-size": "12px",
+
+  "@tablet": {
+    "--checkbox-size": "16px",
+  },
+
+  "@desktop": {
+    "--checkbox-size": "20px",
+  },
 
   display: "block",
   position: "relative",
 
   userSelect: "none",
   cursor: "pointer",
+
+  svg: {
+    width: "100%",
+    height: "100%",
+  },
 
   input: {
     position: "absolute",
@@ -30,50 +44,20 @@ const CheckboxRoot = styled("label", {
     },
   },
 
-  "&:hover input ~ span": {
-    backgroundColor: "#ccc",
-  },
-});
-
-export const Checkmark = styled("span", {
-  position: "absolute",
-  inset: 0,
-  margin: "auto",
-
-  width: "var(--checkbox-size)",
-  height: "var(--checkbox-size)",
-
-  background: "transparent",
-  border: "1px solid $gray100",
-  borderRadius: "$brXm",
-
-  "&:after": {
-    content: "",
-
-    position: "absolute",
-    inset: 0,
-    margin: "auto",
-
-    opacity: "0",
-
-    width: "2px",
-    height: "4px",
-
-    border: "solid white",
-    borderWidth: "0 3px 3px 0",
-    transform: "rotate(45deg)",
+  "&:hover input ~ svg": {
+    display: "none",
+    // backgroundColor: "#ccc",
   },
 });
 
 export const Checkbox: FunctionComponent<{
   checked: boolean;
   onChecked: () => void;
-  children?: ReactNode;
-}> = ({ checked, children, onChecked }) => {
+}> = ({ checked, onChecked }) => {
   return (
     <CheckboxRoot>
       <input type="checkbox" checked={checked} onChange={onChecked} />
-      {children}
+      {checked ? <AiFillCheckSquare /> : <AiOutlineBorder />}
     </CheckboxRoot>
   );
 };
