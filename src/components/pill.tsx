@@ -6,6 +6,8 @@ type PillProps = {
   children: ReactNode;
   href: string;
   index: number;
+  asButton?: boolean;
+  onClick?: () => void;
 };
 
 const PillRoot = styled("a", {
@@ -15,9 +17,10 @@ const PillRoot = styled("a", {
   padding: "$spacer-1 $spacer-4",
   borderRadius: "$brLg",
   flexShrink: "0",
+  cursor: "pointer",
 
   // focus ring
-  "&:focus-visible": {
+  "&:focus-visible, &:focus": {
     outline: "3px solid transparent",
     outlineOffset: "-3px", // 2 works better than 1 from the design
   },
@@ -40,6 +43,8 @@ export const Pill: FunctionComponent<PillProps> = ({
   children,
   href,
   index,
+  asButton,
+  onClick,
 }) => {
   // see how many arrays fit into the number
   if (!colorMap.at(index)) {
@@ -51,11 +56,13 @@ export const Pill: FunctionComponent<PillProps> = ({
 
     return (
       <PillRoot
+        as={asButton ? "button" : "a"}
+        onClick={onClick}
         href={href}
         css={{
           color,
           backgroundColor,
-          "&:focus-visible": {
+          "&:focus-visible, &:focus": {
             outlineColor: color,
           },
         }}
@@ -69,13 +76,15 @@ export const Pill: FunctionComponent<PillProps> = ({
 
   return (
     <PillRoot
+      as={asButton ? "button" : "a"}
+      onClick={onClick}
       href={href}
       css={{
-        "&:focus-visible": {
-          outlineColor: color,
-        },
         color,
         backgroundColor,
+        "&:focus-visible, &:focus": {
+          outlineColor: color,
+        },
       }}
     >
       {children}

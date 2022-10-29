@@ -38,7 +38,7 @@ export const DropdownButton: FunctionComponent<{
   checked: boolean;
   onChecked: () => void;
 }> = ({ label }) => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   return (
     <>
@@ -82,7 +82,12 @@ export const DropdownButton: FunctionComponent<{
             {genres
               .slice(0, Math.floor(genres.length / 2))
               .map((genre, index) => (
-                <Pill key={genre} index={index} href={`/${slugify(genre)}`}>
+                <Pill
+                  asButton
+                  key={genre}
+                  index={index}
+                  href={`/${slugify(genre)}`}
+                >
                   {genre}
                 </Pill>
               ))}
@@ -91,6 +96,7 @@ export const DropdownButton: FunctionComponent<{
           <Div css={{ display: "flex", gap: "$spacer-1" }}>
             {genres.slice(Math.floor(genres.length / 2)).map((genre, index) => (
               <Pill
+                asButton
                 key={genre}
                 index={(index + 2) * -1.24}
                 href={`/${slugify(genre)}`}

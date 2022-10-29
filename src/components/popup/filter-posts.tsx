@@ -8,19 +8,7 @@ export const FilterPostsPopup = () => {
   const modifiers = useMemo(
     () => [
       {
-        label: "data de publicação",
-        onChecked: () => {
-          console.log("im selected");
-        },
-      },
-      {
-        label: "ordem alfabética",
-        onChecked: () => {
-          console.log("im selected");
-        },
-      },
-      {
-        label: "ordem por gênero",
+        label: "Gênero",
         onChecked: () => {
           console.log("im selected");
         },
