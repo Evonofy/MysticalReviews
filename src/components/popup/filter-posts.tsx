@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 
+import { Heading } from "../heading";
 import { PopupButton } from "./core";
-import { CheckboxButton } from "./core/checkbox-button";
+import { DropdownButton } from "./core/button/dropdown-button";
 
 export const FilterPostsPopup = () => {
   const modifiers = useMemo(
@@ -31,12 +32,12 @@ export const FilterPostsPopup = () => {
 
   return (
     <PopupButton
-      content={<div data-cancel-close-modal>Filtrar Por</div>}
+      content={<Heading.p data-cancel-close-modal>Filtrar Por</Heading.p>}
       modal={
         <>
           {modifiers.map(({ label, onChecked }) =>
             // prettier-ignore
-            <CheckboxButton 
+            <DropdownButton
               key={label} 
               label={label}
               checked={label == selectedModifier}
@@ -48,7 +49,6 @@ export const FilterPostsPopup = () => {
           )}
         </>
       }
-      popupId="my-store"
     />
   );
 };

@@ -169,7 +169,7 @@ export const Card = ({
 
       <CardContent>
         <PillList>
-          <Suspense fallback={<h1>Loading...</h1>}>
+          <Suspense fallback={"Carregando..."}>
             {genres.map((genre, index) => (
               <Pill key={genre} index={index} href={`/${genre}`}>
                 {genre}

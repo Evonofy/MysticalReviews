@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 
+import { Heading } from "../heading";
 import { PopupButton } from "./core";
-import { CheckboxButton } from "./core/checkbox-button";
+import { CheckboxButton } from "./core/button/checkbox-button";
 
 export const SortPostsPopup = () => {
   const modifiers = useMemo(
@@ -31,7 +32,7 @@ export const SortPostsPopup = () => {
 
   return (
     <PopupButton
-      content={<div data-cancel-close-modal>Filtrar Por</div>}
+      content={<Heading.p data-cancel-close-modal>Organizar Por</Heading.p>}
       modal={
         <>
           {modifiers.map(({ label, onChecked }) =>
@@ -48,7 +49,6 @@ export const SortPostsPopup = () => {
           )}
         </>
       }
-      popupId="my-store"
     />
   );
 };

@@ -2,12 +2,14 @@
 import "../styles/main.scss";
 
 import { FilterPostsPopup } from "../components/popup/filter-posts";
+import { SortPostsPopup } from "../components/popup/sort-posts";
 ---
 
 <meta charset="UTF-8" />
 
 <body>
   <FilterPostsPopup client:only="react" />
+  <SortPostsPopup client:only="react" />
   
   <section style={{width: "100%"}}>
     <!-- <Card

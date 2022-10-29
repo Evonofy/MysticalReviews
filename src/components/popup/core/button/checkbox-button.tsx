@@ -1,9 +1,9 @@
-import { FunctionComponent, useCallback, useState } from "react";
+import { FunctionComponent } from "react";
 import { styled } from "@/stitches.config";
 
-import { Button } from "../../button";
-import { Heading } from "../../heading";
-import { Checkbox } from "../../checkbox";
+import { Button } from "@/components/button";
+import { Heading } from "@/components/heading";
+import { Checkbox } from "@/components/checkbox";
 
 const ButtonRoot = styled(Button, {
   width: "100%",

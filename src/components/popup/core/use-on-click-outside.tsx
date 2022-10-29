@@ -1,12 +1,26 @@
 import { RefObject, useEffect, useRef } from "react";
 
-type Callback = (event: MouseEvent | TouchEvent) => void;
+type Callback = (event: MouseEvent | TouchEvent | KeyboardEvent) => void;
 
 export const useOnClickOutside = <T extends HTMLElement>(
   elementRef: RefObject<T>,
   callback: Callback
 ) => {
   const callbackRef = useRef<Callback>(callback);
+
+  useEffect(() => {
+    const callback = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        callbackRef.current(event);
+      }
+    };
+
+    window.addEventListener("keydown", callback);
+
+    return () => {
+      window.removeEventListener("keypress", callback);
+    };
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
