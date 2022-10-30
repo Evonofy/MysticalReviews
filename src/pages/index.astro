@@ -4,6 +4,10 @@ import "../styles/main.scss";
 import { FilterPostsPopup } from "../components/popup/filter-posts";
 import { SortPostsPopup } from "../components/popup/sort-posts";
 import { Card } from "../components/card";
+import { Title } from "../components/title";
+import { Newsletter } from "../components/newsletter";
+import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
 ---
 
 <meta charset="UTF-8" />
@@ -12,7 +16,9 @@ import { Card } from "../components/card";
   <FilterPostsPopup client:only="react" />
   <SortPostsPopup client:only="react" />
 
-  <section style={{ width: "100%" }}>
+  <section style={{width: "100%"}}>
+    <Title client:load>Hello World</Title>
+    <Newsletter client:load />
     <!-- <Card
         title="ben"
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed consectetur mauris. Nunc pretium lorem eu fermentum vulputate. In in vulputate tortor. Etiam elit elit, vulputate vel leo sit amet, rutrum condimentum libero. Ut sit amet lorem gravida, ornare ipsum quis, luctus mauris. Phasellus tempus urna arcu, ut scelerisque nunc iaculis ut. "
