@@ -59,6 +59,7 @@ input,
 button,
 textarea,
 select {
+  border: none;
   font: inherit;
 }
 
@@ -76,4 +77,8 @@ select {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+hr {
+  border: none;
 }
