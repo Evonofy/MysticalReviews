@@ -33,11 +33,7 @@ const CardRoot = styled("a", {
 
   variants: {
     variant: {
-      default: {
-        "@mobile": {
-          maxWidth: "280px",
-        },
-      },
+      default: {},
 
       "side-scroll": {
         "@mobile": {
@@ -181,7 +177,7 @@ export const Card = ({
       <CardContent>
         <PillList>
           {genres.map((genre, index) => (
-            <Pill key={genre} index={index} genre={genre}>
+            <Pill asButton key={genre} index={index} genre={genre}>
               {genre}
             </Pill>
           ))}

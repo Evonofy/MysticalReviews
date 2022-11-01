@@ -32,16 +32,22 @@ const NewsletterRoot = styled("section", {
   },
 });
 
-const ButtonContainer = styled("footer", {
+const ButtonContainer = styled("label", {
   width: "100%",
+  position: "relative",
 
   display: "flex",
-  justifyContent: "flex-end",
+  justifyContent: "space-between",
 
   padding: "$spacer-1 $spacer-2",
   borderRadius: "$brSm",
+  gap: "$spacer-1",
 
   background: "$gray100",
+
+  input: {
+    flex: 1,
+  },
 
   "@tablet": {
     width: "360px",
@@ -87,6 +93,10 @@ const BackgroundImage = styled("img", {
 });
 
 export const Newsletter: FunctionComponent = () => {
+  const handleSubmit = () => {
+    // send email
+  };
+
   return (
     <NewsletterRoot css={{ "@tablet": { backgroundImage: `url("${""}")` } }}>
       <BackgroundImage src="/newsletter-pattern.png" />
@@ -132,8 +142,9 @@ export const Newsletter: FunctionComponent = () => {
         </Heading.p>
       </Div>
 
-      <ButtonContainer>
-        <Button>
+      <ButtonContainer htmlFor="newsletter-input">
+        <input id="newsletter-input" />
+        <Button onClick={handleSubmit}>
           <Heading.p>Enviar</Heading.p>
         </Button>
       </ButtonContainer>
