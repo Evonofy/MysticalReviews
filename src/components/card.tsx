@@ -1,13 +1,12 @@
-import { FunctionComponent, lazy, Suspense } from "react";
-
 import { styled } from "../stitches.config";
 
 import { Heading } from "@/components/heading";
 import { Button } from "@/components/button";
 import { Div } from "./utils/div";
-const Pill = lazy(() => import("@/components/pill"));
+import { slugify } from "@/slugify";
+import Pill from "@/components/pill";
 
-const CardRoot = styled("div", {
+const CardRoot = styled("a", {
   // mobile
   width: "100%",
 
@@ -28,9 +27,17 @@ const CardRoot = styled("div", {
 
   "@desktop": {},
 
+  "&:active": {
+    filter: "brightness(70%)",
+  },
+
   variants: {
     variant: {
-      default: {},
+      default: {
+        "@mobile": {
+          maxWidth: "280px",
+        },
+      },
 
       "side-scroll": {
         "@mobile": {
@@ -45,13 +52,15 @@ const ImageContainer = styled("div", {
   width: "100%",
   height: "180px",
 
-  borderTopLeftRadius: "inherit",
-  borderTopRightRadius: "inherit",
+  borderRadius: "inherit",
 
   img: {
     width: "100%",
     height: "100%",
     objectFit: "cover",
+
+    borderTopLeftRadius: "inherit",
+    borderTopRightRadius: "inherit",
   },
 
   "@tablet": {
@@ -121,7 +130,9 @@ const DateSection = styled("footer", {
   },
 });
 
-type CardProps = {
+export const CardList = () => {};
+
+export type CardProps = {
   genres: string[];
 
   title: string;
@@ -162,24 +173,23 @@ export const Card = ({
   )} (${date.getMonth()}) ${date.getDate()}, ${date.getFullYear()}`;
 
   return (
-    <CardRoot variant={variant}>
+    <CardRoot href={`/${slugify(title)}`} variant={variant}>
       <ImageContainer>
         <img src={coverUrl} alt={coverImageDescription} />
       </ImageContainer>
 
       <CardContent>
         <PillList>
-          <Suspense fallback={"Carregando..."}>
-            {genres.map((genre, index) => (
-              <Pill key={genre} index={index} href={`/${genre}`}>
-                {genre}
-              </Pill>
-            ))}
-          </Suspense>
+          {genres.map((genre, index) => (
+            <Pill key={genre} index={index} genre={genre}>
+              {genre}
+            </Pill>
+          ))}
         </PillList>
 
         <Div
           css={{
+            width: "100%",
             display: "flex",
             flexDirection: "column",
             gap: "$spacer-1",
@@ -189,10 +199,14 @@ export const Card = ({
           <Heading.h2
             font="display"
             css={{
-              width: "max-content",
+              width: "100%",
               height: "max-content",
 
               color: "$gray900",
+
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
 
               "@desktop": {
                 position: "absolute",
@@ -216,7 +230,7 @@ export const Card = ({
                 "@tablet": { display: "none" },
               }}
             >
-              {sideScrollDescription}
+              {sideScrollDescription}...
             </Heading.p>
           ) : (
             <Heading.p
@@ -227,7 +241,7 @@ export const Card = ({
                 "@tablet": { display: "none" },
               }}
             >
-              {mobileDescription}
+              {mobileDescription}...
             </Heading.p>
           )}
 
@@ -242,7 +256,7 @@ export const Card = ({
               "@desktop": { display: "none" },
             }}
           >
-            {tabletDescription}
+            {tabletDescription}...
           </Heading.p>
 
           <Heading.p
@@ -255,7 +269,7 @@ export const Card = ({
               "@desktop": { display: "block" },
             }}
           >
-            {desktopDescription}
+            {desktopDescription}...
           </Heading.p>
         </Div>
 

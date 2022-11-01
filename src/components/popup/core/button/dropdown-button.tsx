@@ -1,4 +1,4 @@
-import { FunctionComponent, useState, lazy, Suspense } from "react";
+import { FunctionComponent, useState } from "react";
 import { styled } from "@/stitches.config";
 
 import { BsCaretUp } from "react-icons/bs/index.js";
@@ -7,7 +7,7 @@ import { Heading } from "@/components/heading";
 import { Div } from "@/components/utils/div";
 import { slugify } from "@/slugify";
 
-const Pill = lazy(() => import("@/components/pill"));
+import Pill from "@/components/pill";
 
 const ButtonRoot = styled(Button, {
   width: "100%",
@@ -69,43 +69,36 @@ export const DropdownButton: FunctionComponent<{
           gap: "$spacer-1",
         }}
       >
-        <Suspense fallback={"carregando..."}>
-          <Div
-            css={{
-              width: "100%",
+        <Div
+          css={{
+            width: "100%",
 
-              display: "flex",
-              alignItems: "center",
-              gap: "$spacer-1",
-            }}
-          >
-            {genres
-              .slice(0, Math.floor(genres.length / 2))
-              .map((genre, index) => (
-                <Pill
-                  asButton
-                  key={genre}
-                  index={index}
-                  href={`/${slugify(genre)}`}
-                >
-                  {genre}
-                </Pill>
-              ))}
-          </Div>
-
-          <Div css={{ display: "flex", gap: "$spacer-1" }}>
-            {genres.slice(Math.floor(genres.length / 2)).map((genre, index) => (
-              <Pill
-                asButton
-                key={genre}
-                index={(index + 2) * -1.24}
-                href={`/${slugify(genre)}`}
-              >
+            display: "flex",
+            alignItems: "center",
+            gap: "$spacer-1",
+          }}
+        >
+          {genres
+            .slice(0, Math.floor(genres.length / 2))
+            .map((genre, index) => (
+              <Pill asButton key={genre} index={index} genre={genre}>
                 {genre}
               </Pill>
             ))}
-          </Div>
-        </Suspense>
+        </Div>
+
+        <Div css={{ display: "flex", gap: "$spacer-1" }}>
+          {genres.slice(Math.floor(genres.length / 2)).map((genre, index) => (
+            <Pill
+              asButton
+              key={genre}
+              index={(index + 2) * -1.24}
+              genre={genre}
+            >
+              {genre}
+            </Pill>
+          ))}
+        </Div>
       </Div>
     </>
   );

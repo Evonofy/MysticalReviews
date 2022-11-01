@@ -1,53 +1,61 @@
 ---
-import "../styles/main.scss";
+import "swiper/css";
+import "swiper/css/pagination";
 
-import { FilterPostsPopup } from "../components/popup/filter-posts";
-import { SortPostsPopup } from "../components/popup/sort-posts";
-import { Card } from "../components/card";
-import { Title } from "../components/title";
-import { Newsletter } from "../components/newsletter";
-import { Navbar } from "../components/Navbar";
-import { Footer } from "../components/Footer";
+import Layout from "@/components/layout/layout.astro";
+
+import { Title } from "@/components/title";
+import { Card, CardProps } from "@/components/card";
+import { CardSlider } from "@/components/card-slider";
+
+import { Newsletter } from "@/components/newsletter";
+
+const date = new Date().getTime().toString();
+
+const cards: CardProps[] = [
+  {
+    title: "10 indicações incríveis para o dia nacional do livro",
+    description:
+      "Bom mesmo é quando o livro que acabamos de ler fica querendo ser um grande amigo e é capaz de marcar uma vida inteira. Neste sábado, onde comemora-se o Dia Nacional do Livro, o site do Livro & Fuxicos reuniu 10 escritoras e escritores nacionais para falarem sobre as leituras brasileiras favoritas de todos os tempos.",
+    coverUrl:
+      "https://www.livrosefuxicos.com/wp-content/uploads/2022/10/DIA-NACIONAL-DO-LIVRO.jpeg",
+    coverImageDescription: "Lorem Ipsum",
+    createdAt: date,
+    genres: ["Dia Nacional do Livro", "Dicas de Livros", "Literatura"],
+    variant: "default",
+  },
+  {
+    title: "LANÇAMENTOS DO MÊS DE OUTUBRO",
+    description:
+      "Olá galera, tudo bem? Hoje é dia de conferir as novidades literárias deste mês de Outubro. Vamos dar dicas de vários livros e vários gêneros para que vocês possam escolher os que mais combinam com os seus respectivos estilos. Então vamos lá!",
+    coverUrl:
+      "https://www.livrosefuxicos.com/wp-content/uploads/2022/10/LANCAMENTOS-DE-OUTUBRO.jpeg",
+    coverImageDescription: "Lorem Ipsum",
+    createdAt: date,
+    genres: ["Lançamentos Literários", "Literatura", "Novidades"],
+    variant: "default",
+  },
+  {
+    title: "VANTAGENS DE USAR UM PLANNER",
+    description:
+      "Olá galera, tudo bem? Hoje é dia de conferir as novidades literárias deste mês de Outubro. Vamos dar dicas de vários livros e vários gêneros para que vocês possam escolher os que mais combinam com os seus respectivos estilos. Então vamos lá!",
+    coverUrl:
+      "https://www.livrosefuxicos.com/wp-content/uploads/2022/10/VANTAGENS-DE-USAR-UM-PLANNER.jpeg",
+    coverImageDescription: "Lorem Ipsum",
+    createdAt: date,
+    genres: ["Lançamentos Literários", "Literatura", "Novidades"],
+    variant: "default",
+  },
+];
 ---
 
-<meta charset="UTF-8" />
+<Layout title="Home">
+  <Title client:only="react">Publicações Mais Recentes</Title>
+  <CardSlider client:only="react" cards={cards} />
 
-<body>
-  <FilterPostsPopup client:only="react" />
-  <SortPostsPopup client:only="react" />
+  <Title client:only="react">Newsletter</Title>
+  <Newsletter client:visible />
 
-  <section style={{width: "100%"}}>
-    <Title client:load>Hello World</Title>
-    <Newsletter client:load />
-    <!-- <Card
-        title="ben"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed consectetur mauris. Nunc pretium lorem eu fermentum vulputate. In in vulputate tortor. Etiam elit elit, vulputate vel leo sit amet, rutrum condimentum libero. Ut sit amet lorem gravida, ornare ipsum quis, luctus mauris. Phasellus tempus urna arcu, ut scelerisque nunc iaculis ut. "
-        coverUrl="https://i.pinimg.com/736x/61/a5/a1/61a5a1eec1183ed481e9212a9ff506b0.jpg"
-        coverImageDescription="d"
-        genres={["bru"]}
-        variant="default"
-        createdAt={String(new Date().getTime())}
-        client:load
-      /> -->
-
-    <!-- <Button client:load>
-      <BsFillRecordCircleFill /> Button
-    </Button>
-    
-    <Button size="tablet" client:load><BsFillRecordCircleFill />Button</Button>
-    <Button size="desktop" client:load><BsFillRecordCircleFill />Button</Button> -->
-  </section>
-
-  <!-- <Navbar client:load />
-  <Footer client:load /> -->
-
-  <style>
-    section {
-      display: flex;
-      flex-direction: column;
-      width: max-content;
-      gap: 0.5rem;
-      padding: 1rem;
-    }
-  </style>
-</body>
+  <Title client:only="react">Todas Publicações</Title>
+  {cards.map((props) => <Card client:visible {...props} />)}
+</Layout>
