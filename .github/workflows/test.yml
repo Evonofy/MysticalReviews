@@ -1,9 +1,6 @@
-name: Deploy Astro to GitHub Pages
+name: Test project
 
-on:
-  push:
-    branches:
-      - master
+on: push
 
 jobs:
   build:
@@ -30,12 +27,3 @@ jobs:
 
       - name: Build project
         run: yarn build
-
-      - name: Add .nojekyll file
-        run: touch ./dist/.nojekyll
-
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.1
-        with:
-          branch: gh-pages
-          folder: dist

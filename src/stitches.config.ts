@@ -1,10 +1,18 @@
 import { createStitches } from "@stitches/react";
 
+<<<<<<< HEAD
 export const { styled, config } = createStitches({
   media: {
     mobile: "(max-width: 768px)",
     tablet: "(min-width: 768px)",
     desktop: "(min-width: 1024px)",
+=======
+export const { styled, theme } = createStitches({
+  media: {
+    mobile: "(max-width: 768px)",
+    tablet: "(min-width: 48rem)",
+    desktop: "(min-width: 63.688rem)",
+>>>>>>> c4542009209e2e70c380b89cb23dcd46dd1e718f
   },
   theme: {
     colors: {
@@ -136,86 +144,5 @@ export const { styled, config } = createStitches({
       maxWidth: pixels,
       margin: "auto",
     }),
-  },
-});
-
-export const globalStyles = globalCss({
-  // * Additionals Resets
-  a: {
-    textDecoration: "",
-    color: "black",
-    fill: "black",
-  },
-
-  "a:visited": {
-    color: "black",
-  },
-
-  svg: {
-    color: "inherit",
-    fill: "hsl(240, 70%, 60%)",
-  },
-
-  /* Set core body defaults */
-  body: {
-    display: "none",
-    minHeight: "100vh",
-    textRendering: "optimizeSpeed",
-    lineHeight: "1.5",
-    // * Project Adjustments
-    backgroundColor: "hsl(240, 10%, 85%)",
-  },
-
-  /* Box sizing rules */
-  "*, *::before, *::after": {
-    boxSizing: "border-box",
-    /* Additional rules */
-    margin: "0",
-    padding: "0",
-  },
-
-  /* Remove default margin */
-  "body, h1, h2, h3, h4, p, figure, blockquote, dl, dd": {
-    margin: "0",
-  },
-
-  /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-  "ul[role='list'], ol[role='list']": {
-    listStyle: "none",
-  },
-
-  /* Set core root defaults */
-  "html:focus-within": {
-    scrollBehavior: "smooth",
-  },
-
-  /* A elements that don't have a class get default styles */
-  "a:not([class])": {
-    textDecorationSkipInk: "auto",
-  },
-
-  /* Make images easier to work with */
-  "img, picture": {
-    maxWidth: "100%",
-    display: "block",
-  },
-
-  /* Inherit fonts for inputs and buttons */
-  "input, button, textarea, select": {
-    font: "inherit",
-  },
-
-  /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
-  "@media (prefers-reduced-motion: reduce)": {
-    "html:focus-within": {
-      scrollBehavior: "auto",
-    },
-
-    "*, *::before, *::after": {
-      animationDuration: "0.01ms !important",
-      animationIterationCount: "1 !important",
-      transitionDuration: "0.01ms !important",
-      scrollBehavior: "auto !important",
-    },
   },
 });

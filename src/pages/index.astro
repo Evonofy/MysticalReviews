@@ -1,8 +1,8 @@
 ---
-import "../styles/main.scss";
+import "../styles/main.scss"
 
-import { BsFillRecordCircleFill } from "react-icons/bs/index.js";
-
+import { FilterPostsPopup } from "../components/popup/filter-posts";
+import { SortPostsPopup } from "../components/popup/sort-posts";
 import { Button } from "../components/button";
 import { Card } from "../components/card";
 import { Title } from "../components/title";
@@ -11,7 +11,14 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 ---
 
+<meta charset="UTF-8" />
+
 <body>
+  <Navbar client:load />
+
+  <FilterPostsPopup client:only="react" />
+  <SortPostsPopup client:only="react" />
+
   <section style={{width: "100%"}}>
     <Title client:load>Hello World</Title>
     <Newsletter client:load />
@@ -34,12 +41,17 @@ import { Footer } from "../components/Footer";
     <Button size="desktop" client:load><BsFillRecordCircleFill />Button</Button> -->
   </section>
 
+<<<<<<< HEAD
   <header>
     <Navbar client:load />
   </header>
+=======
+  <!-- <Navbar client:load />
+  <Footer client:load /> -->
+>>>>>>> c4542009209e2e70c380b89cb23dcd46dd1e718f
 
 <section>
-  <Button client:load><BsFillRecordCircleFill />Button</Button>
+  <!-- <Button client:load><BsFillRecordCircleFill />Button</Button> -->
   <!-- <Button client:load><BsFillRecordCircleFill />Button</Button> -->
   <!-- <Button size="desktop" client:load><BsFillRecordCircleFill />Button</Button> -->
 </section>
