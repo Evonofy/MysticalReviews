@@ -55,7 +55,7 @@ const h2 = styled("h2", {
 
 const p = styled("p", {
   ...setupVariants(),
-  fontSize: "$xs",
+  fontSize: "$sm",
 
   "@tablet": {
     fontSize: "$md",
