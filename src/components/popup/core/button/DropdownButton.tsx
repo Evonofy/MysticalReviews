@@ -2,12 +2,12 @@ import { FunctionComponent, useState, lazy, Suspense } from "react";
 import { styled } from "@/stitches.config";
 
 import { BsCaretUp } from "react-icons/bs/index.js";
-import { Button } from "@/components/button";
-import { Heading } from "@/components/heading";
-import { Div } from "@/components/utils/div";
+import { Button } from "@/components/Button";
+import { Heading } from "@/components/Heading";
+import { Div } from "@/components/utils/Div";
 import { slugify } from "@/slugify";
 
-const Pill = lazy(() => import("@/components/pill"));
+const Pill = lazy(() => import("@/components/Pill"));
 
 const ButtonRoot = styled(Button, {
   width: "100%",

@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react";
 
-import { Heading } from "../heading";
+import { Heading } from "../Heading";
 import { PopupButton } from "./core";
-import { CheckboxButton } from "./core/button/checkbox-button";
+import { CheckboxButton } from "./core/button/CheckboxButton";
 
 export const SortPostsPopup = () => {
   const modifiers = useMemo(

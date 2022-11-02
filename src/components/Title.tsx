@@ -35,5 +35,5 @@ const TitleRoot = styled(Heading.h1, {
 export const Title: FunctionComponent<{ children: ReactNode }> = ({
   children,
 }) => {
-  return <TitleRoot>{children}</TitleRoot>;
+  return <TitleRoot font="reading">{children}</TitleRoot>;
 };

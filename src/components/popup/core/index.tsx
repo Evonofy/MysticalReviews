@@ -9,8 +9,8 @@ import React, {
 import { customAlphabet } from "nanoid";
 import { styled, theme } from "@/stitches.config";
 
-import { Button } from "@/components/button";
-import { useOnClickOutside } from "./use-on-click-outside";
+import { Button } from "@/components/Button";
+import { useOnClickOutside } from "./UseOnClickOutside";
 
 const PopupContainerRoot = styled("div", {
   "@tablet": {

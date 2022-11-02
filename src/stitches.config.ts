@@ -1,18 +1,10 @@
 import { createStitches } from "@stitches/react";
 
-<<<<<<< HEAD
-export const { styled, config } = createStitches({
-  media: {
-    mobile: "(max-width: 768px)",
-    tablet: "(min-width: 768px)",
-    desktop: "(min-width: 1024px)",
-=======
 export const { styled, theme } = createStitches({
   media: {
     mobile: "(max-width: 768px)",
     tablet: "(min-width: 48rem)",
     desktop: "(min-width: 63.688rem)",
->>>>>>> c4542009209e2e70c380b89cb23dcd46dd1e718f
   },
   theme: {
     colors: {

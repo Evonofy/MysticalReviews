@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react";
 
-import { Heading } from "../heading";
+import { Heading } from "../Heading";
 import { PopupButton } from "./core";
-import { DropdownButton } from "./core/button/dropdown-button";
+import { DropdownButton } from "./core/button/DropdownButton";
 
 export const FilterPostsPopup = () => {
   const modifiers = useMemo(
