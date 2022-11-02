@@ -1,9 +1,10 @@
 import { createStitches } from "@stitches/react";
 
-export const { styled, globalCss } = createStitches({
+export const { styled, config } = createStitches({
   media: {
-    tablet: "(min-width: 48rem)",
-    desktop: "(min-width: 63.688rem)",
+    mobile: "(max-width: 768px)",
+    tablet: "(min-width: 768px)",
+    desktop: "(min-width: 1024px)",
   },
   theme: {
     colors: {
@@ -38,6 +39,16 @@ export const { styled, globalCss } = createStitches({
       base: "160%",
       tall: "180%",
     },
+    fontWeights: {
+      light: "light",
+      regular: "regular",
+      medium: "medium",
+      bold: "bold",
+    },
+    borderWidths: {
+      thin: "1px",
+      hev: "4px",
+    },
     fontSizes: {
       xxs: "0.625rem",
       xs: "0.75rem",
@@ -47,7 +58,7 @@ export const { styled, globalCss } = createStitches({
       xl: "1.25rem",
       "2xl": "1.5rem",
       "4xl": "2rem",
-      "5xl": "2.25rem",
+      "5xl": "2.5rem",
       "6xl": "3rem",
       "7xl": "4rem",
       "8xl": "4.5rem",
@@ -69,6 +80,9 @@ export const { styled, globalCss } = createStitches({
     sizes: {
       tablet: "48rem",
       desktop: "63.688rem",
+    },
+    shadows: {
+      default: "0px 4px 14px rgba(0, 0, 0, 0.1)",
     },
     radii: {
       brXm: "2.5px",
@@ -99,7 +113,9 @@ export const { styled, globalCss } = createStitches({
   },
 
   utils: {
-    flexCenter: (value: string) => ({
+    flexCenter: (
+      value: "column" | "column-reverse" | "row" | "row-reverse"
+    ) => ({
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
