@@ -9,7 +9,7 @@ export const { styled, config, theme, getCssText } = createStitches({
   theme: {
     colors: {
       accentLight: "hsl(185, 100%, 70%)",
-      accentBase: "hsl(185, 100%, 35%)",
+      accentBase: "hsl(185, 100%, 40%)",
       accentDark: "hsl(185, 60%, 50%)",
       accentDarkest: "hsl(185, 45%, 20%)",
       secondaryLight: "hsl(240, 100%, 70%)",
