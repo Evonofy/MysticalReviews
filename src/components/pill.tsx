@@ -39,7 +39,6 @@ function randomIntFromInterval(min: number, max: number) {
 
 type PillProps = {
   children: ReactNode;
-  index: number;
   asButton?: boolean;
   onClick?: () => void;
   genre: string;
@@ -47,8 +46,7 @@ type PillProps = {
 
 export const Pill: FunctionComponent<PillProps> = ({
   children,
-  index,
-  asButton,
+  asButton = false,
   onClick,
   genre,
 }) => {

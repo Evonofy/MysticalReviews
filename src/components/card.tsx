@@ -20,16 +20,18 @@ const CardRoot = styled("a", {
 
   position: "relative",
 
+  "@mobile": {
+    "&:active": {
+      filter: "brightness(70%)",
+    },
+  },
+
   "@tablet": {
     // tablet
     // maxWidth: "$tablet",
   },
 
   "@desktop": {},
-
-  "&:active": {
-    filter: "brightness(70%)",
-  },
 
   variants: {
     variant: {
@@ -205,6 +207,8 @@ export const Card = ({
               overflow: "hidden",
 
               "@desktop": {
+                width: "max-content",
+                textAlign: "center",
                 position: "absolute",
                 inset: "0",
                 margin: "auto",

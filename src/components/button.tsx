@@ -34,6 +34,7 @@ export const Button = styled("button", {
   },
 
   "&:hover": {
-    filter: "opacity(50%)",
+    filter: "brightness(70%)",
+    transition: "all $faster",
   },
 });

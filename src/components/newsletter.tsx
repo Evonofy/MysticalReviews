@@ -5,6 +5,8 @@ import { Heading } from "./heading";
 import { Button } from "./button";
 import { Div } from "./utils/div";
 
+import NewsletterPattern from "./newsletter-pattern.png";
+
 const NewsletterRoot = styled("section", {
   width: "100%",
 
@@ -46,7 +48,8 @@ const ButtonContainer = styled("label", {
   background: "$gray100",
 
   input: {
-    flex: 1,
+    width: "100%",
+    fontSize: "$xs",
   },
 
   "@tablet": {
@@ -99,7 +102,7 @@ export const Newsletter: FunctionComponent = () => {
 
   return (
     <NewsletterRoot css={{ "@tablet": { backgroundImage: `url("${""}")` } }}>
-      <BackgroundImage src="/newsletter-pattern.png" />
+      <BackgroundImage src={NewsletterPattern} />
 
       <Heading.h1
         css={{
