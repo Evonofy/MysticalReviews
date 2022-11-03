@@ -28,11 +28,20 @@
 
 .swiper-slide {
   background: transparent;
+  
+  @media screen and (min-width: 768px) {
+    width: max-content !important;
+  }
 }
 
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.swiper-wrapper {
+  gap: 8px;
+
+  @media screen and (min-width: 768px) {
+    gap: 20px;
+  }
+  
+  @media screen and (min-width: 1024px) {
+    gap: 20px;
+  }
 }

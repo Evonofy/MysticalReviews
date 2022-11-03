@@ -2,6 +2,7 @@
 import "@/styles/main.scss";
 import { Layout } from "./base";
 import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 
 export interface Props {
   title: string;
@@ -30,9 +31,12 @@ const { title, lang = "en-US" } = Astro.props;
   </head>
 
   <body>
+    <Navbar client:only="react" />
+
     <Layout client:load>
       <slot />
-      <Navbar />
     </Layout>
+
+    <Footer client:only="react" />
   </body>
 </html>

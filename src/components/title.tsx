@@ -1,7 +1,8 @@
 import { FunctionComponent, ReactNode } from "react";
-import { styled } from "@/stitches.config";
+import { config, styled } from "@/stitches.config";
 
 import { Heading } from "./heading";
+import { CSS } from "@stitches/react";
 
 const TitleRoot = styled(Heading.h1, {
   fontWeight: "$regular",
@@ -32,8 +33,9 @@ const TitleRoot = styled(Heading.h1, {
   },
 });
 
-export const Title: FunctionComponent<{ children: ReactNode }> = ({
-  children,
-}) => {
-  return <TitleRoot>{children}</TitleRoot>;
+export const Title: FunctionComponent<{
+  children: ReactNode;
+  css?: CSS<typeof config>;
+}> = ({ children, css }) => {
+  return <TitleRoot css={css}>{children}</TitleRoot>;
 };

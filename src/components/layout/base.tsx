@@ -12,6 +12,10 @@ const Container = styled("main", {
   background: "$gray200",
 
   overflowX: "hidden",
+
+  "@tablet": {
+    padding: "$spacer-10",
+  },
 });
 
 type LayoutProps = {

@@ -1,10 +1,11 @@
-import { styled } from "../stitches.config";
+import { config, styled } from "../stitches.config";
 
 import { Heading } from "@/components/heading";
 import { Button } from "@/components/button";
 import { Div } from "./utils/div";
 import { slugify } from "@/slugify";
 import Pill from "@/components/pill";
+import { CSS } from "@stitches/react";
 
 const CardRoot = styled("a", {
   // mobile
@@ -48,7 +49,6 @@ const CardRoot = styled("a", {
 
 const ImageContainer = styled("div", {
   width: "100%",
-  height: "180px",
 
   borderRadius: "inherit",
 
@@ -59,10 +59,6 @@ const ImageContainer = styled("div", {
 
     borderTopLeftRadius: "inherit",
     borderTopRightRadius: "inherit",
-  },
-
-  "@tablet": {
-    height: "450px",
   },
 
   "@desktop": {
@@ -81,22 +77,28 @@ const ImageContainer = styled("div", {
       margin: "auto",
 
       background: "rgba(0, 0, 0, 0.5)",
+
+      borderTopLeftRadius: "inherit",
+      borderTopRightRadius: "inherit",
     },
   },
 });
 
 const CardContent = styled("section", {
   width: "100%",
+  height: "100%",
 
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-start",
+  justifyContent: "space-between",
 
   gap: "$spacer-3",
   padding: "$spacer-3 $spacer-3 $spacer-5",
 
   "@desktop": {
     flexDirection: "column-reverse",
+    padding: "$spacer-6 $spacer-14",
   },
 });
 
@@ -141,6 +143,7 @@ export type CardProps = {
   variant?: "default" | "side-scroll";
 
   createdAt: string;
+  css?: CSS<typeof config>;
 };
 
 const capitalize = (string: string) => {
@@ -155,9 +158,10 @@ export const Card = ({
   coverImageDescription,
   createdAt,
   variant = "default",
+  css,
 }: CardProps) => {
   const mobileDescription = description.substring(0, 148);
-  const sideScrollDescription = description.substring(0, 74);
+  const sideScrollDescription = description.substring(0, 60);
   const tabletDescription = description.substring(0, 296);
   const desktopDescription = description.substring(0, 344);
 
@@ -171,15 +175,15 @@ export const Card = ({
   )} (${date.getMonth()}) ${date.getDate()}, ${date.getFullYear()}`;
 
   return (
-    <CardRoot href={`/${slugify(title)}`} variant={variant}>
+    <CardRoot href={`/${slugify(title)}`} variant={variant} css={css}>
       <ImageContainer>
         <img src={coverUrl} alt={coverImageDescription} />
       </ImageContainer>
 
       <CardContent>
         <PillList>
-          {genres.map((genre, index) => (
-            <Pill asButton key={genre} index={index} genre={genre}>
+          {genres.map((genre) => (
+            <Pill asButton key={slugify(genre)} genre={genre}>
               {genre}
             </Pill>
           ))}
@@ -225,52 +229,56 @@ export const Card = ({
               font="reading"
               weight="regular"
               css={{
+                display: "flex",
                 color: "$gray500",
                 fontSize: "$md",
-                "@tablet": { display: "none" },
               }}
             >
               {sideScrollDescription}...
             </Heading.p>
           ) : (
-            <Heading.p
-              font="reading"
-              weight="regular"
-              css={{
-                color: "$gray500",
-                "@tablet": { display: "none" },
-              }}
-            >
-              {mobileDescription}...
-            </Heading.p>
+            <>
+              <Heading.p
+                font="reading"
+                weight="regular"
+                css={{
+                  color: "$gray500",
+                  "@tablet": { display: "none" },
+                }}
+              >
+                {mobileDescription}...
+              </Heading.p>
+
+              <Heading.p
+                font="reading"
+                weight="regular"
+                css={{
+                  color: "$gray500",
+                  fontSize: "$md",
+                  display: "none",
+                  "@tablet": {
+                    display: "block",
+                  },
+                  "@desktop": { display: "none" },
+                }}
+              >
+                {tabletDescription}...
+              </Heading.p>
+
+              <Heading.p
+                font="reading"
+                weight="regular"
+                css={{
+                  color: "$gray500",
+                  fontSize: "$lg",
+                  display: "none",
+                  "@desktop": { display: "block" },
+                }}
+              >
+                {desktopDescription}...
+              </Heading.p>
+            </>
           )}
-
-          <Heading.p
-            font="reading"
-            weight="regular"
-            css={{
-              color: "$gray500",
-              fontSize: "$md",
-              display: "none",
-              "@tablet": { display: "block" },
-              "@desktop": { display: "none" },
-            }}
-          >
-            {tabletDescription}...
-          </Heading.p>
-
-          <Heading.p
-            font="reading"
-            weight="regular"
-            css={{
-              color: "$gray500",
-              fontSize: "$lg",
-              display: "none",
-              "@desktop": { display: "block" },
-            }}
-          >
-            {desktopDescription}...
-          </Heading.p>
         </Div>
 
         <DateSection
@@ -301,12 +309,10 @@ export const Card = ({
           css={{
             display: "none",
 
-            "@tablet": {
+            "@desktop": {
               display: "flex",
               alignSelf: "center",
-            },
 
-            "@desktop": {
               position: "absolute",
               inset: "0",
               margin: "auto",

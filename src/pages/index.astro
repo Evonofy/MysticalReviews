@@ -3,6 +3,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import Layout from "@/components/layout/layout.astro";
+import { Home } from "@/components/layout/pages/home";
 
 import { Title } from "@/components/title";
 import { Card, CardProps } from "@/components/card";
@@ -50,12 +51,5 @@ const cards: CardProps[] = [
 ---
 
 <Layout title="Home">
-  <Title client:only="react">Publicações Mais Recentes</Title>
-  <CardSlider client:only="react" cards={cards} />
-
-  <Title client:only="react">Newsletter</Title>
-  <Newsletter client:visible />
-
-  <Title client:only="react">Todas Publicações</Title>
-  {cards.map((props) => <Card client:visible {...props} />)}
+  <Home cards={cards} client:only="react" />
 </Layout>

@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { Pagination, Navigation } from "swiper";
+import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Card, CardProps } from "./card";
@@ -9,11 +9,11 @@ export const CardSlider: FunctionComponent<{ cards: CardProps[] }> = ({
 }) => {
   return (
     <Swiper
-      spaceBetween={8}
+      slidesPerView={"auto"}
       pagination={{
         clickable: true,
         // el: ".horizontal-card-carousel-navigation-button",
-        renderBullet: (index, className) => {
+        renderBullet: (_, className) => {
           return `<button class="${className}"></button>`;
         },
       }}
@@ -22,7 +22,15 @@ export const CardSlider: FunctionComponent<{ cards: CardProps[] }> = ({
     >
       {cards.map((props) => (
         <SwiperSlide key={props.title}>
-          <Card {...props} />
+          <Card
+            {...props}
+            variant="side-scroll"
+            css={{
+              "@mobile": { width: "100%" },
+              "@tablet": { maxWidth: "300px" },
+              "@desktop": { maxWidth: "none" },
+            }}
+          />
         </SwiperSlide>
       ))}
     </Swiper>
