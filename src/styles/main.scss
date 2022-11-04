@@ -1,5 +1,9 @@
 @use "./base/reset" as *; 
 
+body {
+  overflow-x: hidden;
+}
+
 .swiper-pagination {
   position: unset;
 }

@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactNode } from "react";
+import { FunctionComponent, ReactNode, useState } from "react";
 import { styled } from "@/stitches.config";
 
 import { slugify } from "@/slugify";
@@ -12,10 +12,10 @@ const PillRoot = styled("a", {
   flexShrink: "0",
   cursor: "pointer",
 
-  // focus ring
-  "&:focus-visible, &:focus": {
-    outline: "3px solid transparent",
-    outlineOffset: "-3px", // 2 works better than 1 from the design
+  border: "2px solid transparent",
+
+  "&:focus": {
+    border: "2px solid transparent",
   },
 
   "&:hover": {
@@ -42,6 +42,7 @@ type PillProps = {
   asButton?: boolean;
   onClick?: () => void;
   genre: string;
+  selected?: boolean;
 };
 
 export const Pill: FunctionComponent<PillProps> = ({
@@ -49,8 +50,9 @@ export const Pill: FunctionComponent<PillProps> = ({
   asButton = false,
   onClick,
   genre,
+  selected = false,
 }) => {
-  const colorIndex = randomIntFromInterval(0, colorMap.length - 1);
+  const [colorIndex] = useState(randomIntFromInterval(0, colorMap.length - 1));
   const { backgroundColor, color } = colorMap.at(colorIndex)!;
 
   return (
@@ -58,13 +60,22 @@ export const Pill: FunctionComponent<PillProps> = ({
       as={asButton ? "button" : "a"}
       onClick={onClick}
       href={`/${slugify(genre)}`}
-      css={{
-        color,
-        backgroundColor,
-        "&:focus-visible, &:focus": {
-          outlineColor: color,
-        },
-      }}
+      css={
+        selected
+          ? {
+              color: backgroundColor,
+              backgroundColor: color,
+              borderColor: color,
+            }
+          : {
+              color,
+              backgroundColor,
+
+              "&:focus": {
+                borderColor: color,
+              },
+            }
+      }
     >
       {children}
     </PillRoot>

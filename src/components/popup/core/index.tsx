@@ -38,6 +38,7 @@ const PopupModal = styled("div", {
   margin: "auto",
 
   $$mobileNavbarHeight: "50px",
+  right: "0",
   bottom: "$$mobileNavbarHeight",
 
   "@tablet": {
@@ -57,7 +58,9 @@ const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz");
 export const PopupButton: FunctionComponent<{
   content?: ReactNode;
   modal?: ReactElement;
-}> = ({ content, modal }) => {
+  modalAlign?: "left" | "right";
+  modified?: boolean;
+}> = ({ content, modal, modified, modalAlign = "left" }) => {
   const buttonContent = content!;
   const popupModal = modal!;
 
@@ -70,7 +73,7 @@ export const PopupButton: FunctionComponent<{
         `#${modalId}`
       );
 
-      if (!currentModal) return;
+      if (!currentModal || modified) return;
       // is it open?
       currentModal.style.display = "none";
       const button = currentModal.previousElementSibling as HTMLButtonElement;
@@ -99,6 +102,11 @@ export const PopupButton: FunctionComponent<{
   });
 
   const handleOpenModal = useCallback(() => {
+    if (modified) {
+      console.log("quitting");
+      return;
+    }
+
     // close all other modal
     const existingModal = document.querySelectorAll<HTMLDivElement>(".modal");
 
@@ -132,7 +140,6 @@ export const PopupButton: FunctionComponent<{
       currentModal.style.display = "flex";
     }
   }, []);
-
   return (
     <PopupContainerRoot>
       <Button
@@ -143,7 +150,18 @@ export const PopupButton: FunctionComponent<{
         {buttonContent}
       </Button>
 
-      <PopupModal className="modal" id={modalId} ref={modalRef}>
+      <PopupModal
+        css={
+          modalAlign === "right"
+            ? {}
+            : {
+                left: "0",
+              }
+        }
+        className="modal"
+        id={modalId}
+        ref={modalRef}
+      >
         {popupModal}
       </PopupModal>
     </PopupContainerRoot>
