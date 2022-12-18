@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from "react";
 
 import { Section } from "@/components/layout/section";
-import { Card, CardProps } from "@/components/card";
+import { Card, CardProps } from "@/components/Card";
 import { CardSlider } from "@/components/card-slider";
-import { Newsletter } from "@/components/newsletter";
-import { Title } from "@/components/title";
+import { Newsletter } from "@/components/Newsletter";
+import { Title } from "@/components/Title";
 
 export const Home: FunctionComponent<{ cards: CardProps[] }> = ({ cards }) => {
   return (

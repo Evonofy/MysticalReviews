@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { Card, CardProps } from "./card";
+import { Card, CardProps } from "./Card";
 
 export const CardSlider: FunctionComponent<{ cards: CardProps[] }> = ({
   cards,
