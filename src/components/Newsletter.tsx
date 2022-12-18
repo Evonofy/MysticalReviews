@@ -5,6 +5,8 @@ import { Heading } from "./Heading";
 import { Button } from "./Button";
 import { Div } from "./utils/Div";
 
+import NewsletterPattern from "./newsletter-pattern.png";
+
 const NewsletterRoot = styled("section", {
   width: "100%",
 
@@ -32,16 +34,23 @@ const NewsletterRoot = styled("section", {
   },
 });
 
-const ButtonContainer = styled("footer", {
+const ButtonContainer = styled("label", {
   width: "100%",
+  position: "relative",
 
   display: "flex",
-  justifyContent: "flex-end",
+  justifyContent: "space-between",
 
   padding: "$spacer-1 $spacer-2",
   borderRadius: "$brSm",
+  gap: "$spacer-1",
 
   background: "$gray100",
+
+  input: {
+    width: "100%",
+    fontSize: "$xs",
+  },
 
   "@tablet": {
     width: "360px",
@@ -87,9 +96,13 @@ const BackgroundImage = styled("img", {
 });
 
 export const Newsletter: FunctionComponent = () => {
+  const handleSubmit = () => {
+    // send email
+  };
+
   return (
     <NewsletterRoot css={{ "@tablet": { backgroundImage: `url("${""}")` } }}>
-      <BackgroundImage src="/newsletter-pattern.png" />
+      <BackgroundImage src={NewsletterPattern} />
 
       <Heading.h1
         css={{
@@ -132,8 +145,9 @@ export const Newsletter: FunctionComponent = () => {
         </Heading.p>
       </Div>
 
-      <ButtonContainer>
-        <Button>
+      <ButtonContainer htmlFor="newsletter-input">
+        <input id="newsletter-input" />
+        <Button onClick={handleSubmit}>
           <Heading.p>Enviar</Heading.p>
         </Button>
       </ButtonContainer>

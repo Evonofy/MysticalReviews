@@ -1,0 +1,42 @@
+---
+import "@/styles/main.scss";
+import { Layout } from "./base";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
+
+export interface Props {
+  title: string;
+  lang?: string;
+}
+
+const { title, lang = "en-US" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <!-- favicon -->
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title} - MysticalReviews</title>
+
+    <slot name="seo" />
+  </head>
+
+  <body>
+    <Navbar client:only="react" />
+
+    <Layout client:load>
+      <slot />
+    </Layout>
+
+    <Footer client:only="react" />
+  </body>
+</html>

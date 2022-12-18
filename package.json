@@ -22,7 +22,8 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-icons": "^4.6.0",
-    "seedrandom": "^3.0.5"
+    "seedrandom": "^3.0.5",
+    "swiper": "^8.4.4"
   },
   "devDependencies": {
     "@types/node": "^18.11.0",

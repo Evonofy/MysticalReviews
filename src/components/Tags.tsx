@@ -62,7 +62,7 @@ const Heading3 = styled("h3", {
 });
 
 const Paragraph = styled("p", {
-  fontSize: "$xs",
+  fontSize: "$sm",
   fontFamily: "$default",
 
   "@tablet": {

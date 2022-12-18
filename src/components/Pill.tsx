@@ -1,14 +1,7 @@
+import { FunctionComponent, ReactNode } from "react";
 import { styled } from "@/stitches.config";
-import { FunctionComponent, ReactNode, useEffect } from "react";
-import seed from "seedrandom";
 
-type PillProps = {
-  children: ReactNode;
-  href: string;
-  index: number;
-  asButton?: boolean;
-  onClick?: () => void;
-};
+import { slugify } from "@/slugify";
 
 const PillRoot = styled("a", {
   display: "flex",
@@ -39,46 +32,32 @@ const colorMap: Array<{ backgroundColor: string; color: string }> = hueMap.map(
   })
 );
 
+function randomIntFromInterval(min: number, max: number) {
+  // min and max included
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+type PillProps = {
+  children: ReactNode;
+  asButton?: boolean;
+  onClick?: () => void;
+  genre: string;
+};
+
 export const Pill: FunctionComponent<PillProps> = ({
   children,
-  href,
-  index,
-  asButton,
+  asButton = false,
   onClick,
+  genre,
 }) => {
-  // see how many arrays fit into the number
-  if (!colorMap.at(index)) {
-    const numOfFits = index / colorMap.length;
-    // prettier-ignore
-    const selecetedColorPairIndex = index - (colorMap.length * Math.floor(numOfFits));
-
-    const { backgroundColor, color } = colorMap.at(selecetedColorPairIndex)!;
-
-    return (
-      <PillRoot
-        as={asButton ? "button" : "a"}
-        onClick={onClick}
-        href={href}
-        css={{
-          color,
-          backgroundColor,
-          "&:focus-visible, &:focus": {
-            outlineColor: color,
-          },
-        }}
-      >
-        {children}
-      </PillRoot>
-    );
-  }
-
-  const { backgroundColor, color } = colorMap.at(index)!;
+  const colorIndex = randomIntFromInterval(0, colorMap.length - 1);
+  const { backgroundColor, color } = colorMap.at(colorIndex)!;
 
   return (
     <PillRoot
       as={asButton ? "button" : "a"}
       onClick={onClick}
-      href={href}
+      href={`/${slugify(genre)}`}
       css={{
         color,
         backgroundColor,
