@@ -1,9 +1,9 @@
 import { FunctionComponent, ReactNode } from "react";
 import { styled } from "@/stitches.config";
 
-import { Heading } from "./heading";
-import { Button } from "./button";
-import { Div } from "./utils/div";
+import { Heading } from "./Heading";
+import { Button } from "./Button";
+import { Div } from "./utils/Div";
 
 import NewsletterPattern from "./newsletter-pattern.png";
 

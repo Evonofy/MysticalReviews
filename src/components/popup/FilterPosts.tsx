@@ -1,16 +1,16 @@
 import { FunctionComponent, useState } from "react";
 
-import { CardProps } from "../card";
+import { CardProps } from "../Card";
 import { Heading } from "../heading";
 import { PopupButton } from "./core";
 
 import { styled } from "@/stitches.config";
 
 import { BsCaretUp } from "react-icons/bs/index.js";
-import { Button } from "@/components/button";
-import { Div } from "@/components/utils/div";
+import { Button } from "@/components/Button";
+import { Div } from "@/components/utils/Div";
 
-import Pill from "@/components/pill";
+import Pill from "@/components/Pill";
 
 const ButtonRoot = styled(Button, {
   width: "100%",

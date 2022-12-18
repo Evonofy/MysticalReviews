@@ -9,8 +9,9 @@ import React, {
 import { customAlphabet } from "nanoid";
 import { styled, theme } from "@/stitches.config";
 
-import { Button } from "@/components/button";
-import { useOnClickOutside } from "./use-on-click-outside";
+import { Button } from "@/components/Button";
+import { useOnClickOutside } from "./UseOnClickOutside";
+import { CSS } from "@stitches/react";
 
 const PopupContainerRoot = styled("div", {
   "@tablet": {
@@ -34,7 +35,7 @@ const PopupModal = styled("div", {
   // height: "222px",
 
   position: "absolute",
-  zIndex: "$high",
+  zIndex: "$highest",
   margin: "auto",
 
   $$mobileNavbarHeight: "50px",
@@ -58,9 +59,18 @@ const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz");
 export const PopupButton: FunctionComponent<{
   content?: ReactNode;
   modal?: ReactElement;
-  modalAlign?: "left" | "right";
-  modified?: boolean;
-}> = ({ content, modal, modified, modalAlign = "left" }) => {
+  modalPosition?: "left" | "right";
+  css?: CSS;
+  disabledBackgroundColor?: string;
+  activeBackgroundColor?: string;
+}> = ({
+  content,
+  modal,
+  modalPosition = "left",
+  css,
+  disabledBackgroundColor = theme.colors.gray600.value,
+  activeBackgroundColor = theme.colors.secondaryBase.value,
+}) => {
   const buttonContent = content!;
   const popupModal = modal!;
 
@@ -73,11 +83,11 @@ export const PopupButton: FunctionComponent<{
         `#${modalId}`
       );
 
-      if (!currentModal || modified) return;
+      if (!currentModal) return;
       // is it open?
       currentModal.style.display = "none";
       const button = currentModal.previousElementSibling as HTMLButtonElement;
-      button.style.backgroundColor = theme.colors.gray600.value;
+      button.style.backgroundColor = disabledBackgroundColor;
     };
 
     // @ts-ignore
@@ -102,11 +112,6 @@ export const PopupButton: FunctionComponent<{
   });
 
   const handleOpenModal = useCallback(() => {
-    if (modified) {
-      console.log("quitting");
-      return;
-    }
-
     // close all other modal
     const existingModal = document.querySelectorAll<HTMLDivElement>(".modal");
 
@@ -118,7 +123,7 @@ export const PopupButton: FunctionComponent<{
       modal.style.display = "none";
 
       const button = modal.previousElementSibling as HTMLButtonElement;
-      button.style.backgroundColor = theme.colors.gray600.value;
+      button.style.backgroundColor = disabledBackgroundColor;
     });
 
     // find current modal
@@ -132,16 +137,16 @@ export const PopupButton: FunctionComponent<{
 
     if (isOpen) {
       // close
-      button.style.backgroundColor = theme.colors.gray600.value;
+      button.style.backgroundColor = disabledBackgroundColor;
       currentModal.style.display = "none";
     } else {
       // open
-      button.style.backgroundColor = theme.colors.secondaryBase.value;
+      button.style.backgroundColor = activeBackgroundColor;
       currentModal.style.display = "flex";
     }
   }, []);
   return (
-    <PopupContainerRoot>
+    <PopupContainerRoot css={css}>
       <Button
         data-cancel-close-modal
         css={{ background: "$gray600" }}
@@ -151,13 +156,7 @@ export const PopupButton: FunctionComponent<{
       </Button>
 
       <PopupModal
-        css={
-          modalAlign === "right"
-            ? {}
-            : {
-                left: "0",
-              }
-        }
+        style={modalPosition === "right" ? { right: "0px" } : {}}
         className="modal"
         id={modalId}
         ref={modalRef}

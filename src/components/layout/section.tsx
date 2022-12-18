@@ -1,6 +1,8 @@
 import { styled } from "@/stitches.config";
 
-export const Section = styled("section", {
+import { Div } from "../utils/Div";
+
+export const Section = styled(Div, {
   width: "100%",
   maxWidth: "1100px",
 

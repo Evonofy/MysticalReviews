@@ -1,7 +1,7 @@
 import { FunctionComponent, ReactNode } from "react";
-import { config, styled } from "@/stitches.config";
+import { styled, config } from "@/stitches.config";
 
-import { Heading } from "./heading";
+import { Heading } from "./Heading";
 import { CSS } from "@stitches/react";
 
 const TitleRoot = styled(Heading.h1, {

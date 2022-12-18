@@ -16,10 +16,16 @@ import { IoIosInformationCircleOutline } from "react-icons/io/index.js";
 import { AiFillStar } from "react-icons/ai/index.js";
 
 const FooterRoot = styled("footer", {
+  display: "none",
   width: "100%",
 
   backgroundColor: "$gray100",
   paddingBlock: "$spacer-10",
+  paddingInline: "$spacer-8",
+
+  "@desktop": {
+    display: "flex",
+  },
 });
 
 const LimitWidth = styled("div", {
@@ -28,11 +34,6 @@ const LimitWidth = styled("div", {
 
   flexCenter: "column",
   gap: "$spacer-6",
-});
-
-const Paragraph = styled("p", {
-  fontSize: "$xl",
-  fontFamily: "$default",
 });
 
 const PlaceholderBlock = styled("div", {
@@ -91,7 +92,7 @@ export function Footer() {
     <FooterRoot>
       <LimitWidth>
         <PostsSection>
-          <Tags.Paragraph size="desktop">POSTS MAIS RECENTES</Tags.Paragraph>
+          <Tags.Paragraph>POSTS MAIS RECENTES</Tags.Paragraph>
           <div
             style={{
               width: "100%",
@@ -108,15 +109,17 @@ export function Footer() {
           </div>
         </PostsSection>
 
-        <Tags.Paragraph size="desktop" css={{ textAlign: "center" }}>
+        <Tags.Paragraph css={{ textAlign: "center" }}>
           © 2022{" "}
-          <a href="https://github.com/ThiagoThalisson">Thiago Thalisson</a> E{" "}
-          {""}
+          <Tags.Link href="https://github.com/ThiagoThalisson">
+            Thiago Thalisson
+          </Tags.Link>{" "}
+          E {""}
           <a href="https://github.com/VitorGouveia">Vitor Gouveia</a>
         </Tags.Paragraph>
 
         <ProjectSection>
-          <Tags.Paragraph size="desktop">SOBRE O PROJETO</Tags.Paragraph>
+          <Tags.Paragraph>SOBRE O PROJETO</Tags.Paragraph>
           <FooterIconContainer>
             <a href="">
               <FooterIcon>

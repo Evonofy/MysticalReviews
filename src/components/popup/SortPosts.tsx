@@ -1,10 +1,10 @@
 import { styled } from "@/stitches.config";
-import { FunctionComponent, useMemo, useState } from "react";
-import { Button } from "../button";
-import { CardProps } from "../card";
-import { Checkbox } from "../checkbox";
+import { FunctionComponent, useState } from "react";
+import { Button } from "../Button";
+import { CardProps } from "../Card";
+import { Checkbox } from "../Checkbox";
 
-import { Heading } from "../heading";
+import { Heading } from "../Heading";
 import { PopupButton } from "./core";
 
 const ButtonRoot = styled(Button, {
