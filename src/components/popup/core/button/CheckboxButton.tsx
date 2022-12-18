@@ -1,9 +1,9 @@
 import { FunctionComponent } from "react";
 import { styled } from "@/stitches.config";
 
-import { Button } from "@/components/button";
-import { Heading } from "@/components/heading";
-import { Checkbox } from "@/components/checkbox";
+import { Button } from "@/components/Button";
+import { Heading } from "@/components/Heading";
+import { Checkbox } from "@/components/Checkbox";
 
 const ButtonRoot = styled(Button, {
   width: "100%",

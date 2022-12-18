@@ -3,8 +3,8 @@ import { createStitches } from "@stitches/react";
 export const { styled, config, theme, getCssText } = createStitches({
   media: {
     mobile: "(max-width: 768px)",
-    tablet: "(min-width: 768px)",
-    desktop: "(min-width: 1024px)",
+    tablet: "(min-width: 48rem)",
+    desktop: "(min-width: 63.688rem)",
   },
   theme: {
     colors: {
@@ -28,12 +28,10 @@ export const { styled, config, theme, getCssText } = createStitches({
       white: "hsla(0, 0%, 100%, 1)",
       black: "hsla(0, 0%, 0%, 1)",
     },
-
     fonts: {
       default: "Montserrat, sans-serif",
       display: "Kaushan Script, cursive",
     },
-
     lineHeights: {
       default: "100%",
       shorter: "125%",
@@ -65,7 +63,6 @@ export const { styled, config, theme, getCssText } = createStitches({
       "7xl": "4rem",
       "8xl": "4.5rem",
     },
-
     space: {
       "spacer-1": "0.25rem",
       "spacer-2": "0.5rem",
@@ -80,10 +77,9 @@ export const { styled, config, theme, getCssText } = createStitches({
       "spacer-12": "3rem",
       "spacer-14": "4rem",
     },
-
     sizes: {
-      tablet: "43rem",
-      desktop: "68.75 rem",
+      tablet: "48rem",
+      desktop: "63.688rem",
     },
     shadows: {
       default: "0px 4px 14px rgba(0, 0, 0, 0.1)",
@@ -98,7 +94,6 @@ export const { styled, config, theme, getCssText } = createStitches({
       bwThc: "100px",
       bwHev: "100px",
     },
-
     transitions: {
       default: "0",
       faster: "0.1s",
@@ -107,7 +102,6 @@ export const { styled, config, theme, getCssText } = createStitches({
       slow: "0.4s",
       slower: "0.5s",
     },
-
     zIndices: {
       default: "1",
       lowest: "10",

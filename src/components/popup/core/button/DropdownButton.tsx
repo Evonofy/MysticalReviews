@@ -1,13 +1,12 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, lazy, useState } from "react";
 import { styled } from "@/stitches.config";
 
 import { BsCaretUp } from "react-icons/bs/index.js";
-import { Button } from "@/components/button";
-import { Heading } from "@/components/heading";
-import { Div } from "@/components/utils/div";
-import { slugify } from "@/slugify";
+import { Button } from "@/components/Button";
+import { Heading } from "@/components/Heading";
+import { Div } from "@/components/utils/Div";
 
-import Pill from "@/components/pill";
+const Pill = lazy(() => import("@/components/Pill"));
 
 const ButtonRoot = styled(Button, {
   width: "100%",
@@ -81,7 +80,7 @@ export const DropdownButton: FunctionComponent<{
           {genres
             .slice(0, Math.floor(genres.length / 2))
             .map((genre, index) => (
-              <Pill asButton key={genre} index={index} genre={genre}>
+              <Pill asButton key={genre} genre={genre}>
                 {genre}
               </Pill>
             ))}
@@ -89,12 +88,7 @@ export const DropdownButton: FunctionComponent<{
 
         <Div css={{ display: "flex", gap: "$spacer-1" }}>
           {genres.slice(Math.floor(genres.length / 2)).map((genre, index) => (
-            <Pill
-              asButton
-              key={genre}
-              index={(index + 2) * -1.24}
-              genre={genre}
-            >
+            <Pill asButton key={genre} genre={genre}>
               {genre}
             </Pill>
           ))}

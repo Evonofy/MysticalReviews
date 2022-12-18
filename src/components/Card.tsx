@@ -1,11 +1,12 @@
 import { config, styled } from "../stitches.config";
 
-import { Heading } from "@/components/heading";
-import { Button } from "@/components/button";
-import { Div } from "./utils/div";
+import { Heading } from "@/components/Heading";
+import { Button } from "@/components/Button";
+import { Div } from "./utils/Div";
+const Pill = lazy(() => import("@/components/Pill"));
 import { slugify } from "@/slugify";
-import Pill from "@/components/pill";
 import { CSS } from "@stitches/react";
+import { lazy } from "react";
 
 const CardRoot = styled("a", {
   // mobile
