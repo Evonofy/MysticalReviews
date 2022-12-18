@@ -1,5 +1,5 @@
 ---
-import "../styles/main.scss"
+import "../styles/main.scss";
 
 import { FilterPostsPopup } from "../components/popup/FilterPosts";
 import { SortPostsPopup } from "../components/popup/SortPosts";
@@ -9,48 +9,18 @@ import { Title } from "../components/Title";
 import { Newsletter } from "../components/Newsletter";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
+
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1);
 ---
 
 <meta charset="UTF-8" />
 
 <body>
-  <Navbar client:load />
+  <Navbar
+    currentPage={currentPath.replace("MysticalReviews", "")}
+    client:only="react"
+  />
 
-  <FilterPostsPopup client:only="react" />
-  <SortPostsPopup client:only="react" />
-
-  <section style={{width: "100%"}}>
-    <Title client:load>Hello World</Title>
-    <Newsletter client:load />
-    <!-- <Card
-        title="ben"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed consectetur mauris. Nunc pretium lorem eu fermentum vulputate. In in vulputate tortor. Etiam elit elit, vulputate vel leo sit amet, rutrum condimentum libero. Ut sit amet lorem gravida, ornare ipsum quis, luctus mauris. Phasellus tempus urna arcu, ut scelerisque nunc iaculis ut. "
-        coverUrl="https://i.pinimg.com/736x/61/a5/a1/61a5a1eec1183ed481e9212a9ff506b0.jpg"
-        coverImageDescription="d"
-        genres={["bru"]}
-        variant="default"
-        createdAt={String(new Date().getTime())}
-        client:load
-      /> -->
-
-    <!-- <Button client:load>
-      <BsFillRecordCircleFill /> Button
-    </Button>
-    
-    <Button size="tablet" client:load><BsFillRecordCircleFill />Button</Button>
-    <Button size="desktop" client:load><BsFillRecordCircleFill />Button</Button> -->
-  </section>
-
-  <!-- <Navbar client:load />
-  <Footer client:load /> -->
-
-<section>
-  <!-- <Button client:load><BsFillRecordCircleFill />Button</Button> -->
-  <!-- <Button client:load><BsFillRecordCircleFill />Button</Button> -->
-  <!-- <Button size="desktop" client:load><BsFillRecordCircleFill />Button</Button> -->
-</section>
-
-<Footer client:load />
+  <Footer client:only="react" />
 </body>
-
-

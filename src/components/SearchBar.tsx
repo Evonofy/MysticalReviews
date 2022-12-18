@@ -19,16 +19,21 @@ const Input = styled("input", {
 
   border: "2px solid $accentBase",
   borderRadius: "2.5px",
+
+  "@desktop": {
+    height: "40px",
+  },
 });
 
 export function SearchBar() {
   return (
     <SearchRoot>
-      <Input></Input>
+      <Input />
+
       <BsSearch
         style={{
-          width: "1.5rem",
-          height: "1.5rem",
+          width: "2rem",
+          height: "2rem",
 
           color: "hsl(185, 100%, 35%)",
           position: "absolute",
@@ -36,7 +41,7 @@ export function SearchBar() {
           top: "50%",
           transform: "translateY(-50%)",
         }}
-      ></BsSearch>
+      />
     </SearchRoot>
   );
 }

@@ -6,6 +6,8 @@ import { Tags } from "../components/Tags";
 
 // Components
 import { SearchBar } from "./SearchBar";
+import { PopupButton } from "./popup/core";
+import { theme } from "@/stitches.config";
 
 // Icons
 import { ImHome3 } from "react-icons/im/index.js";
@@ -26,11 +28,22 @@ const NavMobile = styled("nav", {
   justifyContent: "space-between",
 
   paddingInline: "$spacer-5",
-  paddingBlock: "$spacer-2",
+  paddingBlock: "$spacer-3",
   backgroundColor: "$gray100",
+
+  boxShadow: "0px -4px 4px rgba(0, 0, 0, 0.09)",
 
   "@tablet": {
     display: "none",
+  },
+
+  svg: {
+    color: "$gray600 !important",
+  },
+
+  a: {
+    display: "grid",
+    placeItems: "center",
   },
 });
 
@@ -45,6 +58,7 @@ const NavTablet = styled("nav", {
     flexCenter: "row",
     justifyContent: "space-between",
   },
+
   "@desktop": {
     display: "none",
   },
@@ -105,11 +119,11 @@ const ListItem = styled("li", {
   // listStyle: "none",
 });
 
-export function Navbar() {
+export function Navbar({ currentPage }: { currentPage: string }) {
   return (
     <>
       <NavMobile>
-        <Tags.Link href="#">
+        <Tags.Link href="/">
           <ImHome3
             style={{
               width: "1.563rem",
@@ -118,7 +132,8 @@ export function Navbar() {
             }}
           ></ImHome3>
         </Tags.Link>
-        <Tags.Link href="#">
+
+        <Tags.Link href="/resenhas">
           <BsSearch
             style={{
               width: "1.563rem",
@@ -128,7 +143,7 @@ export function Navbar() {
           ></BsSearch>
         </Tags.Link>
 
-        <Tags.Link href="#">
+        <Tags.Link href="/sobre">
           <FiInfo
             style={{
               width: "1.563rem",
@@ -138,7 +153,7 @@ export function Navbar() {
           ></FiInfo>
         </Tags.Link>
 
-        <Tags.Link href="#">
+        <Tags.Link href="/favoritos">
           <AiFillStar
             style={{
               width: "1.563rem",
@@ -148,7 +163,7 @@ export function Navbar() {
           ></AiFillStar>
         </Tags.Link>
 
-        <Tags.Link href="#">
+        <Tags.Link href="/configuracoes">
           <BsFillGearFill
             style={{
               width: "1.563rem",
@@ -169,10 +184,11 @@ export function Navbar() {
 
             cursor: "pointer",
           }}
-        ></GiHamburgerMenu>
+        />
 
         <SearchAndSettings>
-          <SearchBar></SearchBar>
+          <SearchBar />
+
           <FiSettings
             style={{
               color: "white",
@@ -186,46 +202,67 @@ export function Navbar() {
 
               cursor: "pointer",
             }}
-          ></FiSettings>
+          />
         </SearchAndSettings>
       </NavTablet>
 
       <NavDesktop>
         <LimitWidth>
           <NavigationContainer>
-            <Logo
-              src="
-          ./OpenBook.png"
-            ></Logo>
+            <Logo src="./OpenBook.png" />
+
             <UnorderedList>
               <ListItem>
-                <Tags.Link>RESENHAS</Tags.Link>
+                <Tags.Link href="/resenhas">RESENHAS</Tags.Link>
               </ListItem>
+
               <ListItem>
-                <Tags.Link>DESTAQUES</Tags.Link>
+                <Tags.Link href="/destaques">DESTAQUES</Tags.Link>
               </ListItem>
+
               <ListItem>
-                <Tags.Link>SOBRE E CONTATO</Tags.Link>
+                <Tags.Link href="/sobre">SOBRE E CONTATO</Tags.Link>
               </ListItem>
             </UnorderedList>
           </NavigationContainer>
 
           <SearchAndSettings>
-            <SearchBar></SearchBar>
-            <FiSettings
-              style={{
-                color: "white",
+            <SearchBar />
 
-                width: "2.25rem",
-                height: "2.25rem",
-
-                backgroundColor: "hsl(185, 100%, 35%)",
-                borderRadius: "2px",
-                padding: "0.25rem",
-
-                cursor: "pointer",
+            <PopupButton
+              css={{
+                button: {
+                  padding: "4px !important",
+                  background: "$accentBase",
+                },
+                ".modal": {
+                  background: theme.colors.gray300.value,
+                },
               }}
-            ></FiSettings>
+              modalPosition="right"
+              activeBackgroundColor={theme.colors.accentBase.value}
+              disabledBackgroundColor={theme.colors.accentBase.value}
+              content={
+                <FiSettings
+                  data-cancel-close-modal
+                  style={{
+                    color: "white",
+
+                    width: "2rem",
+                    height: "2rem",
+
+                    cursor: "pointer",
+                  }}
+                />
+              }
+              modal={
+                <ul>
+                  <li>Trocar tema</li>
+                  <li>Fazer isso</li>
+                  <li>E aquilo</li>
+                </ul>
+              }
+            />
           </SearchAndSettings>
         </LimitWidth>
       </NavDesktop>
