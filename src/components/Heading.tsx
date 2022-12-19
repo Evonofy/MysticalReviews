@@ -68,11 +68,11 @@ const h3 = styled("h3", {
 
 const p = styled("p", {
   ...setupVariants(),
-  fontSize: "$sm",
+  fontSize: "$md",
 
-  "@tablet": {
-    fontSize: "$md",
-  },
+  // "@tablet": {
+  //   fontSize: "$md",
+  // },
 
   "@desktop": {
     fontSize: "$xl",

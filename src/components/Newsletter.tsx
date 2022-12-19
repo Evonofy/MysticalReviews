@@ -9,6 +9,7 @@ import NewsletterPattern from "./newsletter-pattern.png";
 
 const NewsletterRoot = styled("section", {
   width: "100%",
+  maxWidth: "1100px",
 
   display: "flex",
   flexDirection: "column",

@@ -6,9 +6,12 @@ const Container = styled("main", {
 
   display: "flex",
   flexDirection: "column",
+  // Remove if brakes
+  alignItems: "center",
   gap: "$spacer-5",
 
   padding: "$spacer-5",
+  marginBottom: "$spacer-12",
   background: "$gray200",
 
   overflowX: "hidden",
