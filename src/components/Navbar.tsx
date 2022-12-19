@@ -15,14 +15,15 @@ import { BsSearch, BsFillGearFill } from "react-icons/bs/index.js";
 import { FiInfo, FiSettings } from "react-icons/fi/index.js";
 import { AiFillStar } from "react-icons/ai/index.js";
 import { GiHamburgerMenu } from "react-icons/gi/index.js";
-
-import image from "../../public/mysticalLogo.svg";
+import { Button } from "./Button";
 
 const NavMobile = styled("nav", {
   width: "100%",
+  height: "50px",
   position: "fixed",
   bottom: "0",
   left: "0",
+  zIndex: "$highest",
 
   display: "flex",
   justifyContent: "space-between",
@@ -117,6 +118,9 @@ const UnorderedList = styled("ul", {
 
 const ListItem = styled("li", {
   // listStyle: "none",
+  "a:hover": {
+    color: "$accentBase",
+  },
 });
 
 export function Navbar({ currentPage }: { currentPage: string }) {
@@ -175,34 +179,46 @@ export function Navbar({ currentPage }: { currentPage: string }) {
       </NavMobile>
 
       <NavTablet>
-        <GiHamburgerMenu
-          style={{
-            color: "black",
+        <NavigationContainer>
+          <UnorderedList>
+            <ListItem>
+              <Tags.Link href="/resenhas">RESENHAS</Tags.Link>
+            </ListItem>
 
-            width: "1.563rem",
-            height: "1.563rem",
+            <ListItem>
+              <Tags.Link href="/destaques">DESTAQUES</Tags.Link>
+            </ListItem>
 
-            cursor: "pointer",
-          }}
-        />
+            <ListItem>
+              <Tags.Link href="/sobre">SOBRE E CONTATO</Tags.Link>
+            </ListItem>
+          </UnorderedList>
+        </NavigationContainer>
 
         <SearchAndSettings>
           <SearchBar />
 
-          <FiSettings
-            style={{
-              color: "white",
-
-              width: "2.25rem",
-              height: "2.25rem",
-
-              backgroundColor: "hsl(185, 100%, 35%)",
-              borderRadius: "2px",
-              padding: "0.25rem",
-
-              cursor: "pointer",
-            }}
-          />
+          <PopupButton
+            content={
+              <Button
+                css={{
+                  width: "25px",
+                  height: "25px",
+                  padding: "4px !important",
+                  background: "$accentBase",
+                }}
+              >
+                <FiSettings
+                  style={{
+                    width: "1.125rem",
+                    height: "1.125rem",
+                  }}
+                />
+              </Button>
+            }
+          >
+            <ConfigPopup />
+          </PopupButton>
         </SearchAndSettings>
       </NavTablet>
 
@@ -230,42 +246,44 @@ export function Navbar({ currentPage }: { currentPage: string }) {
             <SearchBar />
 
             <PopupButton
-              css={{
-                button: {
-                  padding: "4px !important",
-                  background: "$accentBase",
-                },
-                ".modal": {
-                  background: theme.colors.gray300.value,
-                },
-              }}
-              modalPosition="right"
-              activeBackgroundColor={theme.colors.accentBase.value}
-              disabledBackgroundColor={theme.colors.accentBase.value}
               content={
-                <FiSettings
-                  data-cancel-close-modal
-                  style={{
-                    color: "white",
-
-                    width: "2rem",
-                    height: "2rem",
-
-                    cursor: "pointer",
+                <Button
+                  css={{
+                    width: "40px",
+                    height: "40px",
+                    padding: "4px !important",
+                    background: "$accentBase",
                   }}
-                />
+                >
+                  <FiSettings
+                    data-cancel-close-modal
+                    style={{
+                      color: "white",
+
+                      width: "2rem",
+                      height: "2rem",
+
+                      cursor: "pointer",
+                    }}
+                  />
+                </Button>
               }
-              modal={
-                <ul>
-                  <li>Trocar tema</li>
-                  <li>Fazer isso</li>
-                  <li>E aquilo</li>
-                </ul>
-              }
-            />
+            >
+              <ConfigPopup />
+            </PopupButton>
           </SearchAndSettings>
         </LimitWidth>
       </NavDesktop>
     </>
+  );
+}
+
+function ConfigPopup() {
+  return (
+    <ul>
+      <li>Trocar tema</li>
+      <li>Fazer isso</li>
+      <li>E aquilo</li>
+    </ul>
   );
 }

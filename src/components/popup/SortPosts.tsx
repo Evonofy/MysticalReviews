@@ -32,8 +32,7 @@ export const SortPostsPopup: FunctionComponent<{
             ? -1
             : 1;
         });
-        console.log(cards == sortedCards);
-        console.log(cards);
+
         onClick(sortedCards);
       },
     },
@@ -51,42 +50,35 @@ export const SortPostsPopup: FunctionComponent<{
 
   return (
     <PopupButton
-      modalAlign="right"
       content={<Heading.p data-cancel-close-modal>Organizar Por</Heading.p>}
-      modal={
-        <>
-          {modifiers.map(({ label, onChecked }) => (
-            <ButtonRoot
-              key={label}
-              onClick={() => {
-                // if already selected
-                if (label === selectedModifier) {
-                  setSelectedModifier(null);
-                  onClick(cards);
-                  return;
-                }
+    >
+      {modifiers.map(({ label, onChecked }) => (
+        <ButtonRoot
+          key={label}
+          onClick={() => {
+            // if already selected
+            if (label === selectedModifier) {
+              setSelectedModifier(null);
+              onClick(cards);
+              return;
+            }
 
-                setSelectedModifier(label);
+            setSelectedModifier(label);
 
-                onChecked();
-              }}
-              css={{
-                background:
-                  label === selectedModifier ? "$secondaryBase" : "$gray600",
-              }}
-            >
-              <Heading.p font="reading" weight="regular">
-                {label}
-              </Heading.p>
+            onChecked();
+          }}
+          css={{
+            background:
+              label === selectedModifier ? "$secondaryBase" : "$gray600",
+          }}
+        >
+          <Heading.p font="reading" weight="regular">
+            {label}
+          </Heading.p>
 
-              <Checkbox
-                checked={label === selectedModifier}
-                onChecked={() => {}}
-              />
-            </ButtonRoot>
-          ))}
-        </>
-      }
-    />
+          <Checkbox checked={label === selectedModifier} onChecked={() => {}} />
+        </ButtonRoot>
+      ))}
+    </PopupButton>
   );
 };

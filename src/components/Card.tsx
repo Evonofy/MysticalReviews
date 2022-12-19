@@ -1,3 +1,4 @@
+import { lazy } from "react";
 import { config, styled } from "../stitches.config";
 
 import { Heading } from "@/components/Heading";
@@ -6,7 +7,6 @@ import { Div } from "./utils/Div";
 const Pill = lazy(() => import("@/components/Pill"));
 import { slugify } from "@/slugify";
 import { CSS } from "@stitches/react";
-import { lazy } from "react";
 
 const CardRoot = styled("a", {
   // mobile

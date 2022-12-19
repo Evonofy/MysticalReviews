@@ -1,10 +1,10 @@
-import { FunctionComponent, useRef, useState } from "react";
+import { FunctionComponent, useState } from "react";
 
-import { Title } from "@/components/title";
-import { FilterPostsPopup } from "@/components/popup/filter-posts";
-import { SortPostsPopup } from "@/components/popup/sort-posts";
-import { Div } from "@/components/utils/div";
-import { Card, CardProps } from "@/components/card";
+import { Title } from "@/components/Title";
+import { FilterPostsPopup } from "@/components/popup/FilterPosts";
+import { SortPostsPopup } from "@/components/popup/SortPosts";
+import { Div } from "@/components/utils/Div";
+import { Card, CardProps } from "@/components/Card";
 import { Section } from "../section";
 
 export const Resenhas: FunctionComponent<{
@@ -32,14 +32,11 @@ export const Resenhas: FunctionComponent<{
           onClick={(sortedCards) => setCards(sortedCards)}
         />
 
-        {/* <SortPostsPopup
+        <SortPostsPopup
           cards={cardsData}
           genres={genres}
-          onClick={(sortedCards) => {
-            console.log("clicked");
-            setCards(sortedCards);
-          }}
-        /> */}
+          onClick={(sortedCards) => setCards(sortedCards)}
+        />
       </Div>
 
       {cards.map((props, index) => (

@@ -51,75 +51,71 @@ export const FilterPostsPopup: FunctionComponent<{
 
   return (
     <PopupButton
-      modified={selectedGenres.length <= 0 ? false : true}
       content={<Heading.p data-cancel-close-modal>Filtrar Por</Heading.p>}
-      modal={
-        <>
-          <ButtonRoot
-            onClick={() => setOpen((open) => !open)}
-            css={{
-              background: open ? "$secondaryBase" : "$gray600",
-            }}
-          >
-            <Heading.p font="reading" weight="regular">
-              Gênero
-            </Heading.p>
+    >
+      <ButtonRoot
+        onClick={() => setOpen((open) => !open)}
+        css={{
+          background: open ? "$secondaryBase" : "$gray600",
+        }}
+      >
+        <Heading.p font="reading" weight="regular">
+          Gênero
+        </Heading.p>
 
-            <BsCaretUp
-              size={12}
-              style={{
-                transform: `${open ? "rotate(180deg)" : "rotate(90deg)"}`,
-              }}
-            />
-          </ButtonRoot>
+        <BsCaretUp
+          size={12}
+          style={{
+            transform: `${open ? "rotate(180deg)" : "rotate(90deg)"}`,
+          }}
+        />
+      </ButtonRoot>
 
-          <Div
-            css={{
-              width: "100%",
-              display: open ? "flex" : "none",
-              flexDirection: "column",
-              overflow: "auto",
-              gap: "$spacer-1",
-            }}
-          >
-            <Div
-              css={{
-                width: "100%",
+      <Div
+        css={{
+          width: "100%",
+          display: open ? "flex" : "none",
+          flexDirection: "column",
+          overflow: "auto",
+          gap: "$spacer-1",
+        }}
+      >
+        <Div
+          css={{
+            width: "100%",
 
-                display: "flex",
-                alignItems: "center",
-                gap: "$spacer-1",
-              }}
+            display: "flex",
+            alignItems: "center",
+            gap: "$spacer-1",
+          }}
+        >
+          {genres.slice(0, Math.floor(genres.length / 2)).map((genre) => (
+            <Pill
+              asButton
+              selected={selectedGenres.includes(genre)}
+              key={genre}
+              onClick={() => handleClick(genre)}
+              genre={genre}
             >
-              {genres.slice(0, Math.floor(genres.length / 2)).map((genre) => (
-                <Pill
-                  asButton
-                  selected={selectedGenres.includes(genre)}
-                  key={genre}
-                  onClick={() => handleClick(genre)}
-                  genre={genre}
-                >
-                  {genre}
-                </Pill>
-              ))}
-            </Div>
+              {genre}
+            </Pill>
+          ))}
+        </Div>
 
-            <Div css={{ display: "flex", gap: "$spacer-1" }}>
-              {genres.slice(Math.floor(genres.length / 2)).map((genre) => (
-                <Pill
-                  asButton
-                  selected={selectedGenres.includes(genre)}
-                  key={genre}
-                  genre={genre}
-                  onClick={() => handleClick(genre)}
-                >
-                  {genre}
-                </Pill>
-              ))}
-            </Div>
-          </Div>
-        </>
-      }
-    />
+        <Div css={{ display: "flex", gap: "$spacer-1" }}>
+          {genres.slice(Math.floor(genres.length / 2)).map((genre) => (
+            <Pill
+              asButton
+              selected={selectedGenres.includes(genre)}
+              key={genre}
+              genre={genre}
+              onClick={() => handleClick(genre)}
+            >
+              {genre}
+            </Pill>
+          ))}
+        </Div>
+      </Div>
+    </PopupButton>
   );
 };
