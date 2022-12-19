@@ -37,5 +37,9 @@ export const Title: FunctionComponent<{
   children: ReactNode;
   css?: CSS<typeof config>;
 }> = ({ children, css }) => {
-  return <TitleRoot css={css}>{children}</TitleRoot>;
+  return (
+    <TitleRoot font="reading" css={css}>
+      {children}
+    </TitleRoot>
+  );
 };

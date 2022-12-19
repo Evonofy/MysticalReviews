@@ -143,7 +143,7 @@ export function Navbar({ currentPage }: { currentPage: string }) {
           ></BsSearch>
         </Tags.Link>
 
-        <Tags.Link href="/sobre">
+        <Tags.Link href="/pages/about">
           <FiInfo
             style={{
               width: "1.563rem",
@@ -221,7 +221,7 @@ export function Navbar({ currentPage }: { currentPage: string }) {
               </ListItem>
 
               <ListItem>
-                <Tags.Link href="/sobre">SOBRE E CONTATO</Tags.Link>
+                <Tags.Link href="about">SOBRE E CONTATO</Tags.Link>
               </ListItem>
             </UnorderedList>
           </NavigationContainer>
