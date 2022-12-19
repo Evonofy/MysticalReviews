@@ -6,6 +6,7 @@ import { Checkbox } from "../Checkbox";
 
 import { Heading } from "../Heading";
 import { PopupButton } from "./core";
+import { BsSortDown } from "react-icons/bs/index.js";
 
 const ButtonRoot = styled(Button, {
   width: "100%",
@@ -50,7 +51,12 @@ export const SortPostsPopup: FunctionComponent<{
 
   return (
     <PopupButton
-      content={<Heading.p data-cancel-close-modal>Organizar Por</Heading.p>}
+      content={
+        <Button css={{ justifyContent: "space-between" }}>
+          <Heading.p data-cancel-close-modal>Organizar Por</Heading.p>
+          <BsSortDown />
+        </Button>
+      }
     >
       {modifiers.map(({ label, onChecked }) => (
         <ButtonRoot

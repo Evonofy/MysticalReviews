@@ -6,7 +6,7 @@ import { PopupButton } from "./core";
 
 import { styled } from "@/stitches.config";
 
-import { BsCaretUp } from "react-icons/bs/index.js";
+import { BsCaretUp, BsFilter } from "react-icons/bs/index.js";
 import { Button } from "@/components/Button";
 import { Div } from "@/components/utils/Div";
 
@@ -51,7 +51,12 @@ export const FilterPostsPopup: FunctionComponent<{
 
   return (
     <PopupButton
-      content={<Heading.p data-cancel-close-modal>Filtrar Por</Heading.p>}
+      content={
+        <Button css={{ justifyContent: "space-between" }}>
+          <Heading.p data-cancel-close-modal>Filtrar Por</Heading.p>
+          <BsFilter />
+        </Button>
+      }
     >
       <ButtonRoot
         onClick={() => setOpen((open) => !open)}
