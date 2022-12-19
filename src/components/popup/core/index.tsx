@@ -1,168 +1,69 @@
-import React, {
-  FunctionComponent,
-  ReactElement,
-  ReactNode,
-  useCallback,
-  useRef,
-  useState,
-} from "react";
-import { customAlphabet } from "nanoid";
-import { styled, theme } from "@/stitches.config";
+import { FunctionComponent, ReactElement, ReactNode } from "react";
+import { styled, keyframes } from "@/stitches.config";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
-import { Button } from "@/components/Button";
-import { useOnClickOutside } from "./UseOnClickOutside";
 import { CSS } from "@stitches/react";
 
-const PopupContainerRoot = styled("div", {
-  "@tablet": {
-    position: "relative",
-  },
+const slideUpAndFade = keyframes({
+  "0%": { opacity: 0, transform: "translateY(2px)" },
+  "100%": { opacity: 1, transform: "translateY(0)" },
 });
 
-const PopupModal = styled("div", {
-  display: "none",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: "$spacer-3",
+const slideRightAndFade = keyframes({
+  "0%": { opacity: 0, transform: "translateX(-2px)" },
+  "100%": { opacity: 1, transform: "translateX(0)" },
+});
 
+const slideDownAndFade = keyframes({
+  "0%": { opacity: 0, transform: "translateY(-2px)" },
+  "100%": { opacity: 1, transform: "translateY(0)" },
+});
+
+const slideLeftAndFade = keyframes({
+  "0%": { opacity: 0, transform: "translateX(2px)" },
+  "100%": { opacity: 1, transform: "translateX(0)" },
+});
+
+const DropdownMenuContent = styled(DropdownMenu.Content, {
+  width: "282px",
+  backgroundColor: "$gray100",
+  border: "2px solid $gray200",
+
+  borderRadius: "$brSm",
   padding: "$spacer-5",
-  background: "$gray100",
-  borderTopLeftRadius: "$brSm",
-  borderTopRightRadius: "$brSm",
 
-  width: "100%",
-  // height: "222px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start",
 
-  position: "absolute",
-  zIndex: "$highest",
-  margin: "auto",
+  boxShadow:
+    "0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)",
 
-  $$mobileNavbarHeight: "50px",
-  bottom: "$$mobileNavbarHeight",
-
-  "@tablet": {
-    bottom: "unset",
-    transform: "translateY(1rem)",
-
-    borderRadius: "$brSm",
-    padding: "$spacer-5",
-
-    width: "282px",
-    height: "max-content",
+  animationDuration: "400ms",
+  animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+  willChange: "transform, opacity",
+  '&[data-state="open"]': {
+    '&[data-side="top"]': { animationName: slideDownAndFade },
+    '&[data-side="right"]': { animationName: slideLeftAndFade },
+    '&[data-side="bottom"]': { animationName: slideUpAndFade },
+    '&[data-side="left"]': { animationName: slideRightAndFade },
   },
 });
 
-const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz");
+const PopupRoot = styled(DropdownMenu.Root);
 
 export const PopupButton: FunctionComponent<{
-  content?: ReactNode;
-  modal?: ReactElement;
-  modalPosition?: "left" | "right";
+  children: ReactNode;
+  content: ReactElement;
   css?: CSS;
-  disabledBackgroundColor?: string;
-  activeBackgroundColor?: string;
-}> = ({
-  content,
-  modal,
-  modalPosition = "left",
-  css,
-  disabledBackgroundColor = theme.colors.gray600.value,
-  activeBackgroundColor = theme.colors.secondaryBase.value,
-}) => {
-  const buttonContent = content!;
-  const popupModal = modal!;
-
-  const [modalId] = useState(nanoid(4));
-  const modalRef = useRef<HTMLDivElement>(null);
-
-  useOnClickOutside(modalRef, (event) => {
-    const handleCloseAllModal = () => {
-      const currentModal = document.querySelector<HTMLDivElement>(
-        `#${modalId}`
-      );
-
-      if (!currentModal) return;
-      // is it open?
-      currentModal.style.display = "none";
-      const button = currentModal.previousElementSibling as HTMLButtonElement;
-      button.style.backgroundColor = disabledBackgroundColor;
-    };
-
-    // @ts-ignore
-    if (event.key) {
-      handleCloseAllModal();
-      return;
-    }
-
-    const target = event.target as HTMLElement;
-    const targetParent = (event.target as HTMLElement).parentElement
-      ?.parentElement;
-
-    if (
-      target.hasAttribute("data-cancel-close-modal") ||
-      targetParent?.hasAttribute("data-cancel-close-modal")
-    ) {
-      // do nothing
-      return;
-    }
-
-    handleCloseAllModal();
-  });
-
-  const handleOpenModal = useCallback(() => {
-    // close all other modal
-    const existingModal = document.querySelectorAll<HTMLDivElement>(".modal");
-
-    existingModal.forEach((modal) => {
-      if (modal.id === modalId) {
-        return;
-      }
-
-      modal.style.display = "none";
-
-      const button = modal.previousElementSibling as HTMLButtonElement;
-      button.style.backgroundColor = disabledBackgroundColor;
-    });
-
-    // find current modal
-    const currentModal = document.querySelector<HTMLDivElement>(`#${modalId}`);
-    if (!currentModal) return;
-
-    const button = currentModal.previousElementSibling as HTMLButtonElement;
-
-    // is it open?
-    const isOpen = currentModal.style.display !== "flex" ? false : true;
-
-    if (isOpen) {
-      // close
-      button.style.backgroundColor = disabledBackgroundColor;
-      currentModal.style.display = "none";
-    } else {
-      // open
-      button.style.backgroundColor = activeBackgroundColor;
-      currentModal.style.display = "flex";
-    }
-  }, []);
-
+}> = ({ children, content, css }) => {
   return (
-    <PopupContainerRoot css={css}>
-      <Button
-        data-cancel-close-modal
-        css={{ background: "$gray600" }}
-        onClick={handleOpenModal}
-      >
-        {buttonContent}
-      </Button>
+    <PopupRoot css={css}>
+      <DropdownMenu.Trigger asChild>{content}</DropdownMenu.Trigger>
 
-      <PopupModal
-        style={modalPosition === "right" ? { right: "0px" } : {}}
-        className="modal"
-        id={modalId}
-        ref={modalRef}
-      >
-        {popupModal}
-      </PopupModal>
-    </PopupContainerRoot>
+      <DropdownMenu.Portal>
+        <DropdownMenuContent sideOffset={5}>{children}</DropdownMenuContent>
+      </DropdownMenu.Portal>
+    </PopupRoot>
   );
 };

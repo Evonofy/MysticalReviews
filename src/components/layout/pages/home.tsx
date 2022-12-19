@@ -21,8 +21,8 @@ export const Home: FunctionComponent<{ cards: CardProps[] }> = ({ cards }) => {
 
       <Section>
         <Title>Todas Publicações</Title>
-        {cards.map((props) => (
-          <Card css={{ img: { height: "450px" } }} {...props} />
+        {cards.map((props, index) => (
+          <Card key={index} css={{ img: { height: "450px" } }} {...props} />
         ))}
       </Section>
     </>

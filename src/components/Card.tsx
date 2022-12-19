@@ -1,3 +1,4 @@
+import { lazy } from "react";
 import { config, styled } from "../stitches.config";
 
 import { Heading } from "@/components/Heading";
@@ -6,7 +7,6 @@ import { Div } from "./utils/Div";
 const Pill = lazy(() => import("@/components/Pill"));
 import { slugify } from "@/slugify";
 import { CSS } from "@stitches/react";
-import { lazy } from "react";
 
 const CardRoot = styled("a", {
   // mobile
@@ -207,22 +207,18 @@ export const Card = ({
 
               color: "$gray900",
 
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-
               "@desktop": {
-                width: "max-content",
+                width: "60%",
                 textAlign: "center",
                 position: "absolute",
                 inset: "0",
                 margin: "auto",
-                transform: "translateY(-200%)",
+                transform: "translateY(-120%)",
                 color: "$gray100",
               },
             }}
           >
-            {title}
+            {title.substring(0, 50)}...
           </Heading.h2>
 
           {variant === "side-scroll" ? (

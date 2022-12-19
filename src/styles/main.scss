@@ -92,6 +92,10 @@ a {
   text-decoration: none;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 .swiper-pagination {
   position: unset;
 }
@@ -136,4 +140,8 @@ a {
   @media screen and (min-width: 1024px) {
     gap: 20px;
   }
+}
+
+ul {
+  list-style: none;
 }
