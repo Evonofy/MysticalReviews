@@ -238,25 +238,11 @@ export function Navbar({ currentPage }: { currentPage: string }) {
             <Logo src="./OpenBook.png" />
 
             <UnorderedList>
-<<<<<<< HEAD
-              <ListItem>
-                <Tags.Link href="/resenhas">RESENHAS</Tags.Link>
-              </ListItem>
-
-              <ListItem>
-                <Tags.Link href="/destaques">DESTAQUES</Tags.Link>
-              </ListItem>
-
-              <ListItem>
-                <Tags.Link href="about">SOBRE E CONTATO</Tags.Link>
-              </ListItem>
-=======
               {links.map(({ name, href }) => (
                 <ListItem key={href}>
                   <Tags.Link href={href}>{name.toUpperCase()}</Tags.Link>
                 </ListItem>
               ))}
->>>>>>> 1ce8c72b55e77efbd76a7508e822de10a35b93a1
             </UnorderedList>
           </NavigationContainer>
 

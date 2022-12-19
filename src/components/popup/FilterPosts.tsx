@@ -1,7 +1,7 @@
 import { FunctionComponent, useState } from "react";
 
 import { CardProps } from "../Card";
-import { Heading } from "../heading";
+import { Heading } from "../Heading";
 import { PopupButton } from "./core";
 
 import { styled } from "@/stitches.config";

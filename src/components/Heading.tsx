@@ -53,6 +53,19 @@ const h2 = styled("h2", {
   },
 });
 
+const h3 = styled("h3", {
+  ...setupVariants(),
+  fontSize: "$xl",
+
+  "@tablet": {
+    fontSize: "$2xl",
+  },
+
+  "@desktop": {
+    fontSize: "$4xl",
+  },
+});
+
 const p = styled("p", {
   ...setupVariants(),
   fontSize: "$sm",
@@ -69,5 +82,6 @@ const p = styled("p", {
 export const Heading = {
   h1,
   h2,
+  h3,
   p,
 };

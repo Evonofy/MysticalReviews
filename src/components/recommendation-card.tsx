@@ -1,7 +1,7 @@
 import { CardProps } from "./Card";
 import { styled } from "@/stitches.config";
 import { Pill } from "@/components/Pill";
-import { Heading } from "@/components/heading";
+import { Heading } from "@/components/Heading";
 
 const Container = styled("div", {
   maxWidth: "280px",
