@@ -4,6 +4,7 @@ import { Section } from "@/components/layout/section";
 import { Card, CardProps } from "@/components/Card";
 import { CardSlider } from "@/components/card-slider";
 import { Title } from "@/components/Title";
+import { RecommendationCard } from "@/components/recommendation-card";
 
 export const Destaques: FunctionComponent<{ cards: CardProps[] }> = ({
   cards,
@@ -14,6 +15,7 @@ export const Destaques: FunctionComponent<{ cards: CardProps[] }> = ({
 
   return (
     <>
+      <RecommendationCard {...cards[0]} />
       {allCategories.map((category) => (
         <Section key={category} css={{ "@desktop": { display: "none" } }}>
           <Title>{category}</Title>
