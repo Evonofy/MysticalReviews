@@ -21,8 +21,8 @@ export const Home: FunctionComponent<{ cards: CardProps[] }> = ({ cards }) => {
 
       <Section>
         <Title>Todas Publicações</Title>
-        {cards.map((props) => (
-          <Card key={props.title} {...props} />
+        {cards.map((props, index) => (
+          <Card key={index} {...props} />
         ))}
       </Section>
     </>
