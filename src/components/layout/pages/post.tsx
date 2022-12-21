@@ -258,7 +258,10 @@ export const Post: React.FC<
       </PageHeader>
 
       <PostContent>
-        <div dangerouslySetInnerHTML={{ __html: content }}></div>
+        <div
+          style={{ width: "100%" }}
+          dangerouslySetInnerHTML={{ __html: content }}
+        ></div>
 
         {/* <Div
           css={{
