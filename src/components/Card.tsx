@@ -1,4 +1,3 @@
-import { lazy } from "react";
 import { config, styled } from "../stitches.config";
 
 import { lazy } from "react";
