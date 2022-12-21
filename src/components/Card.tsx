@@ -1,4 +1,3 @@
-import { lazy } from "react";
 import { config, styled } from "../stitches.config";
 
 const Pill = lazy(() => import("@/components/Pill"));
