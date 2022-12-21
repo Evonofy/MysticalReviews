@@ -1,3 +1,4 @@
+import { lazy } from "react";
 import { config, styled } from "../stitches.config";
 
 const Pill = lazy(() => import("@/components/Pill"));
@@ -40,6 +41,10 @@ const CardRoot = styled("a", {
       default: {},
 
       "side-scroll": {
+        img: {
+          height: "180px",
+        },
+
         "@mobile": {
           width: "300px",
         },
@@ -111,6 +116,10 @@ const PillList = styled("ul", {
   gap: "$spacer-3",
 
   overflowX: "auto",
+
+  li: {
+    flexShrink: 0,
+  },
 });
 
 const DateSection = styled("footer", {
@@ -134,7 +143,11 @@ const DateSection = styled("footer", {
 export const CardList = () => {};
 
 export type CardProps = {
-  genres: string[];
+  genres: {
+    name: string;
+    color: string;
+    backgroundColor: string;
+  }[];
 
   title: string;
   coverUrl: string;
@@ -150,7 +163,8 @@ export type CardProps = {
 
   createdAt: string;
   css?: CSS<typeof config>;
-  content: string;
+
+  notionPageID: string;
 };
 
 const capitalize = (string: string) => {
@@ -166,6 +180,8 @@ export const Card = ({
   createdAt,
   variant = "default",
   css,
+  notionPageID,
+  book,
 }: CardProps) => {
   const mobileDescription = description.substring(0, 148);
   const sideScrollDescription = description.substring(0, 60);
@@ -176,7 +192,6 @@ export const Card = ({
   const month = new Intl.DateTimeFormat("pt-BR", {
     month: "long",
   });
-
   const formattedDate = `${capitalize(
     month.format(date)
   )} (${date.getMonth()}) ${date.getDate()}, ${date.getFullYear()}`;
@@ -189,10 +204,15 @@ export const Card = ({
 
       <CardContent>
         <PillList>
-          {genres.map((genre) => (
-            <Pill asButton key={slugify(genre)} genre={genre}>
-              {genre}
-            </Pill>
+          {genres.map(({ name, color, backgroundColor }) => (
+            <li key={name}>
+              <Pill
+                asButton
+                name={name}
+                color={color}
+                backgroundColor={backgroundColor}
+              />
+            </li>
           ))}
         </PillList>
 

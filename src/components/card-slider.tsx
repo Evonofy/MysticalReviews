@@ -21,7 +21,7 @@ export const CardSlider: FunctionComponent<{ cards: CardProps[] }> = ({
       modules={[Pagination]}
     >
       {cards.map((props) => (
-        <SwiperSlide key={props.title}>
+        <SwiperSlide key={props.notionPageID}>
           <Card
             {...props}
             variant="side-scroll"

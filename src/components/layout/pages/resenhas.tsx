@@ -6,20 +6,28 @@ import { SortPostsPopup } from "@/components/popup/SortPosts";
 import { Div } from "@/components/utils/Div";
 import { Card, CardProps } from "@/components/Card";
 import { Section } from "../section";
+import { Genre } from "@/data";
 
 export const Resenhas: FunctionComponent<{
   cards: CardProps[];
 }> = ({ cards: cardsData }) => {
   const [cards, setCards] = useState(cardsData);
   const genres = useMemo(() => {
-    return [
-      ...new Set(
-        cards
-          .map((card) => card.genres)
-          .reduce((prev, next) => prev.concat(next))
-      ),
-    ];
-  }, []);
+    const allGenres: Genre[] = [];
+
+    cardsData
+      .map((card) => card.genres)
+      .reduce((prev, curr) => prev.concat(curr), [])
+      .forEach(({ name, ...props }) => {
+        if (allGenres.find((genre) => genre.name === name)) {
+          return;
+        }
+
+        allGenres.push({ name, ...props });
+      });
+
+    return allGenres;
+  }, [cardsData]);
 
   return (
     <Section>

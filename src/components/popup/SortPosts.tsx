@@ -7,6 +7,7 @@ import { Checkbox } from "../Checkbox";
 import { Heading } from "../Heading";
 import { PopupButton } from "./core";
 import { BsSortDown } from "react-icons/bs/index.js";
+import { Genre } from "@/data";
 
 const ButtonRoot = styled(Button, {
   width: "100%",
@@ -18,7 +19,7 @@ const ButtonRoot = styled(Button, {
 
 export const SortPostsPopup: FunctionComponent<{
   cards: CardProps[];
-  genres: string[];
+  genres: Genre[];
   onClick: (sortedCards: CardProps[]) => void;
 }> = ({ cards, onClick }) => {
   const [selectedModifier, setSelectedModifier] = useState<string | null>(null);
