@@ -145,3 +145,9 @@ body {
 ul {
   list-style: none;
 }
+
+@media screen and (max-width: 768px) {
+  body {
+    padding-bottom: 50px;
+  }
+}

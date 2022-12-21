@@ -3,6 +3,7 @@ import { styled } from "../stitches.config";
 
 // HTML Tags
 import { Tags } from "../components/Tags";
+import OpenBook from "./OpenBook.png";
 
 // Components
 import { SearchBar } from "./SearchBar";
@@ -199,7 +200,9 @@ export function Navbar({ currentPage }: { currentPage: string }) {
           <UnorderedList>
             {links.map(({ name, href }) => (
               <ListItem key={href}>
-                <Tags.Link href={href}>{name.toUpperCase()}</Tags.Link>
+                <Tags.Link href={`/MysticalReviews/${href}`}>
+                  {name.toUpperCase()}
+                </Tags.Link>
               </ListItem>
             ))}
           </UnorderedList>
@@ -235,12 +238,19 @@ export function Navbar({ currentPage }: { currentPage: string }) {
       <NavDesktop>
         <LimitWidth>
           <NavigationContainer>
-            <Logo src="./OpenBook.png" />
+            <a href="/MysticalReviews/">
+              <Logo src={OpenBook} />
+            </a>
 
             <UnorderedList>
               {links.map(({ name, href }) => (
                 <ListItem key={href}>
-                  <Tags.Link href={href}>{name.toUpperCase()}</Tags.Link>
+                  <Tags.Link
+                    css={currentPage === href ? { color: "$accentBase" } : {}}
+                    href={`/MysticalReviews/${href}`}
+                  >
+                    {name.toUpperCase()}
+                  </Tags.Link>
                 </ListItem>
               ))}
             </UnorderedList>

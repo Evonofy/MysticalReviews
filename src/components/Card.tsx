@@ -1,7 +1,6 @@
 import { lazy } from "react";
 import { config, styled } from "../stitches.config";
 
-import { lazy } from "react";
 const Pill = lazy(() => import("@/components/Pill"));
 
 import { Heading } from "@/components/Heading";
@@ -143,10 +142,16 @@ export type CardProps = {
   coverImageDescription: string;
   description: string;
 
+  book: {
+    title: string;
+    author: string;
+  };
+
   variant?: "default" | "side-scroll";
 
   createdAt: string;
   css?: CSS<typeof config>;
+  content: string;
 };
 
 const capitalize = (string: string) => {
@@ -178,7 +183,7 @@ export const Card = ({
   )} (${date.getMonth()}) ${date.getDate()}, ${date.getFullYear()}`;
 
   return (
-    <CardRoot href={`/${slugify(title)}`} variant={variant} css={css}>
+    <CardRoot href={`post/${slugify(title)}`} variant={variant} css={css}>
       <ImageContainer>
         <img src={coverUrl} alt={coverImageDescription} />
       </ImageContainer>

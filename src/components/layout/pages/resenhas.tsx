@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useMemo, useState } from "react";
 
 import { Title } from "@/components/Title";
 import { FilterPostsPopup } from "@/components/popup/FilterPosts";
@@ -9,10 +9,17 @@ import { Section } from "../section";
 
 export const Resenhas: FunctionComponent<{
   cards: CardProps[];
-  genres: string[];
-}> = ({ cards: cardsData, genres }) => {
+}> = ({ cards: cardsData }) => {
   const [cards, setCards] = useState(cardsData);
-  console.log("im rendering");
+  const genres = useMemo(() => {
+    return [
+      ...new Set(
+        cards
+          .map((card) => card.genres)
+          .reduce((prev, next) => prev.concat(next))
+      ),
+    ];
+  }, []);
 
   return (
     <Section>

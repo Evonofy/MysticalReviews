@@ -59,7 +59,7 @@ export const Pill: FunctionComponent<PillProps> = ({
     <PillRoot
       as={asButton ? "button" : "a"}
       onClick={onClick}
-      href={`/${slugify(genre)}`}
+      href={`category/${slugify(genre)}`}
       css={
         selected
           ? {
