@@ -114,9 +114,7 @@ export const RecommendationCard = ({
           }}
         >
           {genres.map((genre) => (
-            <Pill key={genre} genre={genre}>
-              {genre}
-            </Pill>
+            <Pill key={genre.name} {...genre} />
           ))}
         </div>
       </CardContent>

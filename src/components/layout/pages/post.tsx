@@ -4,8 +4,7 @@ import { styled } from "@/stitches.config";
 import { Heading } from "@/components/Heading";
 import { Pill } from "@/components/Pill";
 import { Div } from "@/components/utils/Div";
-import { RecommendationCard } from "@/components/recommendation-card";
-import { cards } from "@/data";
+// import { RecommendationCard } from "@/components/recommendation-card";
 
 type Props = CardProps;
 
@@ -164,7 +163,11 @@ const RecommendationCardList = styled("ul", {
 const capitalizeFirstLetter = (string: string) =>
   string.charAt(0).toUpperCase() + string.slice(1);
 
-export const Post: React.FC<Props> = ({
+export const Post: React.FC<
+  Props & {
+    content: string;
+  }
+> = ({
   title,
   coverUrl,
   coverImageDescription,
@@ -247,9 +250,7 @@ export const Post: React.FC<Props> = ({
 
             <ul>
               {genres.map((genre) => (
-                <Pill key={genre} genre={genre}>
-                  {genre}
-                </Pill>
+                <Pill key={genre.name} {...genre} />
               ))}
             </ul>
           </LimitWidth>
@@ -257,9 +258,9 @@ export const Post: React.FC<Props> = ({
       </PageHeader>
 
       <PostContent>
-        {content}
+        <div dangerouslySetInnerHTML={{ __html: content }}></div>
 
-        <Div
+        {/* <Div
           css={{
             width: "100%",
             display: "flex",
@@ -276,7 +277,7 @@ export const Post: React.FC<Props> = ({
           </Heading.h3>
 
           <RecommendationCardList>
-            {cards.slice(0, 4).map((card) => (
+            {[].slice(0, 4).map((card) => (
               <RecommendationCard
                 key={card.title}
                 css={{ height: "100%" }}
@@ -284,7 +285,7 @@ export const Post: React.FC<Props> = ({
               />
             ))}
           </RecommendationCardList>
-        </Div>
+        </Div> */}
       </PostContent>
     </>
   );

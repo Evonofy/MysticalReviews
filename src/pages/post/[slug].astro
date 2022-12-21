@@ -5,23 +5,40 @@ import { Post } from "@/components/layout/pages/post"
 
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { getCards } from "@/data"
+import { Client } from "@notionhq/client";
+import { NotionToMarkdown } from "notion-to-md";
+import { marked } from "marked";
 
 export async function getStaticPaths() {
   const { slugify } = await import("@/slugify")
+  const cards = await getCards()
 
-  const { cards } = await import("@/data")
+  const notion = new Client({
+    auth: "secret_5TfAdMRqTNTOv6uFG81I6gBfPntbkzIEdmLQZ0i5YQf",
+  });
 
-  return cards.map(({ title, ...rest }) => ({
-    params: {
-      slug: slugify(title)
-    },
-    props: {
-      title,
-      ...rest
+  const n2m = new NotionToMarkdown({
+    notionClient: notion,
+  });
+  
+  return Promise.all(cards.map(async ({ title, notionPageID, ...rest }) => {
+    const pageInMDBlocks = await n2m.pageToMarkdown(notionPageID);
+    const pageContentInMarkdown = n2m.toMarkdownString(pageInMDBlocks);
+    const pageHTML = marked.parse(pageContentInMarkdown);
+
+    return {
+      params: {
+        slug: slugify(title)
+      },
+      props: {
+        title,
+        content: pageHTML,
+        ...rest
+      }
     }
   }))
 }
-
 const card = Astro.props as CardProps
 ---
 
