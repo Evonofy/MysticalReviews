@@ -7,6 +7,11 @@ import { Heading } from "@/components/Heading";
 
 import { Newsletter } from "@/components/Newsletter";
 
+import Logo from "@/assets/logo.svg";
+import question from "@/assets/question.svg";
+import book from "@/assets/book.svg";
+import lib from "@/assets/lib.svg";
+
 export const LogoWrapper = styled("div", {
   width: "100%",
 
@@ -47,8 +52,9 @@ export function About() {
     <>
       <Section>
         <Title>Sobre E Contato</Title>
+
         <LogoWrapper>
-          <img src="Logo.svg" alt="" />
+          <img src={Logo} alt="" />
         </LogoWrapper>
       </Section>
       <Section
@@ -81,7 +87,7 @@ export function About() {
             Por Quê A <Heading.h1 font="display">Mystical</Heading.h1>Foi
             Criada?
           </Heading.h1>
-          <AboutImage src="unDrawQuestion.svg" alt="" />
+          <AboutImage src={question} alt="" />
         </TextImage>
         <Heading.p
           css={{
@@ -124,7 +130,7 @@ export function About() {
             <Heading.h1 font="display">Temas Literários</Heading.h1> Mais
             Presentes
           </Heading.h1>
-          <AboutImage src="unDrawBook.svg" alt="" />
+          <AboutImage src={book} alt="" />
         </TextImage>
         <Heading.p
           css={{
@@ -173,7 +179,7 @@ export function About() {
           >
             Para <Heading.h1 font="display">Quem</Heading.h1>Foi Criado
           </Heading.h1>
-          <AboutImage src="unDrawLib.svg" alt="" />
+          <AboutImage src={lib} alt="" />
         </TextImage>
         <Heading.p
           css={{

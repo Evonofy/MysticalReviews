@@ -1,6 +1,6 @@
+import { lazy } from "react";
 import { config, styled } from "../stitches.config";
 
-import { lazy } from "react";
 const Pill = lazy(() => import("@/components/Pill"));
 
 import { Heading } from "@/components/Heading";
@@ -41,6 +41,10 @@ const CardRoot = styled("a", {
       default: {},
 
       "side-scroll": {
+        img: {
+          height: "180px",
+        },
+
         "@mobile": {
           width: "300px",
         },
@@ -112,6 +116,10 @@ const PillList = styled("ul", {
   gap: "$spacer-3",
 
   overflowX: "auto",
+
+  li: {
+    flexShrink: 0,
+  },
 });
 
 const DateSection = styled("footer", {
@@ -135,17 +143,28 @@ const DateSection = styled("footer", {
 export const CardList = () => {};
 
 export type CardProps = {
-  genres: string[];
+  genres: {
+    name: string;
+    color: string;
+    backgroundColor: string;
+  }[];
 
   title: string;
   coverUrl: string;
   coverImageDescription: string;
   description: string;
 
+  book: {
+    title: string;
+    author: string;
+  };
+
   variant?: "default" | "side-scroll";
 
   createdAt: string;
   css?: CSS<typeof config>;
+
+  notionPageID: string;
 };
 
 const capitalize = (string: string) => {
@@ -161,6 +180,8 @@ export const Card = ({
   createdAt,
   variant = "default",
   css,
+  notionPageID,
+  book,
 }: CardProps) => {
   const mobileDescription = description?.substring(0, 148) || "";
   const sideScrollDescription = description?.substring(0, 60) || "";
@@ -177,17 +198,22 @@ export const Card = ({
   // )} (${date.getMonth()}) ${date.getDate()}, ${date.getFullYear()}`;
 
   return (
-    <CardRoot href={`/${slugify(title)}`} variant={variant} css={css}>
+    <CardRoot href={`post/${slugify(title)}`} variant={variant} css={css}>
       <ImageContainer>
         <img src={coverUrl} alt={coverImageDescription} />
       </ImageContainer>
 
       <CardContent>
         <PillList>
-          {genres.map((genre) => (
-            <Pill asButton key={slugify(genre)} genre={genre}>
-              {genre}
-            </Pill>
+          {genres.map(({ name, color, backgroundColor }) => (
+            <li key={name}>
+              <Pill
+                asButton
+                name={name}
+                color={color}
+                backgroundColor={backgroundColor}
+              />
+            </li>
           ))}
         </PillList>
 

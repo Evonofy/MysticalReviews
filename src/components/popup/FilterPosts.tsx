@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useMemo, useState } from "react";
 
 import { CardProps } from "../Card";
 import { Heading } from "../Heading";
@@ -11,6 +11,7 @@ import { Button } from "@/components/Button";
 import { Div } from "@/components/utils/Div";
 
 import Pill from "@/components/Pill";
+import { Genre } from "@/data";
 
 const ButtonRoot = styled(Button, {
   width: "100%",
@@ -22,9 +23,9 @@ const ButtonRoot = styled(Button, {
 
 export const FilterPostsPopup: FunctionComponent<{
   cards: CardProps[];
-  genres: string[];
+  genres: Genre[];
   onClick: (sortedCards: CardProps[]) => void;
-}> = ({ cards, onClick, genres }) => {
+}> = ({ cards, onClick, genres: detailedGenres }) => {
   const [open, setOpen] = useState(false);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
 
@@ -43,7 +44,7 @@ export const FilterPostsPopup: FunctionComponent<{
 
     const newGenres = [...selectedGenres, genre];
     const sortedCards = cards.filter((card) => {
-      return card.genres.some((genre) => newGenres.includes(genre));
+      return card.genres.some((genre) => newGenres.includes(genre.name));
     });
 
     onClick(sortedCards);
@@ -94,31 +95,31 @@ export const FilterPostsPopup: FunctionComponent<{
             gap: "$spacer-1",
           }}
         >
-          {genres.slice(0, Math.floor(genres.length / 2)).map((genre) => (
-            <Pill
-              asButton
-              selected={selectedGenres.includes(genre)}
-              key={genre}
-              onClick={() => handleClick(genre)}
-              genre={genre}
-            >
-              {genre}
-            </Pill>
-          ))}
+          {detailedGenres
+            .slice(0, Math.floor(detailedGenres.length / 2))
+            .map((genre) => (
+              <Pill
+                key={genre.name}
+                {...genre}
+                asButton
+                selected={selectedGenres.includes(genre.name)}
+                onClick={() => handleClick(genre.name)}
+              />
+            ))}
         </Div>
 
         <Div css={{ display: "flex", gap: "$spacer-1" }}>
-          {genres.slice(Math.floor(genres.length / 2)).map((genre) => (
-            <Pill
-              asButton
-              selected={selectedGenres.includes(genre)}
-              key={genre}
-              genre={genre}
-              onClick={() => handleClick(genre)}
-            >
-              {genre}
-            </Pill>
-          ))}
+          {detailedGenres
+            .slice(Math.floor(detailedGenres.length / 2))
+            .map((genre) => (
+              <Pill
+                key={genre.name}
+                {...genre}
+                asButton
+                selected={selectedGenres.includes(genre.name)}
+                onClick={() => handleClick(genre.name)}
+              />
+            ))}
         </Div>
       </Div>
     </PopupButton>

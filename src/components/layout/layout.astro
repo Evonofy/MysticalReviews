@@ -31,7 +31,7 @@ const { title, lang = "en-US" } = Astro.props;
   </head>
 
   <body>
-    <Navbar client:only="react" />
+    <Navbar currentPage="" client:only="react" />
 
     <Layout client:load>
       <slot />

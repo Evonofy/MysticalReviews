@@ -2,8 +2,9 @@ import { CardProps } from "./Card";
 import { styled } from "@/stitches.config";
 import { Pill } from "@/components/Pill";
 import { Heading } from "@/components/Heading";
+import { slugify } from "@/slugify";
 
-const Container = styled("div", {
+const Container = styled("a", {
   maxWidth: "280px",
   display: "flex",
   flexDirection: "column",
@@ -13,6 +14,7 @@ const Container = styled("div", {
     height: "189px",
     borderRadius: "$brSm",
     objectFit: "cover",
+    flexShrink: "0",
   },
 
   "@tablet": {
@@ -33,6 +35,7 @@ const Container = styled("div", {
 });
 
 const CardContent = styled("section", {
+  height: "100%",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -51,7 +54,7 @@ const CardContent = styled("section", {
 
   "@tablet": {
     padding: "$spacer-2",
-    justifyContent: "flex-start",
+    justifyContent: "space-between",
 
     div: {
       textAlign: "flex-start",
@@ -75,7 +78,7 @@ export const RecommendationCard = ({
   const year = date.getFullYear();
 
   return (
-    <Container>
+    <Container href={`${slugify(title)}`}>
       <img src={coverUrl} alt={coverImageDescription} />
 
       <CardContent>
@@ -111,7 +114,7 @@ export const RecommendationCard = ({
           }}
         >
           {genres.map((genre) => (
-            <Pill genre={genre}>{genre}</Pill>
+            <Pill key={genre.name} {...genre} />
           ))}
         </div>
       </CardContent>
