@@ -112,7 +112,7 @@ ul {
 }
 
 .swiper-slide {
-  height: 50%;
+  height: 100%;
   background-size: cover;
   background-position: center;
 }
@@ -147,6 +147,10 @@ ul {
 
 .bottomSlide {
   height: 6.25rem !important;
+}
+
+.mySwiper .swiper-slide-thumb-active {
+  opacity: 1;
 }
 
 // img {

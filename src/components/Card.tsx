@@ -162,19 +162,19 @@ export const Card = ({
   variant = "default",
   css,
 }: CardProps) => {
-  const mobileDescription = description.substring(0, 148);
-  const sideScrollDescription = description.substring(0, 60);
-  const tabletDescription = description.substring(0, 296);
-  const desktopDescription = description.substring(0, 344);
+  const mobileDescription = description?.substring(0, 148) || "";
+  const sideScrollDescription = description?.substring(0, 60) || "";
+  const tabletDescription = description?.substring(0, 296) || "";
+  const desktopDescription = description?.substring(0, 344) || "";
 
   const date = new Date(Number(createdAt));
   const month = new Intl.DateTimeFormat("pt-BR", {
     month: "long",
   });
 
-  const formattedDate = `${capitalize(
-    month.format(date)
-  )} (${date.getMonth()}) ${date.getDate()}, ${date.getFullYear()}`;
+  // const formattedDate = `${capitalize(
+  //   month.format(date)
+  // )} (${date.getMonth()}) ${date.getDate()}, ${date.getFullYear()}`;
 
   return (
     <CardRoot href={`/${slugify(title)}`} variant={variant} css={css}>
@@ -297,7 +297,7 @@ export const Card = ({
               },
             }}
           >
-            {formattedDate}
+            {/* {formattedDate} */}
           </Heading.p>
 
           <hr />
