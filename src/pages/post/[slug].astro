@@ -1,56 +1,72 @@
 ---
 import "@/styles/main.scss";
-import { CardProps } from "@/components/Card";
 import { Post } from "@/components/layout/pages/post";
 
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { getCards, notion as notionClient } from "@/data";
+import { getCards, notion, notion as notionClient } from "@/data";
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
 import { marked } from "marked";
+import { slugify } from "@/slugify";
 
-export async function getStaticPaths() {
-  const { slugify } = await import("@/slugify");
-  const cards = await getCards();
+const cards = await getCards();
 
-  const notion2Markdown = new NotionToMarkdown({
-    notionClient,
+const cardSlug = Astro.params.slug!;
+
+const card = cards.find((card) => slugify(card.title) === cardSlug);
+
+if (!card) {
+  return new Response(null, {
+    status: 404,
+    statusText: "Not found",
   });
-
-  const cardsWithContent = await Promise.all(
-    cards.map(async ({ title, ...props }) => {
-      let content = "";
-
-      try {
-        const pageInMDBlocks = await notion2Markdown.pageToMarkdown(
-          props.notionPageID
-        );
-        const pageContentInMarkdown =
-          notion2Markdown.toMarkdownString(pageInMDBlocks);
-        content = marked.parse(pageContentInMarkdown);
-      } catch (error) {
-        console.log("errored no html");
-      }
-
-      return {
-        params: {
-          slug: slugify(title),
-        },
-        props: {
-          title,
-          content,
-          ...props,
-        },
-      };
-    })
-  );
-
-  return cardsWithContent;
 }
-const card = Astro.props as CardProps & {
-  content: string;
-};
+
+const notion2Markdown = new NotionToMarkdown({
+  notionClient,
+});
+
+const pageInMDBlocks = await notion2Markdown.pageToMarkdown(card.notionPageID);
+const pageContentInMarkdown = notion2Markdown.toMarkdownString(pageInMDBlocks);
+const content = marked.parse(pageContentInMarkdown);
+// export async function getStaticPaths() {
+//   const { slugify } = await import("@/slugify");
+
+//   const cardsWithContent = cards.map(({ title, ...props }) => {
+//     return {
+//       params: {
+//         slug: slugify(title),
+//       },
+//       props: {
+//         title,
+//         ...props,
+//       },
+//     };
+//   });
+
+//   return cardsWithContent;
+// }
+
+// const card = Astro.props as CardProps;
+
+// const getContent = async (notionPageID: string) => {
+//   let content = "";
+//   try {
+//     console.log(notionPageID);
+//     const pageInMDBlocks = await notion2Markdown.pageToMarkdown(notionPageID);
+//     const pageContentInMarkdown =
+//       notion2Markdown.toMarkdownString(pageInMDBlocks);
+//     content = marked.parse(pageContentInMarkdown);
+//   } catch (error) {
+//     console.log("errored no html");
+//   }
+
+//   return content;
+// };
+// console.log(card.notionPageID);
+// const content = await getContent(card.notionPageID);
+// console.log(content);
 ---
 
 <!DOCTYPE html>
@@ -66,13 +82,13 @@ const card = Astro.props as CardProps & {
     <!-- favicon -->
     <meta name="generator" content={Astro.generator} />
 
-    <title>{card.title} - MysticalReviews</title>
+    <!-- <title>{card.title} - MysticalReviews</title> -->
   </head>
 
   <body>
     <Navbar currentPage="" client:only="react" />
 
-    <Post {...card} client:only="react" />
+    <Post {...card} content={content} client:only="react" />
 
     <Footer client:only="react" />
   </body>
