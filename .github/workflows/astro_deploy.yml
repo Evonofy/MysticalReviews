@@ -30,6 +30,9 @@ jobs:
 
       - name: Build project
         run: yarn build
+        env:
+          PUBLIC_NOTION_SECRET: ${{ secrets.PUBLIC_NOTION_SECRET }}
+          PUBLIC_DATABASE_ID: ${{ secrets.PUBLIC_DATABASE_ID }}
 
       - name: Add .nojekyll file
         run: touch ./dist/.nojekyll
