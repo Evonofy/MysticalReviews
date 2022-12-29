@@ -1,16 +1,35 @@
 import { Client } from "@notionhq/client";
-// import { NotionToMarkdown } from "notion-to-md";
 import { CardProps } from "@/components/Card";
+import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 
-export type Genre = { name: string; backgroundColor: string; color: string };
+export type Genre = {
+  name: string;
+  color: string;
+  backgroundColor: string;
+};
+
 type Genres = Genre[];
 
-const notion = new Client({
-  auth: "secret_5TfAdMRqTNTOv6uFG81I6gBfPntbkzIEdmLQZ0i5YQf",
+const database_id = import.meta.env.DATABASE_ID;
+
+export const notion = new Client({
+  auth: import.meta.env.NOTION_SECRET,
 });
 
+type SelectColor =
+  | "default"
+  | "gray"
+  | "brown"
+  | "orange"
+  | "yellow"
+  | "green"
+  | "blue"
+  | "purple"
+  | "pink"
+  | "red";
+
 export const colorTable: Record<
-  string,
+  SelectColor,
   { color: string; backgroundColor: string }
 > = {
   default: {
@@ -55,31 +74,95 @@ export const colorTable: Record<
   },
 };
 
-const databasePages = await notion.databases.query({
-  database_id: "cd9f0cc2e35e4262bbc920dfdb039edf",
-});
+export const getCards = async () => {
+  let items: Array<PageObjectResponse> = [];
 
-export const cards: CardProps[] = databasePages.results.map(
-  ({ created_time, cover, properties, id }) => {
-    const createdAt = created_time;
-    const coverUrl = cover.external.url as string;
-    const coverImageDescription = properties.coverImageDescription.rich_text[0]
-      .text.content as string;
-    const title = properties.title.title[0].text.content as string;
-    const description = properties.description.rich_text[0].text
-      .content as string;
-    const genres: Genres = properties.genres.multi_select.map(
-      ({ name, color }) => ({
+  try {
+    const database = await notion.databases.query({
+      database_id,
+    });
+
+    items = database.results as Array<PageObjectResponse>;
+  } catch (error) {
+    console.log("error here");
+  }
+
+  const cards = items.map(({ id, created_time, cover, properties }) => {
+    const createdAt = new Date(created_time).getTime().toString();
+
+    const coverUrl = (() => {
+      if (cover?.type !== "external") {
+        throw new Error("Cover should be external");
+      }
+
+      return cover.external.url;
+    })();
+
+    const coverImageDescription = (() => {
+      if (properties["CoverImageDescription"].type !== "rich_text") {
+        throw new Error("CoverImageDescription should be rich_text");
+      } else if (
+        properties["CoverImageDescription"].rich_text[0].type !== "text"
+      ) {
+        throw new Error("CoverImageDescription rich_text should be type text");
+      }
+
+      return properties["CoverImageDescription"].rich_text[0].text.content;
+    })();
+
+    const title = (() => {
+      if (properties["Title"].type !== "title") {
+        throw new Error("Title should be type title");
+      } else if (!properties["Title"].title[0]) {
+        throw new Error("Title should exist");
+      }
+
+      return properties["Title"].title[0].plain_text;
+    })();
+
+    const description = (() => {
+      if (properties["Description"].type !== "rich_text") {
+        throw new Error("Description should be type rich_text");
+      } else if (properties["Description"].rich_text[0].type !== "text") {
+        throw new Error("Description rich_text should be type text");
+      }
+
+      return properties["Description"].rich_text[0].text.content;
+    })();
+
+    const genres = (() => {
+      if (properties["Genres"].type !== "multi_select") {
+        throw new Error("Genres should be type multi_select");
+      }
+
+      return properties["Genres"].multi_select.map(({ name, color }) => ({
         name,
         ...colorTable[color],
-      })
-    );
-    const bookTitle = properties.bookTitle.rich_text[0].text.content as string;
-    const bookAuthor = properties.bookAuthor.rich_text[0].text
-      .content as string;
+      }));
+    })();
+
+    const bookTitle = (() => {
+      if (properties["BookTitle"].type !== "rich_text") {
+        throw new Error("BookTitle should be type rich_text");
+      } else if (properties["BookTitle"].rich_text[0].type !== "text") {
+        throw new Error("BookTitle rich_text should be type text");
+      }
+
+      return properties["BookTitle"].rich_text[0].text.content;
+    })();
+
+    const bookAuthor = (() => {
+      if (properties["BookAuthor"].type !== "rich_text") {
+        throw new Error("BookAuthor should be type rich_text");
+      } else if (properties["BookAuthor"].rich_text[0].type !== "text") {
+        throw new Error("BookAuthor rich_text should be type text");
+      }
+
+      return properties["BookAuthor"].rich_text[0].text.content;
+    })();
 
     return {
-      createdAt: new Date(createdAt).getTime().toString(),
+      createdAt,
       coverUrl,
       coverImageDescription,
       title,
@@ -91,47 +174,7 @@ export const cards: CardProps[] = databasePages.results.map(
         author: bookAuthor,
       },
     };
-  }
-);
-
-export const getCards = async () => {
-  const databasePages = await notion.databases.query({
-    database_id: "cd9f0cc2e35e4262bbc920dfdb039edf",
   });
 
-  return databasePages.results.map(
-    ({ created_time, cover, properties, id }) => {
-      const createdAt = created_time;
-      const coverUrl = cover.external.url as string;
-      const coverImageDescription = properties.coverImageDescription
-        .rich_text[0].text.content as string;
-      const title = properties.title.title[0].text.content as string;
-      const description = properties.description.rich_text[0].text
-        .content as string;
-      const genres: Genres = properties.genres.multi_select.map(
-        ({ name, color }) => ({
-          name,
-          ...colorTable[color],
-        })
-      );
-      const bookTitle = properties.bookTitle.rich_text[0].text
-        .content as string;
-      const bookAuthor = properties.bookAuthor.rich_text[0].text
-        .content as string;
-
-      return {
-        createdAt: new Date(createdAt).getTime().toString(),
-        coverUrl,
-        coverImageDescription,
-        title,
-        description,
-        genres,
-        notionPageID: id,
-        book: {
-          title: bookTitle,
-          author: bookAuthor,
-        },
-      };
-    }
-  );
+  return cards;
 };
