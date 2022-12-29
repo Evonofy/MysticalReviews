@@ -10,7 +10,6 @@ import vercel from "@astrojs/vercel/serverless";
 // https://astro.build/config
 export default defineConfig({
   integrations: [react()],
-  base: "MysticalReviews",
   output: "server",
   publicDir: "public",
   adapter: vercel(),
