@@ -10,10 +10,10 @@ export type Genre = {
 
 type Genres = Genre[];
 
-const database_id = import.meta.env.DATABASE_ID;
+const database_id = import.meta.env.PUBLIC_DATABASE_ID;
 
 export const notion = new Client({
-  auth: import.meta.env.NOTION_SECRET,
+  auth: import.meta.env.PUBLIC_NOTION_SECRET,
 });
 
 type SelectColor =
