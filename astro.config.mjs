@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 
 // https://astro.build/config
-import vercel from "@astrojs/vercel/serverless";
+import node from "@astrojs/node";
 
 // https://astro.build/config
 // import vercel from "@astrojs/vercel/serverless";
@@ -12,5 +12,7 @@ export default defineConfig({
   integrations: [react()],
   output: "server",
   publicDir: "public",
-  adapter: vercel(),
+  adapter: node({
+    mode: "standalone",
+  }),
 });
