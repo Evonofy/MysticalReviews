@@ -84,6 +84,7 @@ export const getCards = async () => {
 
     items = database.results as Array<PageObjectResponse>;
   } catch (error) {
+    console.log(error);
     console.log("error here");
   }
 
