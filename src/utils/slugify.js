@@ -1,3 +1,8 @@
+/**
+ *
+ * @param {string} string
+ * @returns {string}
+ */
 export const slugify = (string) =>
   String(string)
     .normalize("NFD") // removes accents

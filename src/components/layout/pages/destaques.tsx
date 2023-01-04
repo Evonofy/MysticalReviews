@@ -9,6 +9,7 @@ export const Destaques: FunctionComponent<{ cards: CardProps[] }> = ({
   cards,
 }) => {
   const allCategories = [
+    // @ts-ignore
     ...new Set(
       cards
         .map(({ genres }) => genres)

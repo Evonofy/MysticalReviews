@@ -103,7 +103,7 @@ export const Newsletter: FunctionComponent = () => {
 
   return (
     <NewsletterRoot css={{ "@tablet": { backgroundImage: `url("${""}")` } }}>
-      <BackgroundImage src={NewsletterPattern} />
+      <BackgroundImage src={NewsletterPattern.src} />
 
       <Heading.h1
         css={{

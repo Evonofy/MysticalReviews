@@ -6,7 +6,12 @@ import { SortPostsPopup } from "@/components/popup/SortPosts";
 import { Div } from "@/components/utils/Div";
 import { Card, CardProps } from "@/components/Card";
 import { Section } from "../section";
-import { Genre } from "@/data";
+
+export type Genre = {
+  name: string;
+  color: string;
+  backgroundColor: string;
+};
 
 export const Resenhas: FunctionComponent<{
   cards: CardProps[];

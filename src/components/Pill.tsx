@@ -2,6 +2,7 @@ import { FunctionComponent, ReactNode } from "react";
 import { styled } from "@/stitches.config";
 
 import { slugify } from "@/slugify";
+import Link from "next/link";
 
 const PillRoot = styled("a", {
   display: "flex",
@@ -43,9 +44,9 @@ export const Pill: FunctionComponent<PillProps> = ({
 }) => {
   return (
     <PillRoot
-      as={asButton ? "button" : "a"}
+      as={asButton ? "button" : Link}
       onClick={onClick}
-      href={`category/${slugify(name)}`}
+      href={`/category/${slugify(name)}`}
       css={
         selected
           ? {

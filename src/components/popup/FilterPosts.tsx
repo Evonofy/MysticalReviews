@@ -11,7 +11,11 @@ import { Button } from "@/components/Button";
 import { Div } from "@/components/utils/Div";
 
 import Pill from "@/components/Pill";
-import { Genre } from "@/data";
+export type Genre = {
+  name: string;
+  color: string;
+  backgroundColor: string;
+};
 
 const ButtonRoot = styled(Button, {
   width: "100%",

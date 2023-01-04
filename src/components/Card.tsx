@@ -6,7 +6,7 @@ const Pill = lazy(() => import("@/components/Pill"));
 import { Heading } from "@/components/Heading";
 import { Button } from "@/components/Button";
 import { Div } from "./utils/Div";
-import { slugify } from "@/slugify";
+import { slugify } from "@/utils/slugify";
 import { CSS } from "@stitches/react";
 
 const CardRoot = styled("a", {
@@ -198,7 +198,7 @@ export const Card = ({
   // )} (${date.getMonth()}) ${date.getDate()}, ${date.getFullYear()}`;
 
   return (
-    <CardRoot href={`post/${slugify(title)}`} variant={variant} css={css}>
+    <CardRoot href={`/post/${slugify(title)}`} variant={variant} css={css}>
       <ImageContainer>
         <img src={coverUrl} alt={coverImageDescription} />
       </ImageContainer>

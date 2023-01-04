@@ -5,7 +5,6 @@ import { Card, CardProps } from "@/components/Card";
 import { CardSlider } from "@/components/card-slider";
 import { Newsletter } from "@/components/Newsletter";
 import { Title } from "@/components/Title";
-import { Carousel } from "@/components/Carousel";
 
 export const Home: FunctionComponent<{ cards: CardProps[] }> = ({ cards }) => {
   return (

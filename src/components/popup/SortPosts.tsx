@@ -7,7 +7,11 @@ import { Checkbox } from "../Checkbox";
 import { Heading } from "../Heading";
 import { PopupButton } from "./core";
 import { BsSortDown } from "react-icons/bs/index.js";
-import { Genre } from "@/data";
+export type Genre = {
+  name: string;
+  color: string;
+  backgroundColor: string;
+};
 
 const ButtonRoot = styled(Button, {
   width: "100%",

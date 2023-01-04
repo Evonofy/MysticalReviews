@@ -3,6 +3,7 @@ import { styled } from "@/stitches.config";
 import { Pill } from "@/components/Pill";
 import { Heading } from "@/components/Heading";
 import { slugify } from "@/slugify";
+import Link from "next/link";
 
 const Container = styled("a", {
   maxWidth: "280px",
@@ -78,7 +79,7 @@ export const RecommendationCard = ({
   const year = date.getFullYear();
 
   return (
-    <Container href={`${slugify(title)}`}>
+    <Container as={Link} href={`${slugify(title)}`}>
       <img src={coverUrl} alt={coverImageDescription} />
 
       <CardContent>

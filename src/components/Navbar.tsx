@@ -3,7 +3,7 @@ import { styled } from "../stitches.config";
 
 // HTML Tags
 import { Tags } from "../components/Tags";
-import OpenBook from "./OpenBook.png";
+import openBook from "./OpenBook.png";
 
 // Components
 import { SearchBar } from "./SearchBar";
@@ -18,6 +18,7 @@ import { FiInfo, FiSettings } from "react-icons/fi/index.js";
 import { AiFillStar } from "react-icons/ai/index.js";
 import { GiHamburgerMenu } from "react-icons/gi/index.js";
 import { Button } from "./Button";
+import Link from "next/link";
 
 const NavMobile = styled("nav", {
   width: "100%",
@@ -128,15 +129,15 @@ const ListItem = styled("li", {
 const links = [
   {
     name: "Resenhas",
-    href: "reviews",
+    href: "/reviews",
   },
   {
     name: "Destaques",
-    href: "highlights",
+    href: "/highlights",
   },
   {
     name: "Sobre e Contato",
-    href: "about",
+    href: "/about",
   },
 ];
 
@@ -200,9 +201,7 @@ export function Navbar({ currentPage }: { currentPage: string }) {
           <UnorderedList>
             {links.map(({ name, href }) => (
               <ListItem key={href}>
-                <Tags.Link href={`/MysticalReviews/${href}`}>
-                  {name.toUpperCase()}
-                </Tags.Link>
+                <Link href={href}>{name.toUpperCase()}</Link>
               </ListItem>
             ))}
           </UnorderedList>
@@ -238,19 +237,14 @@ export function Navbar({ currentPage }: { currentPage: string }) {
       <NavDesktop>
         <LimitWidth>
           <NavigationContainer>
-            <a href="/MysticalReviews/">
-              <Logo src={OpenBook} />
-            </a>
+            <Link href="/">
+              <Logo src={openBook.src} />
+            </Link>
 
             <UnorderedList>
               {links.map(({ name, href }) => (
                 <ListItem key={href}>
-                  <Tags.Link
-                    css={currentPage === href ? { color: "$accentBase" } : {}}
-                    href={`/MysticalReviews/${href}`}
-                  >
-                    {name.toUpperCase()}
-                  </Tags.Link>
+                  <Link href={href}>{name.toUpperCase()}</Link>
                 </ListItem>
               ))}
             </UnorderedList>
@@ -364,7 +358,7 @@ function ConfigPopup() {
       </li>
 
       <li>
-        <a href="about">
+        <Link href="/about">
           <svg
             width="18"
             height="14"
@@ -379,7 +373,7 @@ function ConfigPopup() {
           </svg>
 
           <Tags.Paragraph>Newsletter</Tags.Paragraph>
-        </a>
+        </Link>
       </li>
     </PopupContainer>
   );
