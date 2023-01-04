@@ -20,6 +20,26 @@ const ButtonRoot = styled(Button, {
 
   padding: "$spacer-2 $spacer-3",
 });
+const modifiers = [
+  {
+    label: "data de publicação",
+    onChecked: (cards: CardProps[]) => {
+      return cards.sort((a, b) => {
+        return new Date(b.createdAt).getTime() > new Date(a.createdAt).getTime()
+          ? -1
+          : 1;
+      });
+    },
+  },
+  {
+    label: "ordem alfabética",
+    onChecked: (cards: CardProps[]) => {
+      return cards.sort((a, b) => {
+        return a.title.localeCompare(b.title);
+      });
+    },
+  },
+];
 
 export const SortPostsPopup: FunctionComponent<{
   cards: CardProps[];
@@ -28,31 +48,19 @@ export const SortPostsPopup: FunctionComponent<{
 }> = ({ cards, onClick }) => {
   const [selectedModifier, setSelectedModifier] = useState<string | null>(null);
 
-  const modifiers = [
-    {
-      label: "data de publicação",
-      onChecked: () => {
-        const sortedCards = cards.sort((a, b) => {
-          return new Date(b.createdAt).getTime() >
-            new Date(a.createdAt).getTime()
-            ? -1
-            : 1;
-        });
+  const handleClick = (
+    modifier: string,
+    onChecked: (cards: CardProps[]) => CardProps[]
+  ) => {
+    if (modifier === selectedModifier) {
+      // remove sort
+      setSelectedModifier(null);
+      onClick(cards);
+    }
 
-        onClick(sortedCards);
-      },
-    },
-    {
-      label: "ordem alfabética",
-      onChecked: () => {
-        const sortedCards = cards.sort((a, b) => {
-          return a.title.localeCompare(b.title);
-        });
-
-        onClick(sortedCards);
-      },
-    },
-  ];
+    setSelectedModifier(modifier);
+    onClick(onChecked(cards));
+  };
 
   return (
     <PopupButton
@@ -66,18 +74,7 @@ export const SortPostsPopup: FunctionComponent<{
       {modifiers.map(({ label, onChecked }) => (
         <ButtonRoot
           key={label}
-          onClick={() => {
-            // if already selected
-            if (label === selectedModifier) {
-              setSelectedModifier(null);
-              onClick(cards);
-              return;
-            }
-
-            setSelectedModifier(label);
-
-            onChecked();
-          }}
+          onClick={() => handleClick(label, onChecked)}
           css={{
             background:
               label === selectedModifier ? "$secondaryBase" : "$gray600",

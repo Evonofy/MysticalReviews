@@ -54,7 +54,7 @@ export function About() {
         <Title>Sobre E Contato</Title>
 
         <LogoWrapper>
-          <img src={Logo} alt="" />
+          <img src={Logo.src} alt="" />
         </LogoWrapper>
       </Section>
       <Section
@@ -87,7 +87,7 @@ export function About() {
             Por Quê A <Heading.h1 font="display">Mystical</Heading.h1>Foi
             Criada?
           </Heading.h1>
-          <AboutImage src={question} alt="" />
+          <AboutImage src={question.src} alt="" />
         </TextImage>
         <Heading.p
           css={{
@@ -130,7 +130,7 @@ export function About() {
             <Heading.h1 font="display">Temas Literários</Heading.h1> Mais
             Presentes
           </Heading.h1>
-          <AboutImage src={book} alt="" />
+          <AboutImage src={book.src} alt="" />
         </TextImage>
         <Heading.p
           css={{
@@ -179,7 +179,7 @@ export function About() {
           >
             Para <Heading.h1 font="display">Quem</Heading.h1>Foi Criado
           </Heading.h1>
-          <AboutImage src={lib} alt="" />
+          <AboutImage src={lib.src} alt="" />
         </TextImage>
         <Heading.p
           css={{

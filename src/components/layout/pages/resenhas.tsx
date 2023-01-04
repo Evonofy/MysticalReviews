@@ -52,15 +52,18 @@ export const Resenhas: FunctionComponent<{
           onClick={(sortedCards) => setCards(sortedCards)}
         />
 
-        <SortPostsPopup
+        {/* <SortPostsPopup
           cards={cardsData}
           genres={genres}
-          onClick={(sortedCards) => setCards(sortedCards)}
-        />
+          onClick={(sortedCards) => {
+            setCards([]);
+            setCards(sortedCards);
+          }}
+        /> */}
       </Div>
 
-      {cards.map((props, index) => (
-        <Card key={index} {...props} />
+      {cards.map((props) => (
+        <Card key={props.title} {...props} />
       ))}
     </Section>
   );
