@@ -1,7 +1,6 @@
-import { lazy } from "react";
 import { config, styled } from "../stitches.config";
 
-const Pill = lazy(() => import("@/components/Pill"));
+import { Pill } from "@/components/Pill";
 
 import { Heading } from "@/components/Heading";
 import { Button } from "@/components/Button";
@@ -208,15 +207,15 @@ export const Card = ({
         </PillList>
 
         <Div
-          css={{
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            gap: "$spacer-1",
-            alignItems: "flex-start",
-          }}
+        // css={{
+        //   width: "100%",
+        //   display: "flex",
+        //   flexDirection: "column",
+        //   gap: "$spacer-1",
+        //   alignItems: "flex-start",
+        // }}
         >
-          <Heading.h2
+          {/* <Heading.h2
             font="display"
             css={{
               width: "100%",
@@ -236,9 +235,9 @@ export const Card = ({
             }}
           >
             {title.substring(0, 50)}...
-          </Heading.h2>
+          </Heading.h2> */}
 
-          {variant === "side-scroll" ? (
+          {/* {variant === "side-scroll" ? (
             <Heading.p
               font="reading"
               weight="regular"
@@ -292,7 +291,7 @@ export const Card = ({
                 {desktopDescription}...
               </Heading.p>
             </>
-          )}
+          )} */}
         </Div>
 
         <DateSection

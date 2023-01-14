@@ -2,6 +2,7 @@ import { notion_secret, database_id } from "./variables";
 
 import { Client } from "@notionhq/client";
 import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
+import { CardProps } from "@/components/Card";
 
 type SelectColor =
   | "default"
@@ -65,7 +66,7 @@ export const notion = new Client({
   auth: notion_secret,
 });
 
-export type Card = {
+export type Card = CardProps; /* {
   createdAt: string;
   coverUrl: string;
   coverImageDescription: string;
@@ -81,14 +82,14 @@ export type Card = {
     title: string;
     author: string;
   };
-};
+}; */
 
 export const buildCardResponse = ({
   id,
   created_time,
   cover,
   properties,
-}: PageObjectResponse) => {
+}: PageObjectResponse): Card => {
   const createdAt = new Date(created_time).getTime().toString();
 
   const coverUrl = (() => {
@@ -169,6 +170,7 @@ export const buildCardResponse = ({
     title,
     description,
     genres,
+    variant: "default",
     notionPageID: id,
     book: {
       title: bookTitle,
