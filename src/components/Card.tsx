@@ -188,11 +188,6 @@ export const Card = ({
   const tabletDescription = description?.substring(0, 296) || "";
   const desktopDescription = description?.substring(0, 344) || "";
 
-  const date = new Date(Number(createdAt));
-  const month = new Intl.DateTimeFormat("pt-BR", {
-    month: "long",
-  });
-
   // const formattedDate = `${capitalize(
   //   month.format(date)
   // )} (${date.getMonth()}) ${date.getDate()}, ${date.getFullYear()}`;
