@@ -177,7 +177,6 @@ export const Card = ({
   description,
   coverUrl,
   coverImageDescription,
-  createdAt,
   variant = "default",
   css,
   notionPageID,
@@ -187,10 +186,6 @@ export const Card = ({
   const sideScrollDescription = description?.substring(0, 60) || "";
   const tabletDescription = description?.substring(0, 296) || "";
   const desktopDescription = description?.substring(0, 344) || "";
-
-  // const formattedDate = `${capitalize(
-  //   month.format(date)
-  // )} (${date.getMonth()}) ${date.getDate()}, ${date.getFullYear()}`;
 
   return (
     <CardRoot href={`/post/${slugify(title)}`} variant={variant} css={css}>

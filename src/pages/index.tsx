@@ -7,15 +7,9 @@ import {
   NextPage,
 } from "next";
 
-export const getServerSideProps: GetServerSideProps<{ cards: Card[] }> = async (
-  context
-) => {
-  // setting cache
-  context.res.setHeader(
-    "Cache-Control",
-    "public, s-maxage=10, stale-while-revalidate=59"
-  );
-
+export const getServerSideProps: GetServerSideProps<{
+  cards: Card[];
+}> = async () => {
   try {
     const { cards } = await fetchAllCards();
 
