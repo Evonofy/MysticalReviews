@@ -1,0 +1,41 @@
+---
+import { Image } from "@astrojs/image/components"
+
+import Subscribe from "@/images/subscribe.png"
+---
+
+<div class="flex flex-col gap-2 rounded bg-accent-base p-5">
+  <section class="flex flex-col gap-2">
+    <h2 class="text-center">
+      <span class="text-secondary-base">Inscreva-se</span> Em Nosso <span
+        class="font-display text-secondary-base">Newsletter</span
+      >
+    </h2>
+
+    <Image
+      src={Subscribe}
+      alt=""
+      width={190}
+      height={130}
+      fetchpriority={"low"}
+      quality={90}
+    />
+
+    <p class="text-gray-900">
+      Preencha o campo abaixo com o seu e-mail para receber avisos das reviews
+      do site, com isso você receberá: <br />
+      Os alertas dos destaques do site. <br />
+      Os posts mais recentes do dia. <br /> Não se preocupe, você poderá revogar
+      sua assinatura a qualquer momento nas configurações.
+    </p>
+  </section>
+
+  <label class="flex items-center gap-2 rounded bg-gray-100 px-2 py-1">
+    <input type="text" class="h-full w-full py-2" />
+
+    <button
+      class="rounded-sm bg-secondary-base px-8 py-2 font-bold text-gray-100"
+      >Enviar</button
+    >
+  </label>
+</div>

@@ -1,0 +1,54 @@
+---
+import { Image } from "@astrojs/image/components"
+
+import home from "@/images/icons/nav/home.svg"
+import search from "@/images/icons/nav/search.svg"
+import info from "@/images/icons/nav/info.svg"
+import star from "@/images/icons/nav/star.svg"
+import gear from "@/images/icons/nav/gear.svg"
+
+const pages = [
+  {
+    icon: home,
+    href: "/",
+  },
+  {
+    icon: search,
+    href: "/search",
+  },
+  {
+    icon: info,
+    href: "/about",
+  },
+  {
+    icon: star,
+    href: "/favorites",
+  },
+  {
+    icon: gear,
+    href: "/configuration",
+  },
+]
+---
+
+<footer
+  class="fixed bottom-0 w-full bg-gray-100 px-5 py-3 shadow-main sm:hidden"
+>
+  <nav class="flex w-full items-center justify-between">
+    {
+      pages.map((page) => (
+        <a href={page.href} class="hover:brightness-50">
+          <Image
+            src={page.icon}
+            alt={page.href}
+            width={25}
+            height={25}
+            quality={100}
+            loading={"eager"}
+            fetchpriority={"high"}
+          />
+        </a>
+      ))
+    }
+  </nav>
+</footer>

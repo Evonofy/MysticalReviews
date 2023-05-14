@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: system-ui, sans-serif;
+  scroll-behavior: smooth;
+  background-color: #d5d5dd;
+
+  --swiper-pagination-bullet-horizontal-gap: 10px;
+  --swiper-pagination-bullet-size: 15px;
+  --swiper-pagination-bullet-inactive-color: #636363;
+  --swiper-theme-color: #5252e0;
+}
+
+@layer base {
+  h1,
+  h2 {
+    @apply text-3xl font-normal text-gray-900;
+  }
+
+  h3 {
+    @apply text-xl font-semibold md:text-2xl;
+  }
+
+  p {
+    @apply text-base md:text-xl;
+  }
+}

@@ -1,0 +1,89 @@
+---
+import Layout from "../layouts/Layout.astro"
+import Card from "@/components/Card.astro"
+import Newsletter from "@/components/Newsletter.astro"
+
+type Post = {
+  title: string
+  description: string
+  imageUrl: string
+  tags: string[]
+  createdAt: number
+}
+
+const posts: Post[] = [
+  {
+    title: "Lorem Ipsum Dolor",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    imageUrl: "https://i1.sndcdn.com/artworks-000369589368-pucuvi-t500x500.jpg",
+    createdAt: new Date().getTime(),
+    tags: ["TAG", "TAG", "TAG", "TAG"],
+  },
+  {
+    title: "Lorem Ipsum Dolor",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    imageUrl: "https://i1.sndcdn.com/artworks-000369589368-pucuvi-t500x500.jpg",
+    createdAt: new Date().getTime(),
+    tags: ["TAG", "TAG", "TAG", "TAG"],
+  },
+  {
+    title: "Lorem Ipsum Dolor",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    imageUrl: "https://i1.sndcdn.com/artworks-000369589368-pucuvi-t500x500.jpg",
+    createdAt: new Date().getTime(),
+    tags: ["TAG", "TAG", "TAG", "TAG"],
+  },
+  {
+    title: "Lorem Ipsum Dolor",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    imageUrl: "https://i1.sndcdn.com/artworks-000369589368-pucuvi-t500x500.jpg",
+    createdAt: new Date().getTime(),
+    tags: ["TAG", "TAG", "TAG", "TAG"],
+  },
+]
+---
+
+<Layout title="Página inicial | Mystical Reviews">
+  <section class="flex flex-col gap-5 p-5">
+    <div class="flex flex-col">
+      <h1>Publicações Mais Recentes</h1>
+      <div class="h-[5px] w-[120px] rounded-sm bg-accent-base"></div>
+    </div>
+
+    <div class="swiper mySwiper flex w-full flex-col gap-6">
+      <div class="swiper-wrapper">
+        {posts.map((post) => <Card {...post} />)}
+      </div>
+
+      <div class="swiper-pagination !static"></div>
+    </div>
+
+    <div class="flex flex-col">
+      <h2>Newsletter</h2>
+      <div class="h-[5px] w-[120px] rounded-sm bg-accent-base"></div>
+    </div>
+
+    <Newsletter />
+  </section>
+
+  <section class="flex flex-col gap-5 p-5">
+    <div class="flex flex-col">
+      <h1>Todas Publicações</h1>
+      <div class="h-[5px] w-[120px] rounded-sm bg-accent-base"></div>
+    </div>
+
+    <ul class="flex flex-col gap-5">
+      {
+        posts.map((post) => (
+          <li>
+            <Card {...post} />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Layout>
