@@ -1,7 +1,6 @@
 ---
 import "@/global.css"
 
-import BottomBar from "@/components/BottomBar.astro"
 import Header from "@/components/Header.astro"
 
 export interface Props {
@@ -29,14 +28,12 @@ const { title } = Astro.props
       href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
     />
   </head>
-  <body class="pb-[50px]">
+  <body>
     <Header />
 
     <main>
       <slot />
     </main>
-
-    <BottomBar />
 
     <script defer type="module">
       import "https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"

@@ -27,8 +27,8 @@ const slug = `/posts/${slugify(title)}`
 
 <a
   href={slug}
-  class="swiper-slide flex w-full flex-col rounded bg-gray-100 shadow-main"
-  style="overflow: overlay;"
+  class="swiper-slide flex min-h-[500px] w-full flex-col justify-end gap-4 rounded bg-gray-100 shadow-main"
+  style="overflow: hidden;"
 >
   <img
     src={imageUrl}
@@ -37,34 +37,45 @@ const slug = `/posts/${slugify(title)}`
     height={180}
     loading={isLCP ? "eager" : "lazy"}
     fetchpriority={isLCP ? "high" : "low"}
-    class="max-h-[180px] w-full object-cover"
+    class="absolute h-full w-full object-cover"
+    style="z-index: -2;"
   />
 
-  <div class="flex flex-col gap-3 overflow-x-hidden p-3 pb-5">
+  <div
+    class="absolute h-full w-full"
+    style="z-index: -1; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 87.5%);"
+  >
+  </div>
+
+  <div class="flex flex-col gap-4 p-6">
+    <h3 class="font-display text-slate-50">{title}</h3>
+
+    <p class="font-base text-slate-50/50">
+      {description}
+    </p>
+
     <ul class="scroll-b flex w-full items-center gap-1 overflow-x-auto">
       {
-        tags.map((tag, index) => (
+        tags.map((tag) => (
           <li>
-            <Pill label={tag} {index} />
+            <Pill label={tag} />
           </li>
         ))
       }
     </ul>
 
-    <section class="flex flex-col gap-1">
-      <h3 class="font-display text-gray-800">{title}</h3>
-
-      <p class="font-base text-gray-500">
-        {description}
-      </p>
-    </section>
-
-    <footer class="flex flex-col items-center gap-1">
-      <p class="text-xs font-medium text-gray-600">
-        {formattedDate}
-      </p>
-
-      <div class="h-[5px] w-[60px] rounded-full bg-accent-base"></div>
-    </footer>
+    <p class="font-bold text-accent-base">
+      {formattedDate}
+    </p>
   </div>
 </a>
+
+<style>
+  img {
+    transition: transform 150ms;
+  }
+
+  a:hover img {
+    transform: scale(1.1);
+  }
+</style>

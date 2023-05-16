@@ -1,9 +1,7 @@
 ---
 import search from "@/images/icons/nav/search.svg"
+import logo from "@/images/logo.png"
 import { Image } from "@astrojs/image/components"
-
-const pathname = new URL(Astro.request.url).pathname
-const currentPath = pathname // removes the first "/"
 
 const pages = [
   {
@@ -21,31 +19,35 @@ const pages = [
 ]
 ---
 
-<header
-  class="hidden w-full bg-gray-100 px-10 py-2 sm:flex sm:items-center sm:justify-center"
->
-  <nav class="flex w-full max-w-5xl items-center justify-between">
-    <ul class="flex items-center gap-3">
-      {
-        pages.map((page) => (
-          <li>
-            <a
-              class:list={[
-                "transition-colors hover:text-gray-600",
-                currentPath === page.slug
-                  ? "text-primary-base"
-                  : "text-gray-800",
-              ]}
-              href={page.slug}
-            >
-              {page.name}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+<header class="w-full border-b border-slate-600 bg-slate-50 px-6 py-3">
+  <nav class="m-auto flex w-full max-w-5xl items-center justify-between">
+    <div class="flex items-center gap-6">
+      <button class="rounded p-1">
+        <Image
+          src={logo}
+          alt="Livro aberto representando a logo da mystical reviews"
+          width={24}
+          height={24}
+        />
+      </button>
+      <ul class="hidden items-center gap-3 md:flex">
+        {
+          pages.map((page) => (
+            <li>
+              <a
+                class="text-gray-800 transition-colors hover:text-gray-600"
+                href={page.slug}
+                data-nav
+              >
+                {page.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
 
-    <div class="flex items-center gap-3">
+    <div class="hidden items-center gap-3 md:flex">
       <label for={"search"} class="relative w-full">
         <input
           id="search"
@@ -83,5 +85,43 @@ const pages = [
         </svg>
       </button>
     </div>
+
+    <button class="block rounded bg-slate-50 p-1 hover:bg-slate-100 md:hidden">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M3.75 6.75H20.25M5.34653 12H21.8465M3.75 17.25H20.25"
+          stroke="#475569"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </button>
   </nav>
 </header>
+<style>
+  .selected {
+    @apply !text-accent-base;
+  }
+</style>
+
+<script defer>
+  function main() {
+    const pathname = location.pathname
+    /** @type {HTMLAnchorElement[]} */
+    const links = document.querySelectorAll("nav a[data-nav]")
+
+    links.forEach((link) => {
+      if (link.pathname === pathname) {
+        link.classList.add("selected")
+      }
+    })
+  }
+
+  document.addEventListener("DOMContentLoaded", main)
+</script>

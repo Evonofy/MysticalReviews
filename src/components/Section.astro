@@ -1,0 +1,26 @@
+---
+export interface Props {
+  background?: string
+  title: string
+  asTitle?: boolean
+}
+
+const { background, title, asTitle = false } = Astro.props
+---
+
+<section class:list={[background ?? "bg-slate-50", "w-full p-6 lg:py-12"]}>
+  <div class="m-auto flex max-w-5xl flex-col items-start gap-6 lg:gap-16">
+    <div class="flex w-full flex-col">
+      {
+        asTitle ? (
+          <h1 class="text-inherit">{title}</h1>
+        ) : (
+          <h2 class="text-inherit">{title}</h2>
+        )
+      }
+      <div class="h-[5px] w-[120px] rounded-sm bg-accent-base"></div>
+    </div>
+
+    <slot />
+  </div>
+</section>

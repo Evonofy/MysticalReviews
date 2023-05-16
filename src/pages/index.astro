@@ -1,59 +1,19 @@
 ---
 import Layout from "../layouts/Layout.astro"
 import Card from "@/components/Card.astro"
-import Newsletter from "@/components/Newsletter.astro"
+import Section from "@/components/Section.astro"
+import Input from "@/components/Form/Input.astro"
 
-type Post = {
-  title: string
-  description: string
-  imageUrl: string
-  tags: string[]
-  createdAt: number
-}
+import { posts } from "@/post"
 
-const posts: Post[] = [
-  {
-    title: "Lorem Ipsum Dolor",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    imageUrl: "https://i1.sndcdn.com/artworks-000369589368-pucuvi-t500x500.jpg",
-    createdAt: new Date().getTime(),
-    tags: ["TAG", "TAG", "TAG", "TAG"],
-  },
-  {
-    title: "Lorem Ipsum Dolor",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    imageUrl: "https://i1.sndcdn.com/artworks-000369589368-pucuvi-t500x500.jpg",
-    createdAt: new Date().getTime(),
-    tags: ["TAG", "TAG", "TAG", "TAG"],
-  },
-  {
-    title: "Lorem Ipsum Dolor",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    imageUrl: "https://i1.sndcdn.com/artworks-000369589368-pucuvi-t500x500.jpg",
-    createdAt: new Date().getTime(),
-    tags: ["TAG", "TAG", "TAG", "TAG"],
-  },
-  {
-    title: "Lorem Ipsum Dolor",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    imageUrl: "https://i1.sndcdn.com/artworks-000369589368-pucuvi-t500x500.jpg",
-    createdAt: new Date().getTime(),
-    tags: ["TAG", "TAG", "TAG", "TAG"],
-  },
-]
+const postTags = [...new Set(posts.map((post) => post.tags).flat())]
+
+import at from "@/images/icons/at.svg"
+import { AllPosts } from "@/components/Islands/AllPosts"
 ---
 
 <Layout title="Página inicial | Mystical Reviews">
-  <section class="flex flex-col gap-5 p-5">
-    <div class="flex flex-col">
-      <h1>Publicações Mais Recentes</h1>
-      <div class="h-[5px] w-[120px] rounded-sm bg-accent-base"></div>
-    </div>
-
+  <Section title="Publicações Mais Recentes" asTitle>
     <div class="swiper mySwiper flex w-full flex-col gap-6">
       <div class="swiper-wrapper">
         {posts.map((post) => <Card {...post} />)}
@@ -61,29 +21,30 @@ const posts: Post[] = [
 
       <div class="swiper-pagination !static"></div>
     </div>
+  </Section>
 
-    <div class="flex flex-col">
-      <h2>Newsletter</h2>
-      <div class="h-[5px] w-[120px] rounded-sm bg-accent-base"></div>
-    </div>
+  <Section
+    background="bg-secondary-base text-slate-50"
+    title="Inscreva-se na nossa newsletter"
+  >
+    <p class="text-slate-300">
+      Preencha o campo abaixo com o seu e-mail para receber avisos das reviews
+      do site, com isso você receberá: Os alertas dos destaques do site. Os
+      posts mais recentes do dia. Não se preocupe, você poderá revogar sua
+      assinatura a qualquer momento nas configurações.
+    </p>
 
-    <Newsletter />
-  </section>
+    <form class="flex w-full flex-col gap-6 lg:flex-row lg:gap-8">
+      <Input name="email" placeholder="Seu E-mail" leftIcon={at} />
 
-  <section class="flex flex-col gap-5 p-5">
-    <div class="flex flex-col">
-      <h1>Todas Publicações</h1>
-      <div class="h-[5px] w-[120px] rounded-sm bg-accent-base"></div>
-    </div>
+      <button
+        type="submit"
+        class="shrink-0 rounded bg-accent-base px-6 py-3 font-bold text-slate-50 transition-colors hover:bg-accent-dark lg:w-[220px]"
+      >
+        Assinar Newsletter
+      </button>
+    </form>
+  </Section>
 
-    <ul class="flex flex-col gap-5">
-      {
-        posts.map((post) => (
-          <li>
-            <Card {...post} />
-          </li>
-        ))
-      }
-    </ul>
-  </section>
+  <AllPosts client:visible posts={posts} tags={postTags} />
 </Layout>

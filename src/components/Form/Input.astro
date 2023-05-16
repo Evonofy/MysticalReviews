@@ -1,0 +1,69 @@
+---
+import type { HTMLAttributes } from "astro/types"
+import { Image } from "@astrojs/image/components"
+
+export interface Props extends HTMLAttributes<"input"> {
+  placeholder: string
+  name: string
+  textarea?: boolean
+  leftIcon?: string
+  rightIcon?: string
+}
+
+const {
+  placeholder,
+  leftIcon,
+  rightIcon,
+  type = "text",
+  textarea = false,
+  name,
+  ...props
+} = Astro.props
+
+const id = name
+---
+
+<label for={id} class="relative w-full">
+  {
+    leftIcon && (
+      <div class="absolute bottom-0 left-3 top-0 my-auto h-max w-max">
+        <Image src={leftIcon} width={16} height={16} alt="" />
+      </div>
+    )
+  }
+
+  {
+    textarea ? (
+      <textarea
+        {name}
+        {id}
+        {placeholder}
+        cols="30"
+        rows="5"
+        class="max-h-52 min-h-[120px] w-full resize-y rounded border border-slate-300 bg-slate-50 p-3 text-slate-900 transition-colors placeholder:text-slate-400 focus:border-accent-base focus:outline-none focus:ring-0"
+        {...props}
+      />
+    ) : (
+      <input
+        {id}
+        {type}
+        {name}
+        placeholder={placeholder}
+        class:list={[
+          "w-full rounded border border-slate-300 bg-slate-50 px-3 py-2 transition-colors text-slate-900 placeholder:text-slate-400 focus:border-accent-darkest focus:ring-0 focus:!outline-none h-full",
+          leftIcon ? "pl-[calc(12px+16px+8px)]" : "pl-3",
+          rightIcon ? "pr-[calc(12px+16px+8px)]" : "pr-3",
+        ]}
+        {...props}
+      />
+    )
+  }
+
+  {
+    rightIcon && (
+      <div class="absolute bottom-0 right-3 top-0 my-auto h-max w-max">
+        <Image src={rightIcon} width={16} height={16} alt="" />
+      </div>
+    )
+  }
+</label>

@@ -1,29 +1,13 @@
 ---
 export interface Props {
   label: string
-  index: number
 }
 
-const { index, label } = Astro.props
-
-type Color = {
-  color: string
-  background: string
-}
-
-const colors: Color[] = [
-  { color: "#05543D", background: "#CBF9E1" },
-  { color: "#904827", background: "#FCF4DB" },
-  { color: "#272790", background: "#D9D9FC" },
-  { color: "#902727", background: "#FCDBDB" },
-]
-
-const { color, background } = colors[index % colors.length]!
+const { label } = Astro.props
 ---
 
 <div
-  class="rounded-full px-4 py-1 transition-all hover:brightness-95"
-  style={`background: ${background}; color: ${color};`}
+  class="rounded-full border-2 border-white bg-transparent px-4 py-1 text-white transition-all hover:border-slate-100 hover:brightness-95"
 >
   {label}
 </div>
