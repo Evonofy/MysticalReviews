@@ -1,5 +1,4 @@
 ---
-import search from "@/images/icons/nav/search.svg"
 import logo from "@/images/logo.png"
 import { Image } from "@astrojs/image/components"
 
@@ -7,10 +6,6 @@ const pages = [
   {
     name: "Resenhas",
     slug: "/resenhas",
-  },
-  {
-    name: "Destaques",
-    slug: "/destaques",
   },
   {
     name: "Sobre e Contato",
@@ -30,24 +25,25 @@ const pages = [
           height={24}
         />
       </button>
-      <ul class="hidden items-center gap-3 md:flex">
-        {
-          pages.map((page) => (
-            <li>
-              <a
-                class="text-gray-800 transition-colors hover:text-gray-600"
-                href={page.slug}
-                data-nav
-              >
-                {page.name}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
     </div>
 
-    <div class="hidden items-center gap-3 md:flex">
+    <ul class="hidden items-center gap-3 md:flex">
+      {
+        pages.map((page) => (
+          <li>
+            <a
+              class="text-gray-800 transition-colors hover:text-gray-600"
+              href={page.slug}
+              data-nav
+            >
+              {page.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- <div class="hidden items-center gap-3 md:flex">
       <label for={"search"} class="relative w-full">
         <input
           id="search"
@@ -84,7 +80,7 @@ const pages = [
             d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
         </svg>
       </button>
-    </div>
+    </div> -->
 
     <button class="block rounded bg-slate-50 p-1 hover:bg-slate-100 md:hidden">
       <svg
@@ -106,7 +102,7 @@ const pages = [
 </header>
 <style>
   .selected {
-    @apply !text-accent-base;
+    @apply !text-accent-dark;
   }
 </style>
 

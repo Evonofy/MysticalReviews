@@ -1,0 +1,16 @@
+---
+import Layout from "../layouts/Layout.astro"
+import Section from "@/components/Section.astro"
+
+import { posts } from "@/post"
+
+const postTags = [...new Set(posts.map((post) => post.tags).flat())]
+
+import { Reviews } from "@/components/Islands/Reviews"
+---
+
+<Layout title="Resenhas | Mystical Reviews">
+  <Section title="Resenhas" asTitle>
+    <Reviews posts={posts} tags={postTags} client:only />
+  </Section>
+</Layout>

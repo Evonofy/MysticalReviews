@@ -1,0 +1,123 @@
+---
+import Layout from "../layouts/Layout.astro"
+import Section from "@/components/Section.astro"
+
+import { Image } from "@astrojs/image/components"
+
+import logoFull from "@/images/logo-full.png"
+import questions from "@/images/questions.png"
+import book from "@/images/book.png"
+import bookshelf from "@/images/bookshelf.png"
+import Input from "@/components/Form/Input.astro"
+import at from "@/images/icons/at.svg"
+---
+
+<Layout title="Sobre E Contato | Mystical Reviews">
+  <Section title="Sobre E Contato" asTitle>
+    <div class="flex w-full flex-col items-start lg:items-center">
+      <Image
+        src={logoFull}
+        alt="Logo da Mystical Reviews"
+        width={213}
+        height={162}
+        loading={"eager"}
+        fetchpriority={"high"}
+      />
+    </div>
+  </Section>
+
+  <section
+    class="m-auto flex w-full max-w-5xl flex-col items-start gap-3 p-6 lg:gap-8 lg:py-12"
+  >
+    <div
+      class="flex w-full flex-col gap-3 lg:flex-row lg:items-center lg:justify-between"
+    >
+      <h2 class="w-full text-slate-900">Por Quê A Mystical Foi Criada?</h2>
+
+      <Image
+        src={questions}
+        alt="Símbolo de interrogação"
+        width={480}
+        height={340}
+        loading={"eager"}
+        fetchpriority={"high"}
+        class="w-full"
+      />
+    </div>
+
+    <p class="text-slate-600 lg:text-center">
+      Percebemos, cada vez mais, que a estrutura atual da organização desafia a
+      capacidade de equalização das novas proposições.
+    </p>
+  </section>
+
+  <section
+    class="m-auto flex w-full max-w-5xl flex-col items-start gap-3 p-6 lg:gap-8 lg:py-12"
+  >
+    <div
+      class="flex w-full flex-col gap-3 lg:flex-row-reverse lg:items-center lg:justify-between"
+    >
+      <h2 class="w-full text-slate-900">Temas Literários Mais Presentes</h2>
+
+      <Image
+        src={book}
+        alt="Ilustração de uma mulher segurando um livro"
+        width={280}
+        height={200}
+        loading={"lazy"}
+        fetchpriority={"low"}
+        class="w-full"
+      />
+    </div>
+
+    <p class="text-slate-600 lg:text-center">
+      Percebemos, cada vez mais, que a estrutura atual da organização desafia a
+      capacidade de equalização das novas proposições.
+    </p>
+  </section>
+
+  <section
+    class="m-auto flex w-full max-w-5xl flex-col items-start gap-3 p-6 lg:items-center lg:gap-8 lg:py-12"
+  >
+    <div class="flex w-full flex-col gap-3 lg:items-center">
+      <h2 class="text-slate-900">Para Quem Foi Criado</h2>
+
+      <Image
+        src={bookshelf}
+        alt="Ilustração de uma mulher segurando um livro"
+        width={280}
+        height={200}
+        loading={"lazy"}
+        fetchpriority={"low"}
+      />
+    </div>
+
+    <p class="text-slate-600 lg:w-[280px]">
+      Percebemos, cada vez mais, que a estrutura atual da organização desafia a
+      capacidade de equalização das novas proposições.
+    </p>
+  </section>
+
+  <Section
+    background="bg-secondary-base text-slate-50"
+    title="Inscreva-se na nossa newsletter"
+  >
+    <p class="text-slate-300">
+      Preencha o campo abaixo com o seu e-mail para receber avisos das reviews
+      do site, com isso você receberá: Os alertas dos destaques do site. Os
+      posts mais recentes do dia. Não se preocupe, você poderá revogar sua
+      assinatura a qualquer momento nas configurações.
+    </p>
+
+    <form class="flex w-full flex-col gap-6 lg:flex-row lg:gap-8 lg:py-12">
+      <Input name="email" placeholder="Seu E-mail" leftIcon={at} />
+
+      <button
+        type="submit"
+        class="shrink-0 rounded bg-accent-base px-6 py-3 font-bold text-slate-50 transition-colors hover:bg-accent-dark lg:w-[220px]"
+      >
+        Assinar Newsletter
+      </button>
+    </form>
+  </Section>
+</Layout>

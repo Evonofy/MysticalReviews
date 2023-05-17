@@ -1,0 +1,131 @@
+---
+import Layout from "@/layouts/Layout.astro"
+import { slugify } from "@/slug"
+import type {
+  GetStaticPaths,
+  // InferGetStaticParamsType,
+  InferGetStaticPropsType,
+} from "astro"
+
+export const getStaticPaths = (async () => {
+  const { posts } = await import("@/post")
+
+  return posts.map((post) => ({
+    params: {
+      slug: slugify(post.title),
+    },
+    props: post,
+  }))
+}) satisfies GetStaticPaths
+
+// type Params = InferGetStaticParamsType<typeof getStaticPaths>
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
+
+// const { slug } = Astro.params as Params
+const post = Astro.props
+
+const format = (date: number) =>
+  new Intl.DateTimeFormat("pt-BR", { dateStyle: "long" }).format(date)
+---
+
+<Layout title={`${post.title} | MysticalReviews`}>
+  <section
+    class="relative flex w-full items-center justify-center p-6 lg:py-28"
+  >
+    <img
+      src={post.imageUrl}
+      alt={`Imagem de capa do post ${post.title}`}
+      width={375}
+      height={124}
+      loading={"eager"}
+      fetchpriority={"high"}
+      class="absolute h-full w-full object-cover"
+      style="z-index: -2;"
+    />
+
+    <div
+      class="absolute h-full w-full"
+      style="z-index: -1; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 87.5%);"
+    >
+    </div>
+
+    <div class="flex flex-col gap-4" style="z-index: 3;">
+      <h1 class="text-center font-bold text-slate-50">{post.title}</h1>
+
+      <p class="text-center font-bold text-accent-base">
+        {format(post.createdAt)}
+      </p>
+    </div>
+  </section>
+
+  <section class="flex flex-col items-center gap-3 bg-accent-base p-6">
+    <div class="flex items-center gap-1">
+      <svg
+        width="19"
+        height="18"
+        viewBox="0 0 19 18"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g clip-path="url(#clip0_32_555)">
+          <path
+            d="M9.5 2.00583C8.39187 1.05296 6.78538 0.911207 5.32288 1.05746C3.61963 1.22958 1.90063 1.81346 0.829625 2.30058C0.731355 2.34528 0.648022 2.4173 0.589574 2.50807C0.531125 2.59883 0.50003 2.7045 0.5 2.81246V15.1875C0.500026 15.2816 0.523667 15.3742 0.568757 15.4568C0.613847 15.5394 0.678944 15.6094 0.758087 15.6603C0.83723 15.7112 0.927888 15.7415 1.02176 15.7483C1.11562 15.7551 1.2097 15.7383 1.29538 15.6993C2.28763 15.2493 3.88625 14.7082 5.43538 14.5518C7.0205 14.3921 8.34913 14.6497 9.06125 15.5385C9.11396 15.6042 9.18074 15.6572 9.25668 15.6936C9.33262 15.73 9.41577 15.749 9.5 15.749C9.58423 15.749 9.66738 15.73 9.74332 15.6936C9.81925 15.6572 9.88604 15.6042 9.93875 15.5385C10.6509 14.6497 11.9795 14.3921 13.5635 14.5518C15.1138 14.7082 16.7135 15.2493 17.7046 15.6993C17.7903 15.7383 17.8844 15.7551 17.9782 15.7483C18.0721 15.7415 18.1628 15.7112 18.2419 15.6603C18.3211 15.6094 18.3862 15.5394 18.4312 15.4568C18.4763 15.3742 18.5 15.2816 18.5 15.1875V2.81246C18.5 2.7045 18.4689 2.59883 18.4104 2.50807C18.352 2.4173 18.2686 2.34528 18.1704 2.30058C17.0994 1.81346 15.3804 1.22958 13.6771 1.05746C12.2146 0.910082 10.6081 1.05296 9.5 2.00583Z"
+            fill="white"></path>
+        </g>
+        <defs>
+          <clipPath id="clip0_32_555">
+            <rect width="18" height="18" fill="white" transform="translate(0.5)"
+            ></rect>
+          </clipPath>
+        </defs>
+      </svg>
+
+      <h3 class="font-bold text-slate-50">
+        {post.book.author} - {post.book.name}
+      </h3>
+    </div>
+
+    <p class="max-w-5xl text-center text-slate-100">
+      {post.description}
+    </p>
+
+    <div class="flex items-center gap-1">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g clip-path="url(#clip0_32_560)">
+          <path
+            d="M7.5 9.1665H5.83333V10.8332H7.5V9.1665ZM10.8333 9.1665H9.16667V10.8332H10.8333V9.1665ZM14.1667 9.1665H12.5V10.8332H14.1667V9.1665ZM15.8333 3.33317H15V1.6665H13.3333V3.33317H6.66667V1.6665H5V3.33317H4.16667C3.24167 3.33317 2.50833 4.08317 2.50833 4.99984L2.5 16.6665C2.5 17.1085 2.67559 17.5325 2.98816 17.845C3.30072 18.1576 3.72464 18.3332 4.16667 18.3332H15.8333C16.75 18.3332 17.5 17.5832 17.5 16.6665V4.99984C17.5 4.08317 16.75 3.33317 15.8333 3.33317ZM15.8333 16.6665H4.16667V7.49984H15.8333V16.6665Z"
+            fill="white"></path>
+        </g>
+        <defs>
+          <clipPath id="clip0_32_560">
+            <rect width="20" height="20" fill="white"></rect>
+          </clipPath>
+        </defs>
+      </svg>
+
+      <p class="text-slate-50">02.Setembro.2022</p>
+    </div>
+
+    <ul class="flex items-center gap-1 overflow-x-auto">
+      {
+        post.tags.map((tag) => (
+          <li>
+            <div class="rounded-full border-2 border-white bg-transparent px-4 py-1 text-white transition-all hover:border-slate-100 hover:brightness-95">
+              {tag}
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="m-auto max-w-5xl p-6 text-justify text-slate-600">
+    <p>{post.content}</p>
+  </section>
+</Layout>
